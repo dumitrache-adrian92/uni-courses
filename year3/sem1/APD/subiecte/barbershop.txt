@@ -1,0 +1,28 @@
+int freeChairs = n
+sem chairs(1)
+sem customersInShop(0)
+sem barberReadyToCut(0)
+int n = number of chairs including barber chair
+
+barber()
+    while True
+        customersInShop.wait()
+
+        chairs.wait()
+        freeChairs++
+        barberReadyToCut.post()
+        chairs.post()
+        cutHair()
+
+customer()
+    chair.wait()
+
+    if chairsOccupied == 0
+        freeChairs--
+        customersInShop.post()
+        chair.post()
+        barberReadyToCut.wait()
+        getHairCut
+    else
+        chair.post()
+        // leaves

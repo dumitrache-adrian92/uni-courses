@@ -1,0 +1,78 @@
+services:
+  mqtt-broker:
+    image: eclipse-mosquitto:latest
+    ports:
+      - "1883:1883"
+    networks:
+      - mqtt-broker-adapter-net
+    volumes:
+      - ./confs/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  influxdb:
+    image: influxdb:latest
+    volumes:
+      - influxdb_volume:/var/lib/influxdb2
+    networks:
+      - influxdb-adapter-net
+      - influxdb-grafana-net
+
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=password
+      - DOCKER_INFLUXDB_INIT_ORG=org
+      - DOCKER_INFLUXDB_INIT_BUCKET=sensor_readings
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=token
+      - DOCKER_INFLUXDB_INIT_DB=sensor_readings
+      - DOCKER_INFLUXDB_INIT_RETENTION=0
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "80:3000"
+    networks:
+      - influxdb-grafana-net
+
+    depends_on:
+      - influxdb
+
+    environment:
+      - GF_SECURITY_ADMIN_USER=asistent
+      - GF_SECURITY_ADMIN_PASSWORD=grafanaSCD2024
+
+    volumes:
+      - ./confs/datasources:/etc/grafana/provisioning/datasources
+      - ./confs/dashboards:/etc/grafana/provisioning/dashboards
+
+  adapter:
+    image: scd2024/adapter:latest
+    networks:
+      - mqtt-broker-adapter-net
+      - influxdb-adapter-net
+
+    depends_on:
+      - mqtt-broker
+      - influxdb
+
+    environment:
+      - INFLUXDB_DB=sensor_readings
+      - INFLUXDB_HOST=influxdb
+      - INFLUXDB_PORT=8086
+      - INFLUXDB_TOKEN=token
+      - INFLUXDB_ORG=org
+      - INFLUXDB_BUCKET=sensor_readings
+      - MQTT_BROKER_HOST=mqtt-broker
+      - MQTT_BROKER_PORT=1883
+      - DEBUG_DATA_FLOW=true
+
+networks:
+  mqtt-broker-adapter-net:
+    {}
+  influxdb-adapter-net:
+    {}
+  influxdb-grafana-net:
+    {}
+
+volumes:
+  influxdb_volume:
+    {}

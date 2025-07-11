@@ -1,0 +1,21 @@
+{
+  "name": "task-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "private": true,
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.2",
+    "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.0"
+  },
+  "scripts": {
+    "obfuscate": "javascript-obfuscator --config .obfuscator.json js/xssim.x.js --output js/xssim.min.js",
+    "backup": "./backup.sh"
+  }
+}

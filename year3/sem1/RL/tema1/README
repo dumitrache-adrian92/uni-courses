@@ -1,0 +1,101 @@
+1 2 3
+
+# Tema 1 RL - Dumitrache Adrian-George [334CC]
+
+Hello, voi detalia aici solutia mea pentru aceasta tema. Abordarea va fi una
+per cerinta si va include schimbarile cauzate si de cerinte ulterioare,
+chiar daca nu era nevoie de ele pentru subpunctul respectiv.
+
+Rezolvarea a fost facuta in Python si testata cu versiunea 3.11.4.
+
+## Procesul de comutare
+
+Aici logica este destul de simpla, avem un dictionar ce reprezinta o tabela CAM,
+unde cheia este adresa MAC, iar valoarea este interfata pe care se afla
+respectiva statie. De fiecare data cand primim un pachet, adaugam in tabela
+respectiva adresa MAC si interfata pe care am primit-o.
+
+Pentru a decide unde trimitem pachetul mai departe, verificam daca tabela CAM
+are o intrare pentru adresa MAC a statie destinatie. Daca da, trimitem pachetul pe interfata corespunzatoare. Daca nu, trimitem pachetul pe toate interfetele in afara de cea pe care am primit-o, AKA facem flood.
+
+Pentru a primi punctajul pentru aceasta cerinta, asta e tot ce trebuie sa facem,
+dar aceasta abordare nu este completa daca trebuie sa luam in considerare
+VLAN-uri si interfete oprite (adica urmatoarele cerinte). Deci, in realitate,
+inainte de a trimite un pachet se verifica si:
+
+- statusul interfetei: trimitem doar pe interfete ce sunt in modul Listening
+- VLAN-ul: trimitem doar pe interfetele care apartin VLAN-ului destinatie sau
+care sunt de tip trunk, caz in care adaugam tag-ul 802.1q cu VLAN-ul destinatie
+la pachet
+
+## VLAN
+
+Din start avem nevoie sa aflam VLAN-ul fiecarei interfete. Pentru asta, am parsat
+fisierul de configurare in functia `get_switch_config` ce va returna un dictionar
+cu cheia numele interfetei si valoarea VLAN-ul acesteia si prioritatea/bridge
+ID-ul switch-ului.
+
+Acum, de fiecare data cand primim un pachet determinam VLAN-ul in care trebuie
+sa ajunga mesajul bazat pe interfata pe care am primit mesajul. Daca mesajul a
+venit pe un port trunk, atunci VLAN-ul este cel din tag-ul 802.1q.
+
+Evident, acum trebuie sa modificam procesul de comutare, lucru ce a fost descris
+in sectiunea anterioara.
+
+## STP
+
+Vom reprezenta statusul switch-ului din punct de vedere al STP-ului prin cateva
+variabile globale (globale fiindca avem nevoie sa le acceseze mai multe thread-uri si sa reactioneze la schimbari in timp real):
+
+- `interface_state`: interface_state[interface] = 0 daca interfata este in modul
+Blocking si 1 daca este in modul Listening
+- `root_bridge`: ID-ul bridge-ului radacina curent
+- `root_path_cost`: costul drumului de la switch la bridge-ul radacina
+- `root_port`: portul prin care switch-ul curent este conectat la bridge-ul radacina
+
+Initial, fiecare switch considera ca este singur, deci este root bridge. Functia
+`initialize` initializeaza variabilele globale cu valorile ce corespund unui
+switch care crede ca e root bridge.
+
+Fiecare switch porneste un thread al carui singur rol este sa trimita mesaje
+BPDU la fiecare secunda daca switch-ul crede ca e root bridge catre toate
+celelalte switch-uri. Acest mesaj anunta celelalte switch-uri ca el este root
+bridge si care este costul drumului de la el la bridge-ul radacina. E datoria
+celorlalte switch-uri sa vada daca acest lucru chiar este adevarat sau nu.
+
+Acum, de fiecare data cand primim un pachet pe un switch, verificam daca acesta
+este BPDU (prin adresa MAC destinatie si header-ul LLC) si il tratam diferit fata
+de un pachet normal.
+
+Exista cateva cazuri diferite cand primim un pachet BPDU:
+
+- BPDU-ul este de la un switch care crede ca este root bridge si chiar are
+un bridge ID mai mic decat cel switch-ul pe care il consideram root bridge (fie
+ca e al switch-ului sau altul): in acest caz, trebuie sa ne actualizam
+variabilele pentru STP pentru a indica noul root bridge, adica costul catre el
+(costul din BPDU + 10), portul prin care suntem conectati la el si inchidem toate
+interfetele in afara de root port. De asemenea, trebuie sa trimitem un BPDU
+pe toate celelalte interfete trunk cu informatiile noi (bridge ID-ul si costul
+drumului catre el de la noi)
+- BPDU-ul ne informeaza ca root bridge-ul este cel pe care il cunoastem deja si
+a venit pe root port, dar exista un drum mai bun spre el decat stiam noi, deci
+actualizam costul drumului catre el
+- BPDU-ul ne informeaza ca root bridge-ul este cel pe care il cunoastem deja si
+nu a venit pe root port, caz in care trebuie sa deschidem interfata deoarece alt
+switch are nevoie de ea pentru a ajunge la root bridge in cel mai scurt timp
+- Un BPDU pe care l-am trimis in trecut a venit inapoi pe un port, caz in care
+inchidem portul respectiv pentru a inchide bucla
+
+Daca dupa un pachet BPDU switch-ul crede ca este root bridge, atunci trebuie sa
+punem toate interfetele in modul Listening.
+
+Evident, acum vom schimba din nou procesul de comutare, lucru ce a fost descris
+in sectiunea corespunzatoare.
+
+## Concluzie
+
+Sper ca e ok rezolvarea, as fi facut-o diferit acum mai mult ca sigur, o amarata
+de clasa ce reprezinta o interfata ar fi simplificat mult codul. Aia e, data
+viitoare sigur.
+
+god luck and good speed

@@ -1,0 +1,1 @@
+# Arhitecturi și Prelucrări Paralele - laboratoare

@@ -1,0 +1,67 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+<?php include(dirname(__FILE__).'/_profile.phtml'); ?>
+
+<section class="py-4 flex-fill">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 wall user-messages">
+        <div class="box p-3 page-title clearfix" data-user-id="<?=$friendProfile['id']?>">
+          <h3>
+            <a class="float-end" href="/inside/message">[&laquo; back]</a>
+            <div class="profile-picture"><?=_pimg($friendProfile)?></div>
+            Messages with <i><?=_plink($friendProfile)?></i>
+          </h3>
+        </div>
+        <div class="box chat">
+          <div class="chat-history"><ul class="m-b-0">
+            <?php $profilePrinted = false; ?>
+            <?php foreach ($messages as $message) { ?>
+            <?php 
+            $msgClass = 'my-message float-end';
+            $textClass = 'text-end';
+            if ($message['sender_id'] == $friendProfile['id']) {
+            $msgClass = 'other-message';
+            $textClass = '';
+            }
+            ?>
+            <li class="clearfix">
+              <div class="message-data <?=$textClass?>">
+                <span class="message-data-time"><?=$message["date"]?></span>
+                <?php if ($message['sender_id'] == $authUser["id"] && !$profilePrinted) { ?>
+                <?= _pimg($authUser); ?>
+                <?php $profilePrinted = true; } ?>
+              </div>
+              <div class="message <?= $msgClass ?>"><?=$message['message']?></div>
+            </li>
+            <?php } if (empty($messages)) { ?>
+            <li class="clearfix"><i>You have no messages.</i></li>
+            <?php } ?>
+          </ul>
+          </div>
+          <form method="post" action="/inside/message/send/<?=rawurlencode($friendProfile['id'])?>">
+            <div class="chat-message clearfix">
+              <?php if (!empty($error)) { ?>
+              <div class="alert alert-danger" role="alert"><?=$error?></div>
+              <?php } ?>
+              <div class="input-group mb-0">
+                <textarea class="form-control" name="message" 
+                  placeholder="Enter message here..."></textarea>
+                <button class="btn btn-primary" type="submit">Send</button>
+              </div>
+              <p><a class="" href="/inside/message">[&laquo; back]</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-4 side">
+      <?php include(dirname(__FILE__)."/_friends.phtml"); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>
+

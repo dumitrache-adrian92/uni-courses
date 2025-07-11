@@ -1,0 +1,6 @@
+sem spots_left(n)
+
+critical_region()
+    spots_left.wait()
+    do_stuff()
+    spotf_left.post()

@@ -1,0 +1,13 @@
+<?php include('_header.phtml'); ?>
+
+<section class="flex-grow-1 error-page">
+  <div class="p-5">
+    <h1 class="error"><?= $errorTitle ?></h1>
+    <div class="box">
+      <p><?= nl2br($errorDetails) ?></p>
+    </div>
+  </div>
+</section>
+
+<?php include('_footer.phtml'); ?>
+

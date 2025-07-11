@@ -1,0 +1,3 @@
+EXECS=mergesort
+
+include ../../../Makefile

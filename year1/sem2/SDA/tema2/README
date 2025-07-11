@@ -1,0 +1,70 @@
+Tema 2 - Structuri de Date si Algoritmi
+
+0 - Introducere
+Pentru rezolvarea cerintei am folosit inca 2 structuri, una ce reprezinta un arbore cuaternar
+ce are pointeri catre vecinii sai (spre deosebire de structura data de cerinta) si datele
+ce reprezinta un bloc de pixeli. De asemenea, pentru a reprezenta pixelii unei imagini, am
+folosit o structura cu 3 campuri: r, g, b pentru a compune o culoare.
+Pentru a determina ce tip de operatie trebuie efectuata, am in main ramuri care apeleaza
+toate functiile necesare unui tip de operatie. In continuare voi prezenta cateva operatii de
+baza comune intre cerinte.
+
+0.1 - Citirea unei imagini PPM
+Initial imaginea este deschisa in format text si se citesc informatiile din header (width,
+height, tip, max culoare). Fisierul urmeaza sa fie inchis si redeschis in format binar
+pentru a citi fiecare pixel intr-o matrice de structuri. Pentru a sari peste header folosim
+functia fseek si numarul de caractere ocupat de header.
+
+0.2 - Convertire matrice de pixeli in arbore cuaternar
+Pornim de la un nod si ii atribuim toata suprafata imaginii prin 3 variabile:
+    - x = linia unde se afla coltul stang al suprafetei reprezentate, deci 0
+    - y = coloana unde se afla coltul stang al suprafetei reprezentate, deci 0
+    - size = lungimea/latimea suprafetei, deci width/size initial
+Aceste variabile sunt destul pentru a defini orice suprafata patratica de care
+o sa avem nevoie. In urma unor apeluri recursive vom defini noduri pentru alte suprafete,
+deci aceste varibile o sa se schimbe conform acesteia.
+Umplem nodul curent cu datele necesare, iar pentru a se decide daca mai creeam noduri sau
+nu, se calculeaza mean-ul. Daca este mai mare, urmeaza sa fie reapelata functia pentru
+alte 4 noduri ce reprezinta cele 4 parti egale ale nodului parinte.
+
+0.3 - Convertire arbore cuaternar in matrice de pixeli
+Se aplica aceeasi idee de la punctul anterior cu 3 variabile pentru a reprezenta un bloc.
+Pornim de la nodul radacina, cat timp un nod are fii apelam recursiv functia pentru
+fiii sai, daca nu are, umplem suprafata reprezentata de nod cu culoarea atribuita acestuia
+si ne intoarcem eventual la alte noduri ce au ramas neverificate.
+Practic, pentru fiecare frunza a arborelui cuaternar, umplem suprafata reprezentata de aceasta,
+motiv pentru care parcurgem tot arborele.
+
+0.4 - Convertire matrice de pixeli in imagine format .ppm
+Scriem header-ul in fisier (cerinta ne cere doar tip P6 cu maxColor 255, width si height sunt
+marimile matricei), apoi scriem binar fiecare linie a matricei de pixeli.
+
+0.5 - Eliberare memorie arbore cuaternar
+Functie recursiva ce parcurge arborele pana la frunze si elibereaza memoria "invers".
+
+1 - Comprimare
+Citim imaginea primita ca input cu operatiile de mai sus, creeam arborele cuaternar si
+folosim o functie asupra lui pentru a determina numarul de noduri si de culori. Alocam
+memorie pentru vectorul de output si il creeam recursiv, indicii fiecarui element fiind
+determinati conform cerintei. Practic avem in functie indicele elementului curent si
+introducem in aceasta toate datele necesare si apelam functia si pentru fii sai, daca
+aceasta are asa ceva (trist).
+
+2 - Decomprimare
+Se citeste fisierul de output si creaza vectorul, urmeaza sa-l convertim in format de
+arbore cuaternar prin parcurgerea fiecarui element al vectorului si creearea fiecarui
+din arbore. Convertim arborele in matrice de pixeli, dupa care putem sa scriem imaginea
+(ambele lucruri conform procedeelor de mai sus)
+
+3 - Rotire
+Procedeu identic ca la Comprimare pana cand se formeaza arborele cuaternar, dupa care
+se face rotirea orizontala/verticala prin interschimbarea pointerilor de fii ai fiecarui nod.
+Rotire orizontala: se interschimba top_left cu top_right si bottom_left cu bottom_right
+Rotire verticala: se interschimba top_left cu bottom_left si top_right cu bottom_right
+
+4 - Concluzie
+Buna tema sincer, prefer cu mult temele practice de la materia asta fata de gunoaiele din
+semestrul trecut de la PC (in special tema 2, efectiv nu face nimic, doar se joaca cu
+site-uri imaginare si spun asta ca un manelist inrait care a mai si facut tema aia de maxim).
+Cerinta ar putea fi mai clara totusi, si asta se vede clar pe forum, multi am incercat sa facem
+doar cu vector de exemplu si structura data ne-a bagat in ceata degeaba.

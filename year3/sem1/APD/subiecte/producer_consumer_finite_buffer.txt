@@ -1,0 +1,24 @@
+
+sem mutex(1)
+sem items(0)
+sem item_spots(bufferSize)
+
+producer()
+    event = waitForEvent()
+
+    item_spots.wait()
+    mutex.wait()
+    buffer.add(event)
+    mutex.post()
+
+    items.post()
+
+consumer()
+    items.wait()
+
+    mutex.wait()
+    event = buffer.get()
+    mutex.post()
+    item_spots.post()
+
+    event.process()

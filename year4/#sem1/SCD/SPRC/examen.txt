@@ -1,0 +1,6 @@
+-Replicare, ce este + legatura cu toleranta la defecte
+-Comunicare asincrona, sincrona, tranzitorii, persistente + exemple pt fiecare
+-HRU +intrebarea aia cu subiectu clasica
+- ce e transparenta + exemplificare in RPC
+- comunicare de grup fiabila, Multicast atomic, exemple
+-  microservicii in raport cu virtualizarea cu exemplu + persistenta docker

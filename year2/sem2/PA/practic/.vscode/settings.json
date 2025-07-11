@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "README": "markdown",
+        "iostream": "cpp",
+        "iomanip": "cpp",
+        "new": "cpp"
+    }
+}

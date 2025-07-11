@@ -1,0 +1,5 @@
+Function	CPU Time	CPU Time:Effective Time	CPU Time:Spin Time	CPU Time:Overhead Time	Module	Function (Full)	Source File	Start Address
+std::set<int, std::less<int>, std::allocator<int>>::find	0.059999	0.059999	0.0	0.0	serial_prim	std::set<int, std::less<int>, std::allocator<int>>::find(int const&)	[Unknown]	0x4032b6
+std::vector<std::pair<int, int>, std::allocator<std::pair<int, int>>>::push_back	0.020010	0.020010	0.0	0.0	serial_prim	std::vector<std::pair<int, int>, std::allocator<std::pair<int, int>>>::push_back(std::pair<int, int>&&)	[Unknown]	0x402f32
+std::istream::operator>>	0.019996	0.019996	0.0	0.0	libstdc++.so.6	std::istream::operator>>()	[Unknown]	0x102530
+get_adj_list	0.009995	0.009995	0.0	0.0	serial_prim	get_adj_list(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>)	[Unknown]	0x401d96

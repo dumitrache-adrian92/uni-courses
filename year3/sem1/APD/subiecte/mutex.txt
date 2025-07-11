@@ -1,0 +1,12 @@
+sem mutex(1)
+
+A
+    mutex.wait()
+    count = count + 1
+    mutex.post()
+
+
+B
+    mutex.wait()
+    count = count + 1
+    mutex.post()

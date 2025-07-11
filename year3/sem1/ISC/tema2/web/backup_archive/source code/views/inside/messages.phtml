@@ -1,0 +1,54 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+<?php include(dirname(__FILE__).'/_profile.phtml'); ?>
+
+<section class="py-4 flex-fill">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 wall user-messages">
+        <div class="box p-3">
+          <h2 class="py-2 page-title">Messages - Inbox</h2>
+          <table class="table">
+            <thead class="thead-dark"> <tr>
+              <th scope="col">User</th>
+              <th scope="col">Last message</th>
+              <th scope="col" style="width: 2em;">Count</th>
+              <th scope="col"></th>
+            </tr></thead>
+            <tbody> <?php foreach ($message_friends as $msg_friend) { ?>
+              <?php
+              $profileImg = $msg_friend['profile_img'];
+              if (empty($profileImg)) $profileImg = 'profile/unknown.jpg';
+              $url = '/inside/message/view/' . $msg_friend['id'];
+              ?>
+              <tr>
+                <td>
+                  <div class="profile-picture">
+                    <?=_pimg($msg_friend, $url)?></div><?=_plink($msg_friend, '', $url)?>
+                </td>
+                <td><i><?=$msg_friend['stats']['last_date']?></i></td>
+                <td>
+                <?php echo "<i>{$msg_friend['stats']['count']}</i>"; ?>
+                <?php if ($msg_friend['stats']['unread'] > 0) {
+                  echo "(<b>{$msg_friend['stats']['unread']}</b>)"; }
+                  else { echo "(<i>0</i>)"; } ?></td>
+                <td>
+                  <button class="btn btn-outline-danger messages-nuke-btn"
+                    data-friend-id="<?=$msg_friend['id']?>" type="button">Clear</button>
+                </td>
+              </tr>
+            <?php } ?></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-4 side">
+      <?php include(dirname(__FILE__)."/_friends.phtml"); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>
+

@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package backend;
+
+option go_package = "/proto;proto";
+
+service businessLogic {
+  rpc GetData (GetDataRequest) returns (Reply);
+  rpc PostData (PostDataRequest) returns (Reply);
+  rpc UpdateData (UpdateDataRequest) returns (Reply);
+  rpc DeleteData (DeleteDataRequest) returns (Reply);
+  rpc GetStatistics (GetStatisticsRequest) returns (Reply);
+}
+
+message Reply {
+    int32 status = 1;
+    string json = 2;
+}
+
+message GetDataRequest {
+    string type = 1;
+    string name = 2;
+}
+
+message PostDataRequest {
+    string type = 1;
+    string json = 2;
+}
+
+message UpdateDataRequest {
+    string type = 1;
+    string name = 2;
+    string json = 3;
+}
+message DeleteDataRequest {
+    string type = 1;
+    string name = 2;
+}
+
+message GetStatisticsRequest {
+    string type = 1;
+    string name = 2;
+}

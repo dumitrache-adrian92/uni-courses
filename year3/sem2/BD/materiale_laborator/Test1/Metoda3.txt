@@ -1,0 +1,5 @@
+select id_dep, nume, data_ang, comision, '&2' data_angajare_director
+	from angajati
+	where id_dep = '&1' and data_ang > '&2' and (comision = 0 or comision is null);
+
+undefine data_angajare_director;

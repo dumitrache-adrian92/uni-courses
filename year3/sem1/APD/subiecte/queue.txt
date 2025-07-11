@@ -1,0 +1,12 @@
+sem leaders(0)
+sem followers(0)
+
+queue_leader()
+    leaders.post()
+    followers.wait()
+    milly_rock()
+
+queue_follower()
+    followers.post()
+    leaders.wait()
+    milly_rock()

@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "README": "plaintext",
+        "stdlib.h": "c"
+    }
+}

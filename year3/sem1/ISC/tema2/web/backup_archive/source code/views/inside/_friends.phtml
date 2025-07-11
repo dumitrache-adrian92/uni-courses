@@ -1,0 +1,44 @@
+<?php
+// template to be included for printing friends
+?>
+
+<div class="box friends">
+  <div class="caption">Friends</div>
+  <div class="contents">
+    <?php if (empty($friends)) { ?>
+    <i>You have no friends 😢 </i>
+
+    <?php } else foreach ($friends as $friend) { ?>
+      <div class="profile clearfix">
+      <div class="profile-picture"><?=_pimg($friend)?></div>
+        <span class="friend-name">
+          <?=_plink($friend)?><br />
+          <span class="friend-status">
+            <?php if (!$friend['valid']) {
+              echo "<a class=\"badge text-bg-info acceptFriend\" href=\"#\" ".
+                "data-friend-id=\"{$friend["id"]}\">[accept]</a>";
+            } else if (!$friend['accepted']) {
+              echo "<span class=\"badge text-bg-warning pending\">[pending]</span>";
+            } else {
+              echo "<span class=\"badge text-bg-success\">[approved]</span>";
+            } ?>
+          </span>
+        </span>
+      </div>
+    <?php } ?>
+
+  </div>
+</div>
+
+<div class="box youmayknow">
+  <div class="caption">Cats you may know:</div>
+  <div class="d-flex flex-row flex-wrap align-items-center justify-content-around contents">
+    <?php foreach ($youmayknow as $user) { ?>
+      <div class="profile clearfix">
+        <div class="profile-picture"><?=_pimg($user)?></div>
+        <span><?=_plink($user)?></span>
+      </div>
+    <?php } ?>
+
+  </div>
+</div>

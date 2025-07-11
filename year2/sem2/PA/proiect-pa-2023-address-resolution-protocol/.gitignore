@@ -1,0 +1,6 @@
+.vscode
+Main
+*.o
+*.d
+bot.dbg
+xboard.debug

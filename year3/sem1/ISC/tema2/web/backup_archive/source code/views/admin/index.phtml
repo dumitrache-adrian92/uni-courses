@@ -1,0 +1,59 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+
+<div class="wall doge-overlay">
+  <h2 class="box page-title">Admin tools</h2>
+  <?php if (isset($scriptOut) || isset($scriptRet)) { ?>
+  <div class="box">
+    <?php if ($scriptRet == 0) { ?>
+    <p class="success">Command finished successfully!</p>
+    <?php } else { ?>
+    <p class="error">Command failed with exit status <b><?=$scriptRet?></b>!</p>
+    <?php } ?>
+    <?php if (!empty($scriptOut)) { ?>
+    <b>Output:</b>
+    <pre><?= $scriptOut ?></pre>
+    <?php } ?>
+  </div>
+  <?php } ?>
+  <div class="box">
+    <h4>Fix permissions</h4>
+    <p>
+      Use this to fix permissions to the entire <span class="pre">/var/www</span> directory.
+      <i>Sometimes the webmaster breaks something when re-uploading scripts...</i><br/>
+    </p>
+    <form class="run-script" action="/admin/runScript" method="post"><p>
+      <input type="hidden" name="name" value="fix-permissions.sh" />
+      <button type="button" data-action="" class="btn btn-outline-danger" >Fix 'em</button>
+    </p></form>
+    <hr>
+    <h4>Send spam</h4>
+    <p>Send spam messages to all users.<br/>
+    <i>Will add more templates later.</i></p>
+    <form class="run-script" action="/admin/runScript" method="post"><p>
+      <input type="hidden" name="name" value="send-spam.php" />
+      <button type="button" data-action="blue_checkbox" class="btn btn-outline-info" >Blue Checkbox</button>
+      <button type="button" data-action="spacex_launch" class="btn btn-outline-success" >SpaceX launch</button>
+    </p></form>
+  </div>
+</div>
+<script>
+
+$(function() {
+  $("form.run-script").each(function() {
+    var $form = $(this);
+    $(this).find("button").click(function() {
+      var $input = $form.find("input[name=name]")
+      var cmdString = $input.val();
+      if ($(this).data("action")) { cmdString += " " + $(this).data("action"); }
+      $input.val(cmdString);
+      $form.submit();
+    })
+  })
+});
+</script>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>
+

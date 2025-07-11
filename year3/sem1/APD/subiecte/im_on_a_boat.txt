@@ -1,0 +1,58 @@
+barrier barrier(4)
+sem mutex(1)
+hackers = 0
+serfs = 0
+sem hackerQueue(0)
+sem serfQueue(0)
+
+hacker()
+    mutex.wait()
+    hackers++
+
+    if hackers == 4
+        hackerQueue.post(4)
+        hackers = 0
+        isCaptain = true
+    else if hackers == 2 and serfs >= 2
+        hackerQueue.post(2)
+        hackers = 0
+        serfsQueue.post(2)
+        serfs -= 2
+        isCaptain = true
+    else:
+        mutex.post()
+
+    hackerQueue.wait()
+
+    board()
+    barrier.wait()
+
+    if isCaptain
+        rowBoat()
+        mutex.post()
+
+serf()
+    mutex.wait()
+    serfs++
+
+    if serfs == 4
+        serfsQueue.post(4)
+        serfs = 0
+        isCaptain = true
+    else if serfs == 2 and hackers >= 2
+        serfQueue.post(2)
+        serfs = 0
+        hackerQueue.post(2)
+        hackers -= 2
+        isCaptain = true
+    else:
+        mutex.post()
+
+    serfQueue.wait()
+
+    board()
+    barrier.wait()
+
+    if isCaptain
+        rowBoat()
+        mutex.post()

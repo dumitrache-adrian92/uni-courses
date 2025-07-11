@@ -1,0 +1,86 @@
+Cerințe
+-------
+
+Să se scrie o cerere SQL care face o listă cu toti șefii de departament care
+au subalterni, în alt departament decât al lor și au salariul mai mare decât
+jumătate din salariul lor.
+
+Antet:
+Denumire_Departament_Sef Nume_Sef Salariu_Sef Nume_Subaltern Salariu_Subaltern
+
+Să se rezolve folosind 2 metode distincte de Join.
+
+
+
+
+Metoda 1
+---------
+
+SELECT
+	d1.den_dep AS Denumire_Departament_Sef,
+	a1.nume AS Nume_Sef,
+	a1.salariu AS Salariu_Sef,
+	a2.nume AS Nume_Subaltern,
+	a2.salariu AS Salariu_Subaltern
+FROM
+	angajati a1
+	INNER JOIN departamente d1 ON a1.id_dep = d1.id_dep
+	INNER JOIN angajati a2 ON a1.id_ang = a2.id_sef
+WHERE
+	a1.id_dep <> a2.id_dep
+	AND a2.salariu > a1.salariu/2
+
+
+DENUMIRE_DEPARTAMENT_SEF       NUME_SEF                       SALARIU_SEF NUME_SUBALTERN                 SALARIU_SUBALTERN
+------------------------------ ------------------------------ ----------- ------------------------------ -----------------
+ACCOUNTING                     KING                                  5000 JONES                                       2975
+ACCOUNTING                     KING                                  5000 BLAKE                                       2850
+
+
+
+
+Metoda 2
+--------
+
+SELECT
+	d1.den_dep AS Denumire_Departament_Sef,
+	a1.nume AS Nume_Sef,
+	a1.salariu AS Salariu_Sef,
+	a2.nume AS Nume_Subaltern,
+	a2.salariu AS Salariu_Subaltern
+FROM
+	departamente d1
+	angajati a2
+WHERE
+	a1.id_dep = d1.id_dep
+	AND a1.id_ang = a2.id_sef
+	AND a1.id_dep <> a2.id_dep
+	AND a2.salariu > a1.salariu/2;
+
+
+DENUMIRE_DEPARTAMENT_SEF       NUME_SEF                       SALARIU_SEF NUME_SUBALTERN                 SALARIU_SUBALTERN
+------------------------------ ------------------------------ ----------- ------------------------------ -----------------
+ACCOUNTING                     KING                                  5000 JONES                                       2975
+ACCOUNTING                     KING                                  5000 BLAKE                                       2850
+
+
+Metoda 3
+--------
+
+SELECT
+    	d1.den_dep AS Denumire_Departament_Sef,
+	a1.nume AS Nume_Sef,
+	a1.salariu AS Salariu_Sef,
+	a2.nume AS Nume_Subaltern,
+	a2.salariu AS Salariu_Subaltern
+FROM
+    angajati a1
+    JOIN angajati a2 ON a1.id_ang = a2.id_sef AND a1.id_dep <> a2.id_dep AND a2.salariu > a1.salariu/2
+    NATURAL JOIN departamente d1 where a1.id_dep = d1.id_dep
+
+
+
+DENUMIRE_DEPARTAMENT_SEF       NUME_SEF                       SALARIU_SEF NUME_SUBALTERN                 SALARIU_SUBALTERN
+------------------------------ ------------------------------ ----------- ------------------------------ -----------------
+ACCOUNTING                     KING                                  5000 JONES                                       2975
+ACCOUNTING                     KING                                  5000 BLAKE                                       2850

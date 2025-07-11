@@ -1,0 +1,3 @@
+EXECS=oets
+
+include ../../../Makefile

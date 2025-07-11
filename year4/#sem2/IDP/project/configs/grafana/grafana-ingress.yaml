@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: monitoring
+  annotations:
+    konghq.com/strip-path: "true"  # Strip the /grafana prefix
+    konghq.com/plugins: "request-transformer"
+    konghq.com/request-transformer: |
+      config:
+        add:
+          headers:
+            - X-Forwarded-Prefix:/grafana
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /grafana
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-grafana
+            port:
+              number: 80

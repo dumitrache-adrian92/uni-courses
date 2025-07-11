@@ -1,0 +1,44 @@
+int boarders = 0
+sem mutex(1)
+sem mutex2(1)
+sem boardQueue(0)
+sem readyToDepart(0)
+sem readyToUnboard(0)
+sem allUnboarded(0)
+
+car()
+    while true
+        load()
+
+        boardQueue.post(C)
+
+        readyToDepart.wait()
+
+        run()
+
+        unload()
+
+        readyToUnboard.post(C)
+
+        allUnboarded.wait()
+
+passenger()
+    boardQueue.wait()
+    board()
+
+    mutex.wait()
+    boarders++
+    if boarders == c
+        readyToDepart.post()
+        boarders = 0
+    mutex.post()
+
+    readyToUnboard.wait()
+    unboard()
+
+    mutex2.wait()
+    unboarders++
+    if unboarders == C
+        allUnboarded.post()
+        unboarders = 0
+    mutex2.post()

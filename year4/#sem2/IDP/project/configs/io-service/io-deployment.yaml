@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: io-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: io-service
+  template:
+    metadata:
+      labels:
+        app: io-service
+    spec:
+      containers:
+        - name: io-service
+          image: 'songrate/io-service:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 50051
+          env:
+            - name:  DB_HOST
+              value: 'postgres'
+            - name: DB_USER
+              value: 'postgres'
+            - name : DB_PASSWORD
+              value: 'postgres'
+          resources:
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+            requests:
+              memory: '256Mi'
+              cpu: '250m'

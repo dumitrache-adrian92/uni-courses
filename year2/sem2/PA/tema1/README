@@ -1,0 +1,331 @@
+# **Tema 1 PA - Dumitrache Adrian-George [324CC]**
+
+## **Cerinte rezoltate:**
+- Feribot
+- Nostory
+- Sushi
+- Semnale
+- BadGPT
+
+# **Feribot**
+
+### *Momente marcante*
+
+Am aflat ca functia accumulate poate sa faca overflow.
+
+### *Proces de gandire*
+
+Initial am crezut ca problema se face prin Greedy, dar nu mi-am dat seama cum,
+motiv pentru care am inceput sa scriu o solutie mai simpla. Pe parcurs, am
+realizat ca nu prea e posibila metoda Greedy din cauza formularii problemei,
+noi fiind obligati sa imbarcam masinile in ordine (deci nu se poate sorta) si
+nici acum nu prea vad cum ai putea alege elementele cat sa rezolvi Greedy.
+
+Mi-am dat seama ca problema se poate reformula in ceva mai matematic, adica sa
+impartim vectorul de costuri in subvectori astfel incat subvectorul pentru care
+suma tuturor elementelor este mai mare decat oricare alt subvector sa aibe cost
+minim posibil.
+
+Fiindca trebuie sa luam toate masinile in ordine, modul in care se construiesc
+subsecventele pentru un cost dat maxim este destul de liniar. Putem sa pornim
+de la un subvector fol si sa parcurgem tot vectorul de costuri, la fiecare
+pas verific daca pot adauga elementul curent in subvector fara ca suma
+elementelor sa treaca de costul maxim sau incep un nou subvector in caz
+contrar. De asemenea, daca un element trece de costul impus de unul singur
+pot determina din start ca acest cost nu va duce la o solutie (nu am cum sa
+masina pe un feribot fara sa depasesc limita). La final, pot sa verific daca
+numarul subvectorilor a trecut de numarul feriboturilor disponibile ca sa vad
+daca costul maxim ales duce la o solutie valida cu resursele noastre sau nu.
+Functia *can_split* reprezinta acest proces.
+
+Deci, m-am gandit ca putem afla costul minim pe care putem sa il impunem in
+procesul anterior apeland functia incrementand costul impus incepand de la 1
+pana cand gasim o solutie.
+
+Acest lucru a dus la o solutie valida dar ineficienta, aici am luat in
+considerare iarasi daca ar trebui sa aplic Greedy (sau alta metoda), dar am
+realizat ca practic ce fac eu la procesul descris anterior este o cautare
+liniara intre costurile posibile in care returnez primul cost valid, lucru ce
+poate fi inlocuit cu o cautare binara. Asta a dus la solutia actuala, care este
+descrisa in sectiunea urmatoare.
+
+### *Solutie*
+
+Fac o cautare binara pe toate costurile maxime posibile ale unui subvector, ama
+determinat ca limita inferioara este elementul maxim din vector, iar limita
+superioara este suma tuturor elementelor.
+
+La fiecare pas iau un element din interval (am ales elementul de mijloc, dar
+putea fi ales arbitrar) si verific daca acesta duce la o impartire a vectorului
+valida conform functiei can_split.
+
+Daca da, memoram aceasta posibila solutie si incercam sa cautam una si mai
+buna, schimband intervalul de cautare la [min, solutie - 1]. Adica vrem sa
+vedem daca exista un cost si mai mic pe care am putea sa il impunem.
+
+In caz contrar, inseamna ca putem impune doar costuri mai mari, asa ca o sa
+continuam cautarea in intervalul [solutie + 1, max].
+
+Cautarea se termina cand intervalul nu mai este valid, adica min > max. Moment
+in care putem sa returnam ultima solutie pe care am gasit-o ca fiind solutia
+intregii probleme.
+
+Initial, nici aceasta solutie nu a mers, fiindca aveam un overflow in ciuda
+faptului ca aveam toate variabilele unsigned long long. Cauza a fost faptul ca
+am folosit functia accumulate ca sa aflu suma tuturor elementelor din vector.
+Mi-a luat doar 2 ore sa imi dau seama de asta ca idee.
+
+**Complexitate**: O(N * log S), unde N este numarul de masini, iar S este numarul
+elementelor din intervalul cautarii binare, acesta fiind [cost maxim, suma
+tuturor elementelor]. De asemenea, calculul sumei tuturor elementelor este
+O(N), dar se simplifica. Practic, cautarea binara este O(log S), iar la fiecare
+pas aplicam functia can_split care e O(N), ceea ce ne duce la acest rezultat.
+
+# **Nostory**
+
+## **Subpunctul 1**
+
+Asta a mers mai repede, mi-am dat seama ca daca am mutari infinite pot muta
+intotdeauna elementele astfel incat sa maximizez scorul. Adica mereu se pot
+plasa elementele astfel incat cele mai mari N elemente din cei doi vectori sa
+fie adunati la scor. Astfel, am aplicat un algoritm greedy bazat pe sortarea
+vectorilor.
+
+Solutia mea sorteaza cei doi vectori, ii interclaseaza si formeaza
+rezultatul din cele mai mari N elemente din vectorul rezultat. Lucru ce duce la
+solutia optima.
+
+**Complexitate**: O(N * log N), unde N este numarul de elemente ale unui
+vector. Sortarile sunt O(N * log N), interclasarea este O(2 * N), iar calculul
+sumei ce reprezinta este O(N), dar totul se simplifica la acest rezultat.
+
+## **Subpunctul 2**
+
+Asta nu a mers repede :)).
+
+### *Momente marcante*
+
+Am inceput sa am dubii daca se face cu Greedy sau nu pe la 100 de linii de cod.
+
+### *Proces de gandire*
+
+Ideea mea initiala era mult mai complicata decat solutia finala (mai aveam
+putin si dadeam in dinamica).
+
+M-am gandit sa tin minte index-ul elementelor intr-un map (functioneaza pentru
+ca elementele sunt distincte, si cand scoti index-ul unui element poti sa
+verifici in ce vector apare), sa sortez toate elementele din cei doi vectori
+pe care sa ii interclasez si sa construiesc solutia astfel:
+- iau cel mai mare element din vectorul sortat care nu este maxim in perechea
+sa
+- caut un element incepand cu cel mai mic al carei pereche este mai mic decat
+elementul gasit la pasul anterior
+- swap intre cele doua in vectorii originali, actualizat map de indecsi
+- repeta pana cand ramai fara mutari
+
+Pe langa faptul ca solutia a fost scarbos de scris, mi-au dat doar 3 teste
+pentru ca elementul gasit la pasul 2 nu e intotdeauna cel care ofera cele mai
+multe puncte. Deci back to the drawing board.
+
+### *Solutie*
+
+Am realizat ca mentinerea vectorilor in forma intacta si interschimbarea
+meticuloasa a elementelor este irelevanta pentru problema asta si ca este mult
+mai important sa stim ce elemente vor face parte din suma noastra, cat si ca
+regulile de interschimbare se reduc la: schimba cel mai mare numar care nu face
+parte din scorul final cu cel mai mic numar care face parte din scorul final
+pana cand nu mai ai mutari sau interschimbare duce la pierdere de scor. Nu am
+demonstrat matematic ca asta merge, dar nu am gasit nici un caz contra in care
+sa fie relevant altceva, iar testele trec. Initial, inainte sa scriu solutia
+asta, mi-a fost frica ca o sa existe cazuri in care ca sa cresti in scor
+trebuie sa scazi mai intai, dar nu pare sa fie cazul.
+
+Astfel, solutia mea face urmatoarele:
+- interschimba elemente perechi (acelasi index) astfel incat sa fie cele mai
+mari doar in vectorul a
+- sorteaza pe a crescator si pe a descrescator pentru convenienta
+- inteschimba cel mai mic element din a cu cel mai mare din b pana cand nu mai
+am mutari sau interschimbarea duce la pierdere de punctaj
+- ca sa gasesc cel mai mic/mare element din cei 2 vectori abuzez faptul ca sunt
+deja sortati si ca interschimbarile pe care le fac o sa duca la un maxim/minim
+ce se afla pe urmatoarea pozitie fata de elementul anterior
+
+**Complexitate**: O(N * log N), iar complexitatea totala ar fi
+O(2 * N (calculul sumei si mutarea maximelor in a) + 2 * N * log N (sortari) +
+moves (mutarile propriu zise pentru a mari scorul)) ceea ce se simplifica la
+rezultatul precizat anterior.
+
+# **Sushi**
+
+## **Subpunctul 1**
+
+### *Proces de gandire*
+
+Mi-am dat seama destul de repede ca problema e defapt problema rucsacului
+discreta varianta corporatista. Putem sa facem urmatoarele legaturi dintre
+cele doua:
+- obiectele sunt platourile de sushi
+- valoarea unui obiect este suma notelor celor n oameni
+- greutatea suportata de rucsac este bugetul total al grupului (n * x)
+
+### *Solutie*
+
+Convertesc input-ul intr-un format asemanator cu problema rucsacului, adica
+calculez suma notelor celor n oameni pentru fiecare platou de sushi, si aplic
+fix algoritmul prezentat in laboratorul 3 (ceea ce am inteles ca e permis,
+so thanks). O sa construim solutii cu mai putine platouri si buget mai limitat
+pana ajungem la bugetul si numarul real de platouri. Decidem la fiecare pas
+daca e mai bine sa folosim obiectul curent sau nu. Daca da, rezultatul este
+scorul obtinut cand aveam un obiect in minus si un buget care ar permite
+adaugarea obiectului curent + valoarea obiectului curent. Daca nu, rezultatul
+este scorul obtinut cand aveam un obiect in minus si acelasi buget.
+
+**Complexitate**: O(m * budget), fiind nevoie sa generam intreaga matrice
+pentru a ajunge la rezultatul nostru
+
+## **Subpunctul 2**
+
+### *Solutie*
+
+M-am gandit ca problema se poate reduce oarecum la prima, daca adaug inca unul
+din fiecare platou de sushi in lista de obiecte si pun aceleasi note la aceste
+platouri ca la originale, pot atunci sa apelez efectiv functia de la primul
+subpunct si sa rezolv problema.
+
+**Complexitate**: O(m * buget), doar facem niste prelucrari O(m)/O(n) in plus
+
+## **Subpunctul 3**
+
+### *Solutie*
+Am adaugat o noua dimensiune recurentei, tinand cont si de numarul de platouri
+folosite din cele la care avem acces la pasul curent. Am pastrat ideea de la
+subpunctul anterior de a dubla platourile, iar recurenta ramane oarecum
+aceeasi si asa ne asiguram ca nu folosim mai mult de n obiecte.
+
+O(m * buget * n), trebuie sa generam luand in considerare si limitele de platouri
+
+# **Semnale**
+
+## **Subpunctul 1**
+
+### *Proces de gandire*
+
+Mintea mi s-a dus in directii intunecate pentru aceasta problema, initial am
+considerat backtracking, ceea ce sunt sigur ca era posibil dar sigur pica la
+eficienta. Nu m-am dus pe asta fiindca nici macar n-am facut laboratorul de
+backtracking inca, asa ca m-am gandit sa ma orientez catre o solutie de programare dinamica, problema putand fii considerata una de numarare.
+
+Initial am citit cerinta gresit si m-am gandit sa numar cate semnale ce se
+termina in 0 si cate se termina in 1 se pot genera cu a biti. Asta, evident,
+nu i-a in considerare faptul ca trebuie sa avem x de 0 si y de 1. Din pacate,
+am verificat pe foaie daca merge inainte sa deschid scheletul sa vad un x si un
+y in antet care se uitau urat la mine.
+
+Recitiind cerinta am realizat ca trebuie sa imi iau dracu ochelari si m-am
+gandit sa numar in recurenta cate semnale care se termina in 0 si cate se termina in 1 se pot forma cu i de 0 si j de 1.
+
+### *Solutie*
+
+Avem urmatoarele cazuri de baza:
+- dp_ends_with_0/1[0][0] = 0, nu putem forma niciun semnal cu nimic
+- dp_ends_with 0[1..x][0] = 1, daca avem doar zerouri putem forma doar un
+semnal distinct (toti bitii pe 0)
+- dp_ends_with_1[0][1] = 1, putem forma semnalul 1
+- dp_ends_with_1[0][2..y] = 0, se pot forma semnale doar cu biti de 1
+consecutivi
+
+Recurentele sunt urmatoarele:
+- dp_ends_with_0[i][j] = dp_ends_with_0[i - 1][j] + dp_ends_with_1[i - 1][j],
+adica luam toate semnalele ce au un 0 in minus si concatenam 0 la ele
+- dp_ends_with_1[i][j] = dp_ends_with_0[i][j - 1], aceeasi idee ca mai devreme,
+doar ca nu putem lua si semnalele care se termina in 1, fiindca am avea 1
+consecutiv atunci
+
+Rezultatul o sa fie suma dintre dp_ends_with_0[x][y] si dp_ends_with_1[x][y],
+acestea fiind toate semnalele posibile care respecta restrictiile impuse.
+
+**Complexitate**: O(x * y), ca sa generam ambele matrici de memoizare
+
+## **Subpunctul 2**
+
+### *Solutie*
+
+Similar cu subpunctul anterior, doar ca numar si semnalele care se termina in
+11.
+
+Cazuri de baza:
+- la fel ca la subpunctul anterior pentru semnalele ce se termina in 0 si 1
+- dp_ends_with11[0][2] = 1, se poate forma semnalul 11
+- dp_ends_with11[0][0, 1, 3..y] = 0, nu se pot forma semnale ce se termina in
+11 fara sa avem mai mult de doi de 1 consecutivi
+
+Recurentele:
+- dp_ends_with_0[i][j] = dp_ends_with_0[i - 1][j] + dp_ends_with_1[i - 1][j] +
+dp_ends_with_11[i - 1][j], aceeasi justificare
+- dp_ends_with_1[i][j] = dp_ends_with_0[i][j - 1], aceeasi justificare
+- dp_ends_with_11[i][j] = dp_ends_with_1[i][j - 1], adica iau toate semnalele
+care se termina deja in 1 (nu in 11) si concatenez 1 la ele
+
+**Complexitate**: O(x * y), ca sa generam cele trei matrici de memoizare
+
+# **BadGPT**
+
+### *Proces de gandire*
+
+Mi-am dat seama ca solutia matematica ar fi sa iau fiecare aparitie a literelor
+u si n, sa vad in cate feluri se pot scrie fiecare din aceste aparitii (ex: u2
+e fie uu, fie w) si sa inmultesc numerele de posibilitati intre ele (ex: pentru
+u3n2, u3 poate sa fie uuu, wu sau uw; n2 poate sa fie nn sau m; deci rezultatul
+este 2 * 3 = 6).
+
+Problema ramane cum calculam in cate moduri se poate scrie o secventa de litere
+u/n consecutive. Lucrand putin pe foaie, am observat ca primele valori pe care
+le-am incercat urmeaza sirul lui Fibonacci (unde pentru u/n0 avem 1, u/n1 avem
+1, u/n2 avem 2, u/n3 avem 3, u/n4 avem 5 etc.). Asa ca mi-am incercat norocul
+cu solutia asta asta in cod, calculand recursiv Fibonacci de fiecare data cand
+am nevoie.
+
+A mers pe cateva teste, dar majoritatea isi luau timeout. Din moment ce nu
+aveam ce altceva sa eficientizez (sau cel putin nu am vazut cum as putea rezolva
+problema fara sa parcurg tot sirul de caractere), am inceput sa caut moduri de a
+eficientiza calculul termenului n din sirul lui Fibonacci.
+
+Cum Fibonacci e o problema de DP cu recurenta liniara
+(dp[i] = dp[i - 1] + dp[i - 2]), m-am gandit ca pot aplica exponentierea
+matriceala invata la laboratorul 4 pentru a eficientiza calculul termenilor din
+sir.
+
+### **Solutie**
+
+Am reciclat functiile din laborator folosite pentru exemplul cu garduri (din
+nou, apreciez ca acest lucru este legal) si le-am modificat pentru a nu face
+overflow. Matricea C pe care am ales-o este:
+
+(0, 1)
+
+(1, 1)
+
+Adica in recurenta folosesc cele doua elemente de dinainte.
+Vectorul cu care inmultesc (defapt nu inmultesc, dar imi imaginez ca o fac si
+iau elementul de care am nevoie) este:
+
+(0)
+(1)
+
+Adica primele doua elemente din sir/cazurile de baza.
+
+Ca sa scot elementul n din sir, ridic matricea la puterea n (cu exponentiere
+logaritmica pe matrice) si extrag elementul [1][0], adica al doilea element din
+vectorul obtinut din inmultirea matricei^n si vectorul nostru.
+
+In rest, doar parcurg fiecare caracter din sirul de caractere si, atunci cand
+gasesc un caracter u/n calculez in cate moduri se poate scrie cu algoritmul
+descris anterior si inmultesc cu ce am gasit pana acum.
+
+**Complexitate**: O(N * log M), unde N este numarul de caractere din sirul de
+intrare, iar M este numarul Fibonacci ce trebuie calculat la fiecare pas (sau numarul maxim pe care il avem de calculat).
+
+Rezultatul este simplificat destul de mult, teoretic nu o sa avem un Fibonacci
+de calculat pentru fiecare caracter din sir, ci o sa avem maxim pentru jumatate
+din ele (daca avem doar u-uri si m-uri, iar numarul lor de aparitii este de o
+singura cifra).

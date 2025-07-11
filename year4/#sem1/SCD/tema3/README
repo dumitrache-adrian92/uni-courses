@@ -1,0 +1,168 @@
+# Tema 3 SCD - Adrian-George Dumitrache [342C1]
+
+README pentru solutia mea la tema 3 de la SCD. Implementarea abordeaza toate
+cerintele obligatorii, fara bonus.
+
+## Rulare si oprire
+
+Pentru a crea imaginea adaptorului si a porni stack-ul, rulati:
+
+```shell
+bash run.sh
+```
+
+pentru a opri stack-ul, rulati:
+
+```shell
+docker stack rm scd3
+```
+
+## Implementare
+
+Pentru simplitate, am utilizat imagini deja existente pe Docker Hub unde a fost posibil si am creat propria imagine pentru adaptor.
+
+### Broker
+
+Am utilizat Eclipse Mosquitto ca broker MQTT, fiind deja obisnuit cu acesta de
+la laborator. Configurarea este simpla, fiind necesar doar un fisier de
+configurare ce permite conectarea la broker fara autentificare.
+
+### InfluxDB
+
+Am utilizat imaginea oficiala InfluxDB si am configurat-o astfel incat sa am deja
+un bucket, o organizatie, un token, un user si o parola create. In plus, am
+setat explicit ca retentia datelor sa fie infinita.
+
+Pentru a stoca datele persistent, am utilizat si un volum Docker.
+
+### Grafana
+
+Am utilizat imaginea oficiala Grafana si am configurat-o astfel incat sa am
+user-ul si parola setate implicit. In plus, am montat fisiere de configurare
+pentru:
+
+* data source pentru InfluxDB
+* cele doua dashboard-uri cerute.
+
+Pentru dashboard-uri, am folosit urmatoarele query-uri:
+
+1. Grafic cu toate seriile de timp din UPB
+
+```flux
+from(bucket: "sensor_readings")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["location"] == "UPB")
+  |> aggregateWindow(every: 1s, fn: mean, createEmpty: false)
+  |> keep(columns: ["_time", "_measurement", "_value"])
+  |> pivot(rowKey: ["_time"], columnKey: ["_measurement"], valueColumn: "_value")
+  |> group()
+  |> yield(name: "result")
+```
+
+Utilizeaza tag-ul `location` pentru a filtra datele si afiseaza toate seriile
+de timp din UPB in grafic. Coloanele inutile sunt eliminate, pentru a nu polua
+graficul cu informatie.
+
+Datele sunt grupate cu aggregateWindow, conform cerintei.
+
+2. Tabel cu toate datele din UPB
+
+```flux
+from(bucket: "sensor_readings")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["location"] == "UPB")
+  |> aggregateWindow(every: 1s, fn: mean, createEmpty: false)
+  |> keep(columns: ["_time", "_measurement", "_value"])
+  |> pivot(rowKey: ["_time"], columnKey: ["_measurement"], valueColumn: "_value")
+  |> group()
+  |> sort(columns: ["_time"])
+  |> rename(columns: {"_time": "Timestamp"})
+  |> yield(name: "result")
+```
+
+Similar cu query-ul anterior, dar utilizeaza pivot pentru a construi tabelul si
+sorteaza dupa timp pentru a afisa datele in ordine cronologica.
+
+Datele sunt grupate cu aggregateWindow, conform cerintei.
+
+3. Grafic cu nivel baterie
+
+```flux
+from(bucket: "sensor_readings")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] =~ /.*\.BAT.*/)
+  |> aggregateWindow(every: 1s, fn: mean, createEmpty: false)
+  |> keep(columns: ["_time", "_measurement", "_value"])
+  |> yield(name: "mean")
+```
+
+Regex-ul cauta orice nume de masuratori care contin `.BAT` si afiseaza graficul
+cu nivelul bateriei.
+
+Datele sunt grupate cu aggregateWindow, conform cerintei.
+
+4. Tabel cu nivel baterie
+
+```flux
+from(bucket: "sensor_readings")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_measurement"] =~ /.*\.BAT.*/)
+  |> aggregateWindow(every: 1s, fn: mean, createEmpty: false)
+  |> group(columns: ["_measurement"])
+  |> reduce(
+      identity: {
+        name: "",
+        current: 0.0,
+        currentTime: v.timeRangeStart,
+        min: 100.0,
+        max: 0.0,
+        sum: 0.0,
+        count: 0
+      },
+      fn: (r, accumulator) => ({
+        name: r["_measurement"],
+        current: if r["_time"] > accumulator.currentTime then r["_value"] else accumulator.current,
+        currentTime: if r["_time"] > accumulator.currentTime then r["_time"] else accumulator.currentTime,
+        min: if r["_value"] < accumulator.min then r["_value"] else accumulator.min,
+        max: if r["_value"] > accumulator.max then r["_value"] else accumulator.max,
+        sum: accumulator.sum + r["_value"],
+        count: accumulator.count + 1
+      })
+  )
+  |> map(fn: (r) => ({
+      name: r.name,
+      current: r.current,
+      min: r.min,
+      max: r.max,
+      avg: r.sum / float(v: r.count)
+  }))
+  |> yield(name: "result")
+```
+
+Filtrul este acelasi ca mai sus, dar utilizam o reducere pentru a calcula
+statisticile cerute pentru fiecare masuratoare de baterie.
+
+### Adaptor
+
+Am scris un Dockerfile pentru a crea o imagine pentru adaptor, imaginea este
+bazata pe o imagine simpla de Python la care am adaugat pachetele necesare
+pentru a rula codul.
+
+Adaptorul este scris in Python si foloseste pachetul `paho-mqtt` pentru a se
+conecta la broker si a se abona la toate topic-urile, adaugand datele primite
+de la broker  in baza de date InfluxDB prin intermediul callback-ului
+`on_message`.
+
+Am decis sa adaug informatii precum locatia ca tag-uri ale datelor, pentru a
+putea face query-uri intr-un mod mai simplu in Grafana (e.g.: sa pot filtra dupa
+o anumita locatie).
+
+## Separarea traficului
+
+Am creat un network pentru fiecare ruta de comunicare posibila:
+
+* mqtt-broker-adapter-net
+* influxdb-adapter-net
+* influxdb-grafana-net
+
+Si am adaugat doar cele 2 capete ale fiecarei rute in fiecare network.

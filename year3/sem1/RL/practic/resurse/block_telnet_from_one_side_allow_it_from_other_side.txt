@@ -1,0 +1,1 @@
+sudo iptables -I FORWARD -s green -d blue -p tcp --dport telnet -m state --state NEW -j REJECT

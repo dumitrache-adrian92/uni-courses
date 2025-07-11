@@ -1,0 +1,180 @@
+Să se scrie o cerere SQL care face o listă cu șeful de departament care are cel mai mare salariu
+dintre toți șefii care au cel puțin 2 subalterni care nu au primit comision. Șefii de departament
+sunt angajații care au ID în coloana ID_SEF.
+
+Antet:
+DEN_DEP_SEF, NUME_SEF, JOB_SEF, SALARIU_SEF, NUME_SUBALTERN, COMISION_SUBALTERN
+
+
+-- Angajatii care nu au primit comision.
+
+select * from angajati where comision is null or comision = 0;
+
+
+
+
+
+-- Angajatii pentru fiecare sef
+select a.id_ang as ID_SEF, a.nume as NUME_SEF, b.nume as NUME_ANG from angajati a, angajati b where a.id_ang = b.id_sef
+
+
+
+
+
+-- Angajatii pentru fiecare sef care nu au primit comision
+
+select
+	a.id_ang as ID_SEF,
+	a.nume as NUME_SEF,
+	b.nume as NUME_ANG
+from
+	angajati a,
+	angajati b
+where
+	a.id_ang = b.id_sef
+	and
+	b.nume IN (SELECT nume
+		  FROM (select * from angajati where comision is null or comision = 0)
+			);
+
+
+
+
+-- Sefii care au cel putin 2 subalterni care respecta conditia.
+SELECT ID_SEF, NUME_SEF, count(*) as NUMAR_ANG from
+(select
+	a.id_ang as ID_SEF,
+	a.nume as NUME_SEF,
+	b.nume as NUME_ANG
+from
+	angajati a,
+	angajati b
+where
+	a.id_ang = b.id_sef
+	and
+	b.nume IN (SELECT nume
+		  FROM (select * from angajati where comision is null or comision = 0)
+			))
+having
+	count(*) >= 2
+group by id_sef, nume_sef
+
+
+
+
+----- Salariile sefilor care respecta conditia
+
+SELECT * FROM angajati
+where ID_ANG IN (SELECT ID_SEF from (
+SELECT ID_SEF, NUME_SEF, count(*) as NUMAR_ANG from
+(select
+	a.id_ang as ID_SEF,
+	a.nume as NUME_SEF,
+	b.nume as NUME_ANG
+from
+	angajati a,
+	angajati b
+where
+	a.id_ang = b.id_sef
+	and
+	b.nume IN (SELECT nume
+		  FROM (select * from angajati where comision is null or comision = 0)
+			))
+having
+	count(*) >= 2
+group by id_sef, nume_sef)
+)
+
+
+
+
+------ SALARIUL MAXIM
+
+SELECT MAX(SALARIU) AS SALARIU_MAXIM
+FROM (SELECT * FROM angajati
+where ID_ANG IN (SELECT ID_SEF from (
+SELECT ID_SEF, NUME_SEF, count(*) as NUMAR_ANG from
+(select
+	a.id_ang as ID_SEF,
+	a.nume as NUME_SEF,
+	b.nume as NUME_ANG
+from
+	angajati a,
+	angajati b
+where
+	a.id_ang = b.id_sef
+	and
+	b.nume IN (SELECT nume
+		  FROM (select * from angajati where comision is null or comision = 0)
+			))
+having
+	count(*) >= 2
+group by id_sef, nume_sef)
+)
+);
+
+DEN_DEP_SEF, NUME_SEF, JOB_SEF, SALARIU_SEF, NUME_SUBALTERN, COMISION_SUBALTERN
+--- TABELA FINALA
+SELECT
+	d.den_dep,
+	a.nume,
+	a.functie,
+	a.salariu,
+	b.nume as NUME_SUBALTERN,
+	b.comision as COMISION_SUBALTERN
+from
+	departamente d,
+	angajati a,
+	angajati b
+where
+	a.id_dep = d.id_dep
+	and
+	a.id_ang = b.id_sef
+	and
+	a.id_ang in
+	(SELECT ID_SEF from (
+SELECT ID_SEF, NUME_SEF, count(*) as NUMAR_ANG from
+(select
+	a.id_ang as ID_SEF,
+	a.nume as NUME_SEF,
+	b.nume as NUME_ANG
+from
+	angajati a,
+	angajati b
+where
+	a.id_ang = b.id_sef
+	and
+	b.nume IN (SELECT nume
+		  FROM (select * from angajati where comision is null or comision = 0)
+			))
+having
+	count(*) >= 2
+group by id_sef, nume_sef)
+)
+	and
+	a.salariu = (SELECT SALARIU_MAXIM from
+(
+SELECT MAX(SALARIU) AS SALARIU_MAXIM
+FROM (SELECT * FROM angajati
+where ID_ANG IN (SELECT ID_SEF from (
+SELECT ID_SEF, NUME_SEF, count(*) as NUMAR_ANG from
+(select
+	a.id_ang as ID_SEF,
+	a.nume as NUME_SEF,
+	b.nume as NUME_ANG
+from
+	angajati a,
+	angajati b
+where
+	a.id_ang = b.id_sef
+	and
+	b.nume IN (SELECT nume
+		  FROM (select * from angajati where comision is null or comision = 0)
+			))
+having
+	count(*) >= 2
+group by id_sef, nume_sef)
+)
+)
+)
+);

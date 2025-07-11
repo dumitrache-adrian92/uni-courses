@@ -1,0 +1,674 @@
+--------------- CURS 1 ---------------
+
+Proces software = set de activitati:
+    - Specificatie
+    - Proiectare
+    - Implementare
+    - Validare
+    - Evolutie
+
+Model = reprezentare abstracta a procesului:
+    - Model cascada:
+        - Faze separate si distincte de specificare si dezvoltare
+    - Model evolutionar:
+        - Specificatie, dezvoltare, validare - intretesute
+    - Dezvoltare pe baza de componente:
+        - porneste de la un set de comp. preexistente
+        - formala -> ceva pe baza de cascada
+
+Software Development Life Cycle (SDLC):
+    1. Planning
+    2. Analysis
+    3. Design
+    4. Development
+    5. Testing
+    6. Implementation
+    7. Maintenance
+
+Interfete:
+    - Ajuta cand lucreaza mai multi oameni la un proiect
+    - Componentele dezvoltate independent
+    - Izoleaza, dar nu pot suferi schimbari
+    - Specificatii - definesc granite
+
+Decompozitia:
+    - Include si cod auxiliar (stubs, code te tst, modalitati de rulare partiala)
+
+--------------- CURS 2 ---------------
+
+Containere:
+    - OS level virtualization
+    - Mai multe instante de User Space
+    - Mediu consistent:
+        - Includ dependentele software
+    - Ruleaza oriunde:
+        - Nu conteaza OS/masina virtuala/bare metal
+    - Izoleaza:
+        - Virtualizeaza CPU/MEM/HARD/IO etc
+
+Networking (Docker):
+    - Bridge (implicit) - brigde software ce permite comunicare intre componente
+    - Overlay - Permite serviciilor swarm sa comunice intre ele
+    - Host - elimina izolrea intre container si gazda docker
+    - macvlan - permite asignare de adrese MAC per container pt a aparea ca
+        device fizic
+
+
+--------------- CURS 2 ---------------
+
+Rapid Software Development:
+    - Mediu in continua schimbare => modificari cerinte on the fly
+    - Dezvoltare in Cascada - nepractic - prea lent
+    - Abordare pe specificatii -> livrare iterativa
+
+RAD:
+    - Specificare, proiectare & implementare = Concurente
+    - Sistem dezvoltat incremental
+    - Sistem dezvoltat interactiv
+
+Dezvoltare incrementala:
+    - Livrare rapida
+    - Includere useri in dezvoltarea sistemului.
+    - Probleme de management
+    - Probleme contractuale
+    - Probleme de validare
+    - Probleme de mentenanta
+    - Pentru unele sisteme - nepractica - ex: mai multe echipe din mai multe
+        locatii din lume
+
+Prototipare:
+    - Sist dezvoltat experimental 
+    - Throw-away prototyping -> valideaza sau deriva cerintele
+    - Incepe cu cerintele cel mai putin intelese
+    
+Metode Agile:
+    - Create datorita overhead-ului prea mare in procesul de prototipare
+    - Focus pe cod -> nu design
+    - Bazate pe abordare iterativa
+    - Focus pe livrare rapida de software fnctional
+    - Adecvate pentru sisteme business mici si medii
+    - Iteratii scurte cu prototipe la finalul fiecarei etape
+    - Principii:
+        - Implicare client
+        - Livrare incrementala - clientul specifica ce sa fie livrat in
+            fiecare increment
+        - Oameni nu procese - echipa isi exercita propriile metode liber
+        - Adoptarea schimbarii - Cerinte in schimbare - sistem proiectat
+            a.i. sa le acomodeze
+        - Mentinerea simplitatii
+    - Probleme:
+        - Mentinere interes clienti
+        - Membri echipa neadecvati
+        - Dificil de prioiritizat schimbarile cand sunt interese diferite
+            ale actionarilor
+        - Contractele pot fi o problema
+    - Metode:
+        - Extreme Programming (XP)
+        - Scrum
+        - DSDM
+        - Crystal
+        - ASD
+        - XBreed
+
+Scrum:
+    - Product Owner:
+        - Vocea clientului
+        - Cerinte Business
+        - Detine BACKLOG
+    - Scrum Master:
+        - Aproximativ Project Manager
+    - Team:
+        - Aprox. 7 persoane
+        - Livreaza produsul
+    - Echipa SCRUM:
+        - Auto organizata
+        - Membrii nu au roluri bine definite
+        - Pigs 
+            - Devotati pt livrare
+            - Pot fi concediati pt esecul proiectului
+        - Chickens
+            - Participa la intalniri doar ca observatori
+            - Pastreaza job-ul in ciuda esecului
+    - Sprint:
+        - Perioada de 2-4 saptamani
+        - Nimeni nu modifica Backlog-ul in timpul sprintului
+        - Rezultat final - software functional
+        - Demo la final
+    - Sprint Planning Meeting - sedinta ce decide ce itemi din Backlog sunt
+        inclusi in Sprint
+    - Sprint Backlog - itemii ce vor fi rezolvati in sprint
+    - Daily Scrum - intalnire zilnica din sprint, doar pigs pot vorbi
+    - Scrum of scrums 
+        - Intalnire zilnica, dupa daily scrum
+        - Accent pe integrare
+        - Intre echipe
+        - Participa cate un om din fiecare echipa
+    - Sprint Review Meeting
+    - Sprint Retrospective
+
+eXtreme Programming:
+    - Principii:
+        - Let everybody test all the time
+        - Review all the time
+        - Refactor all the time
+        - Integrate all the time
+        - Do the simplest thing that could possibly work
+        - Iterations really short
+    - Noi versiuni chiar de mai multe ori pe zi
+    - Incremente livrate la 2 saptamani
+    - Testele trb executate pt fiecare build
+    - Valori:
+        - Comunicare
+        - Feedback
+        - Simplitate
+        - Curaj
+        - Respect ceplm=))))))
+    - Practici (sunt 12 imi bag pula in ele daca le scriu)
+    - User story:
+        - 1-3 sapt pt implementare
+        - Functionalitati pe care sist sa le ofere userilor
+    - Release - sistem rulabil ce implementeaza user stories
+    - Spike - prototip folosit ca PoC
+    - Iteration
+        - Faza a implementarii - 1-3 saptamani
+        - Continte task-uri de 1-3 zile
+    - Project Velocity:
+        - #stories / timp
+        - time / #stories
+    - Echipa transforma scenariile userilor in task-uri de implementare
+    - Inutil sa consideri posibile extensii -> schimbarile nu pot fi anticipate
+        -> mai bine refactoring constant al codului
+    - Testing:
+        - Test first
+        - Testele se dezvolda incremental pornind de la scenarii
+        - Test first development:
+            - Testul se scrie inaintea codului -> clarificarea cerintelor
+    - Pair programming
+        - Programatorii lucreaza in echipa
+        - Doi oameni la aceeasi masina:
+            - Implementare
+            - Strategie
+    
+
+--------------- CURS 3 ---------------
+
+Refactorizare:
+    - Imbunatatirea codului curent
+    - Poate schimba CUM functioneaza, NU CE face
+    - Simplitate = principiu de baza
+        - Claritate vs Smart Hacks
+        - Mentenanta > importanta
+        - KISS - Keep It Short And Simple
+    - Smell 
+        -Long Method:
+            - Simptom - multe linii de cod intr-o singura metoda >>10
+        - Large Class:
+            - Prea multe instante de variabile, metode sau linii
+        - Magic Number
+        - Cod Duplicat - Solutie: Metode Sablon
+        - Ask What Kind = Anti Pattern = Mostenire Simulata
+            - switch, if (cu instanceof de ex)
+
+Modularitate:
+    - Sistem complex -> parti mici = Module
+    - Modul = componenta de sine statatoare
+    - component frameworks = dezvoltare si conectare module
+    - Module interconnection languages = Specificare interconectare module
+
+Separation of Concerns:
+    - Spargere in probleme mici
+    - Concerc = bucata a unui program de sine statatoare
+
+Coeziune si cuplare:
+    - Cuplare slaba, coeziune mare
+    - Coeziune = cat de bine lucreaza liniile de cod sursa ale unui modul
+        pentru a oferi o functionalitate
+    - Intre module cuplare slaba - putine dependente intre ele, implementare
+        interna independenta, modificare un modul !-> modificare alt modul
+    - Cuplare crescuta intre clase:
+        - A are atribut cu tip B
+        - A apeleaza metoda B
+        - A are o metoda ce referentiaza B
+        - A e subclasa a lui B
+
+Ascunderea informatiei:
+    - Prea multa informatie 
+        - confuzie
+        - dependente nedorite
+    - Flexibilitate - se poate modifica functionarea clasei fara a afecta alte
+        componente
+    - Scope:
+        - Ar trebui cat mai restrans posibil
+        - Daca nu, poate genera confuzii/greseli
+    - Access modifiers (public, private, protected)
+    - Interfata:
+        - API/Interfata user/Java Interface = toate importante
+        - Defineste & Restrictioneaza cum va fi ceva folosit
+        - Interfata nu se modifica => Useri nu trb modificati, chiar daca
+            implementrea interna s-a modificat
+
+Depanare:
+    - Runtime > greu Compile
+    - Profiling:
+        - Analiza dinamica a functionalitatilor - axat pe aspecte masurabile
+        - Tipuri:
+            - Memory
+            - Thread
+            - Code coverage
+
+
+--------------- CURS 4 ---------------
+
+Reflectia:
+    - Abilitate program de a observa si modifica structura/comportament
+    - Modalitati:
+        - Structurala - asupra cod / structuri de date
+        - Comportamentala
+    - Operatii de baza:
+        - Introspectia - observare program
+        - Interventia (Intercession) = modificarea lui
+    - Statica / Dinamica
+    - Periculoasa
+    - Metaobiecte:
+        - Reflectia in OO Langs
+        - Types - metaobiecte = instante de metaclase
+    - Introspectie structuri de date:
+        - Vrem ca programul sa poata lucra cu structuri de date necunoscute
+        => Metaobiect -> ofera o descriere a clasei obiectului necunoscut
+    - Introspectie cod - doar in cateva limbaje
+    - Interventia - rar - periculos
+    - In java:
+        - E nevoie de ClassLoader pentru a obtine metaobiectul Class
+        - Daca nu
+            -> Arunca CLassNotFoundException
+            -> E nevoie de implementarea noastra de ClassLoader
+        - getOrice - modifiers, clase, instante, constructori, metode
+
+Dezvoltarea orientata pe aspecte (Ce bullshit o fi si asta)
+    - OOP:
+        - Modelarea naturala a entitatilor -> clase
+        - Aplicatie = {Obiecte} - comunica prin mesaje
+        - Concern = functionalitate necesara
+        - Analiza -> Modelare -> Implementare
+        - Probleme care duc la aparitia OOP:
+            - Crosscutting = Cod ce apare intr-o clasa pentru a indeplini o
+                cerinta ce nu tine de clasa respectiva
+            - Scattered cod = cod necesar unui concern imprastiat in mai multe
+                clase/metode
+            - Tangled code = O singura clasa / metoda pentru numeroase 
+                concern-uri
+            -> Clase dificil de administrat
+            -> Cod greu de refolosit
+            -> Mentenanta dificila
+    - Aspect Oriented Programming
+        - Adreseaza separarea concern-urilor
+        - Nivel suplimentar de abstractizare peste OOP
+        - Ofera un mecanism pentru descrierea concern-urilor ce fac crosscut
+            altor componente
+        - Programare la meta-nivel:
+            - Meta-obiect = entitate ce descrie alt obiect
+            - Protocolul meta-obiectelor (MOP) = mod de descriere semantica al 
+                unui program
+            - CLOS (Commong Lisp Object System) = manipuleaza mecanisme de
+                mostenire, instantiere, apelare etc.
+        - Descompunere:
+            - Common Concerns (de baza)
+            - Crosscutting Concerns (Cumva de sistem, de ex Logging peste o
+                clasa de baza Product)
+        - Implementare:
+            - clase (ex: Product)
+            - aspecte (ex: Logging)
+        - Recompunere:
+            - foloseste un ?integrator? (weaver)
+            - cu reguli de compunere
+            - Ex:
+                - Integrator:
+                    - Clasa Product
+                    - Clasa Logger
+                    - Reguli de integrare: memoreaza schimbarea pretului
+                - Weaver -> Rezultat: ProductWithLogging
+        - Tipuri de integratoare:
+            - Compile Time -> Compilator
+            - Link Time -> Linker
+            - Load Time -> Classloader
+            - Run Time -> Masina Virtuala
+        - Exemple limbaje: 
+            - AspectJ:
+                - Joinpoint - locatie din codul primar unde concern taie app
+                - Pointcut - constructie care specifica punct de leg si context
+                - Advice - cod ce trebuie executat la un moment dat de Pointcut:
+                    - before
+                    - after
+                    - around
+                - Aspect - create ca si clasele - incapsuleaza complet codul
+                    legat de un concern
+            - JBoss AOP, Spring AOP
+        - Utilizare aspecte:
+            - Tracing - urmarire flux informatii (ce apeluri se fac in tp exec)
+            - Verificare conditii - validare argumente primite de metode
+            - Logging
+            - Profiling
+            - Autorizare
+
+
+--------------- CURS 6 ---------------
+
+Design Patterns (Sa-mi bag pula)
+    - Solutii realizabile, aplicabile in diverse contexte
+    - Categorii:
+        - Structurale: relatiile dintre entitati
+        - Creationale: mecanisme de instantiere
+        - Comportamentale: comunicare intre entitati
+    - Adapter Pattern:
+        - Translateaza o interfata in alta prin Wrapping
+        - Preintampina posibile incompatibilitati
+    - Facade Pattern:
+        - Furnizeaza o interfata unitara catre un set de interfete ?ceplm?
+        - Ceva interfata la nivel inalt care simplifica interactiunea
+            cu subsistemele
+        - Orice modificare adusa unui pachet -> modificare doar in Facade
+    - Strategy Pattern:
+        - Familie de algs.
+        - Algoritmii sunt incapsulati -> usor interschimbabili
+        - Variaza algoritmul independent de clienti
+        - Composition in loc de inheritance (has-a > is-a)
+    - Bridge pattern:
+        - Desparte Abstractizare | Implementare
+    - Iterator Pattern:
+        - Expune o metoda de accesare secventiala a elementelor
+    - Chain of Responsability Pattern:
+        - Inlantuie obiectele
+        - O cerere e pasata pe lant pana ajunge la un obiect capabil sa o
+            serveasca
+        - Evita cuplarea stricta intre expeditor si destinatar cerere
+            -> Mai multe obiecte au sansa de a o rezolva
+    - State Pattern:
+        - Obiectele isi modifica comportamentul <-> modificare state intern
+    - Visitor Pattern:
+        - Visited & Visitor
+        - Recipientul -> Visitor
+        - Argumentul -> Visited
+        - Operatie speciala asupra unei structuri complexe
+        - Vizitatorul -> metoda de vizitare pt fiecare tip
+            => Trebuie modificati toti vizitatorii la un tip nou de element
+    - Abstract Factory Pattern:
+        - Interfata pentru crearea unor familii de obiecte fara a specifica
+            clase concrete
+        - Doar interfata obiectelor e cunoscuta de clienti
+        - Dificil produse noi
+    - Decorator Pattern:
+        - Atasam responsabilitati suplimentare unui obiect in mod dinamic
+        - Clase usor extensibile & greu modificabile
+    - Observer Pattern:
+        - Un obiect isi schimba starea -> notifica toate obiectele ce depind
+            de el
+        - Relatie one to many Subject->Observers
+        - Adaptare Publish -> Subscriber
+    - Template Method Pattern:
+        - Defineste schelet algoritm -> transfera pasi aplicatii catre subclase
+        - Subclase redefinesc pasi -> Nu schimba structura
+    - Singleton Pattern:
+        - Clasa care trebuie instantiata o data
+        - Imposibila instantierea de mai multe ori (Constructor private B) )
+        - Double check locking - pt multithreading - facem if-urile
+            imbricate - al doilea e synchronized
+    - Factory Pattern (nu am facut deja abstract factory asta ce mortii lui
+        mai e...):
+        - Clase inrudite printr-o interfata - mascheaza implementarea
+        - Mutam instantierea unui tip de clasa in factory
+        - Putem avea si factory methods pt mai mult control
+        - Depinde de abstractii - nu clase concrete
+        - Command Pattern
+    - Command Pattern:
+        - Incapsuleaza o cerere (comanda) sub forma de obiect
+        - Parametrizare obiect -> cereri diferite
+    - Builder Pattern - un fel de factory
+        - Folosit pentru creare obiecte complexe
+        - Separa constructie obiect de reprezentarea sa
+        - Acelasi proces de constructie -> reprezentari diferite
+        - Folosit si cand se necesita initializare obiect cu elemente de config
+        - Deleaga un obiect sa construiasca un produs complex
+        - Structura decisa de builder - se poate modifica independent de repr
+            initiala
+        - Produsul delegat clientului doar la final
+
+        
+--------------- CURS 7 ---------------
+
+Utility computing:
+    - Comupting va fi ca gazele, apa, plm
+    - Se ofera sub forma de Distributed Computing:
+        - Cluster Computing
+        - Grid Computing
+        - Cloud Computing
+    - Commodity Computing - n-am inteles, ceva cu supercomputere - legi
+        mai multe calculatoare mici => Unul mare
+
+Cloud Computing:
+    - Serviciu ce furnizeaza:
+        - Interfata simpla
+        - Capacitate & Scalabilitate la cerere
+        - Modele noi de livrare servicii
+    - Optimizare Servere -> Reduce costuri
+        -> Practic, cand ai ceva en-gros, e mai ieftin de intretinut, decat
+            fiecare cu mortii ma-sii
+    - Mai usor pt useri sa aiba acces la servicii, fara grija detaliilor tehnice
+    - Platesti doar cat/ce folosesti, nu e nevoie sa iei prea mult in avans
+    - Scaleaza rapid in sus sau in jos
+    - Mentenanta -> Facuta de Provider
+    - Multi-tenancy -> mai multi useri - aceleasi resurse
+    - Fiabilitate - resurse in locatii diferite
+
+Serviciu Web:
+    - Endpoint al unei conexiuni
+    - Functii:
+        - Bine definit
+        - Autocontinere
+        - Nu depinde de context / starea altor servicii
+    - Ofera un API pentru dezvoltatori -> Construiesc functionalitati peste
+        Internet
+    - Web Services Description Language (WSDL):
+        - In XML
+        - Operatii:
+            - One-Way -> Mesaje trimise fara asteptare raspuns
+            - Req & Rsp -> Mesaje au cereri si rsp
+            - Solicit Resp -> Cerere pentru raspuns
+            - Notification -> Mesaje catre mai multi furnizori
+
+Arhitectura Orientata pe Servicii (SOA):
+    - Colectie de servicii intercomunicante
+    - Set principii design
+    - Suita slab cuplata de servicii
+
+Quality of Service (QoS) - Evalueaza:
+    - Tehnologii:
+        - Proceduri de ajustare -> folosire mai eficienta a resurselor
+    - Relatia cu Clientul:
+        - Numarul de probleme cu impact direct pt user
+
+Service Level Agreement (SLA):
+    - Contract Furnizor-Client -> Servicii in termeni masurabili (QoS)
+    - Metrici de performanta:
+        - Raport up-time/down-time
+        - Throughput
+        - Timp Raspuns
+    - Continut Contract:
+        - Gestiune Issues
+        - Penalizari non performanta
+        - Securitate
+    - Proprietati:
+        - Scalabilitate
+        - Elasticitate - ceva introspectie in timp real
+        - Disponibilitate - Grad in care sistemul e intr-o stare operabila
+        - Fiabilitate - Abilitate de a efectua functiile pt un anumit timp
+        - Mentenabilitate:
+            - Capacitate de auto gestiune
+            - Self-stuff (healing, config, optimization, protection)
+        - Interoperabilitate - proprietatea de a lucra cu alte produse/sisteme
+        - Accesibilitate - Cat de accesibil e altor persoane
+        - Portabilitate - cat de accesibil e pe alte dispozitive / resurse
+        - Performanta si Optimizare in exec apps:
+            - Performanta garantata
+                -> Parallel Computing
+                -> Load Balancing
+                -> Job Scheduling
+
+Servicii:
+    - Infrastructure as a Service (IaaS)
+        - Furnizeaza resurse fundamentale (CPU/MEM/IO-Network)
+        - Consumatorul NU gestioneaza infrastructura de sub cloud
+        - Consumatorul are control SO, HDD, Apps, Network
+        -> Virtualizare
+        - Ex: Openstack, Google Comp Eng, DigitalOcean, Azure VM
+    - Platform as a Service (PaaS)
+        - User deploy apps (atat)
+        - Foloseste infrastructura | limbaje | instrumente suportate/oferite
+            de furnizor
+        - NU gestioneaza SO, Network etc
+        -> Runtime Environment
+        - Ex: Heroku, Deis, Cloud Foundry
+    - Software as a Service (SaaS)
+        - User FOLOSESTE app furnizor
+        - Aplicatii accesibile de pe devices client printr-o interfata
+        - NU controleaza infrastructura cloud DELOC (max config app)
+        -> Web Service
+        - Ex: Google Apps (Drive, Gmail, ..), Facebook
+
+Deployment Models:
+    - Public Cloud (External/Multi-tenant cloud)
+        - Infrastructura Omogena
+        - Resurse partajate
+        - Mediu Multi-tenant
+        - Politici de baza
+        - Infrastructura Inchiriata
+    - Private Cloud (Internal/On premise Cloud)
+        - A unei organizatii
+        - Infrastructura Eterogena
+        - Politici Custom
+        - Resurse Custom
+        - Infrastructura in-house
+    - Community Cloud
+        - Infrastructura partajata de cateva org
+        - Suporta o comunitate specifica -> aceeasi misiune, 
+            cerinte securitate, politici
+    - Hybrid Cloud
+        - Infrastrudtura din mai multe cloud-uri -> vazute ca aceeasi entitate
+        - Link prin tech standard
+        - Portabilitate date/apps (Load Balancing intre cloud-uri)
+
+
+--------------- CURS 8 ---------------
+
+Protocoale de Comunicatii:
+    - HTTP:
+        - Req Line: Req method{GET/POST/PUT/DELETE} + Resource (path)
+        - Header - Metadata
+        - Body - date transmise spre server
+        - Query params url?param1=x&param2=y..
+        - Content Type ~ MIME Type - cum se interpreteaza body:
+            - image/jpg
+            - image/png
+            - text/plain
+            - text/html
+        - Web Service over HTTP:
+        - REST:
+            - Practic cum definim path-uri, si cum interactioneaza
+                tipurile de req cu ele
+        - Object Marshalling?:
+            - JSON (JavaScript Object Notation) - mod de descriere obiect in
+                format text -> bun de transmis over HTTP
+                -> Mai energy efficient ca XML ;)
+        - Retrofit 
+            - type-safe REST Client (?????)
+            - Open source lib
+        - HTTP Polling:
+            - Conexiune initiata de client -> Cum poate server sa notifice
+                client?
+            -> Clientul interogheaza periodic server
+            - Alternativa: User decide cand se aduc datele (ex: pe tlf
+                pull-down refresh)
+            - Alternativa: Se aduc date cand deschidem UI
+            - Problema -> Consum resurse chiar si cand nu sunt update-uri
+            -> Polling adaptiv in functie de daca au fost sau nu actualizari
+                recent (t -> 2t -> 4t -> 1h -> UPDATE -> t -> ...)
+            - Web Sockets - Mesaje mai mici, nu mai dam tot HTTP Req (cu
+                Header, Body, ..)
+        - Push Messaging:
+            - Persistent Connection - XMPP (Protocol XML)
+            - Client Android se reconecteaza automat si preia mesaje daca a
+                fost deconectat o perioada
+            - Google Cloud Messaging (Server)
+                - Client are Registration ID
+                - Mesaje max 4KB -> Push-to-sync model pt transfer vol mari
+                    date sau info sensibile
+                    -> Prin GCM doar se anunta ca exista update-uri, care
+                        apoi se fac prin HTTP
+        - Java Servlets:
+            - Obiecte cu metode speciale pentru gestionare cereri HTTP
+            - Se ruteaza (mapping) path cu un nume si clasa
+        - Java Annotation:
+            - @secured (exemplu)
+            - Se defineste o interfata Secured cu un format -> Java stie ca se
+                poate aplica aceasta anotatie
+            - Putem avea parametrii pe anotatie
+            - Java da eroare de compilare daca nu recunoaste anotatia => fortam
+                la compilare verificarea unor proprietati dezirabile
+        - Spring framework:
+            - Multe servlet-rui de web specializate care ne ajuta cu dezvoltarea
+                web
+            - Spring Boot - proiect parte din SPring ce automatizeaza setup
+                pt o aplicatie/arhitectura
+                -> Focus pe Controllere, in loc de detalii setup
+            - Noi facem doar Controllere si Application.java unde se definesc
+                configs app dorite -> Spring face totul in rest
+            - Spring Dependency Injection - Spring detecteaza si foloseste
+                automat controllerele create de noi
+                - SDI ofera flexibilitate - putem injecta un obiect ce 
+                    implementeaza un anumit comportament, astfel definind
+                    noi obiectele (n-am inteles, cursul asta e haos)
+                - @AutoWired
+            - Spring Dispatcher Servlet:
+                - In loc de o sg metoda doGet care gestioneaza toate cererile
+                    posibile -> dispatcher permite rutarea mesajelor pentru
+                    operatii distincte
+            - Spring Controller = Object Java standard
+            - Spring Request Parameter Annotations:
+                - Extragem cu annotatii anumiti parametrii din request:
+                    @RequestParam("search") etc...
+            - Spring Path Variable Annotations - link cu semantica incapsulata
+                -> cred ca ceva gen /videos/<id> - dar i-au pus nume complicat
+            - Date client - data marshalling:
+                - Servlet Dispatcher transmite/extrage info (nu doar extrage
+                    params din HTTP Req)
+                - Putem extrage obiecte intregi (inclusiv obiecte Java)
+            - Multipart Data:
+                - Date prea mari pt un singur request -> Multi-part Request
+                - MultipartFile e keyword-ul in sine
+            - Java Persistance API (JPA):
+                - Annotations - descriem cum se stocheaza obiecte in DB
+            - Spring Repo:
+                - Printr-o interfata speciala legam obiecte persistente si DB
+                - Noi doar facem aceasta interfata (ex findByName(String) )
+                - Spring va adauga automat implementarea care mapeaza repo<->DB
+            - Spring Data REST - nu mai trebuie sa scriem asa mult cod (nuj exact)
+            - Sesiuni:
+                - Sesiune Server-side - fara date pe client, doar SessionID
+                - Date partial server - partial client
+                - Securitate:
+                    - Login user-pass -> cookie user
+                    - Spring Security 
+                        - suport pentru login, session cookie
+                        - suporta roluri
+                    - User Service - contin detalii user (UserDetails)
+                    - Foloseste OAuth 2.0
+            - Scalarea pe orizontala -> adaugam server machines si avem mai
+                multi useri
+                - Avem load balancer HTTP
+                - Design 
+                    -> Avem mai mult read/write
+                    -> Putem optimiza pt una din ele, in functie de ce ne face
+                        aplicatia noastra
+                    
+
+
+

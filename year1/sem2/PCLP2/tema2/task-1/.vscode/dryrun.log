@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/adrian/Dropbox/Facultate/PCLP2/tema2/task-1'
+gcc -c -g -m32 check_simple_cipher.c -o check_simple_cipher.o
+make: Leaving directory '/home/adrian/Dropbox/Facultate/PCLP2/tema2/task-1'
+ 
+make: *** No rule to make target 'simple.asm', needed by 'simple.o'.
+

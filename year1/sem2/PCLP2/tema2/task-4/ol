@@ -1,0 +1,92 @@
+%include "../include/io.mac"
+
+section .text
+    global spiral
+    extern printf
+
+; void spiral(int N, char *plain, int key[N][N], char *enc_string);
+spiral:
+    ;; DO NOT MODIFY
+    push ebp
+    mov ebp, esp
+    pusha
+
+    mov eax, [ebp + 8]  ; N (size of key line)
+    mov ebx, [ebp + 12] ; plain (address of first element in string)
+    mov ecx, [ebp + 16] ; key (address of first element in matrix)
+    mov edx, [ebp + 20] ; enc_string (address of first element in string)
+    ;; DO NOT MODIFY
+    ;; TODO: Implement spiral encryption
+    ;; FREESTYLE STARTS HERE
+
+    push eax
+    xor esi, esi
+copy:
+    mov al, [ebx + esi]
+    mov BYTE [edx + esi], al
+    inc esi
+    cmp al, 0
+    jne copy
+
+    pop eax
+
+    push ebx
+
+    mov esi, eax
+    dec esi ;i
+    xor edi, edi ;j
+printSpiral:
+    xor ebx, ebx
+    mov ebx, edi
+topRow:
+    push esi
+    xor esi, esi
+
+    mov esi, edi
+    imul esi, eax
+    add esi, ebx
+    push ebx
+    xor ebx, ebx
+    mov ebx, DWORD [ecx + esi]
+    add BYTE [edx], bl
+    inc edx
+    pop ebx
+
+    pop esi
+    inc ebx
+    cmp ebx, esi
+    jl topRow
+
+    xor ebx, ebx
+    mov ebx, edi
+    push edi
+    xor edi, edi
+lastColumn:
+    mov edi, ebx
+    imul edi, eax
+    add edi, esi
+    push ebx
+    xor ebx, ebx
+    mov ebx, DWORD [ecx + edi]
+    ;add BYTE [edx], bl
+    inc edx
+
+    pop ebx
+    inc ebx
+    cmp ebx, esi
+    jl lastColumn
+    pop edi
+
+    dec esi
+    inc edi
+    cmp esi, 0
+    jg printSpiral
+
+    pop ebx
+
+    ;; FREESTYLE ENDS HERE
+    ;; DO NOT MODIFY
+    popa
+    leave
+    ret
+    ;; DO NOT MODIFY

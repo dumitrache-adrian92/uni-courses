@@ -1,0 +1,90 @@
+Să se scrie o cerere SQL care face o listă cu angajații care:
+- fac parte din departamentul cu cei mai mulți angajați care
+au comisionul cel puțin 1/10 din salariu mediu pe firmă.
+- lista va fi ordonată crescător după salariu.
+
+
+1. 1/10 din salariul mediu pe firma.
+
+SELECT 1/ 10 * AVG(salariu)
+FROM angajati;
+
+2. Angajații care au comision >= 1/10 din salariul mediu pe firma.
+
+SELECT * FROM angajati
+WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati);
+
+
+3. Numărul de angajați din fiecare departament care îndeplinesc acea condiție.
+
+SELECT id_dep, COUNT(*) numar_ang
+FROM angajati
+WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati)
+GROUP BY id_dep;
+
+4. Numărul maxim de angajați care îndeplinesc acea condiție.
+SELECT MAX(numar_ang)
+FROM
+	(SELECT id_dep, COUNT(*) numar_ang
+	 FROM angajati
+	 WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati)
+         GROUP BY id_dep
+	) 
+
+5. Departamentul cu cei mai mulți angajați care respecă regula.
+
+SELECT
+	id_dep,
+	numar_ang
+FROM
+	(SELECT id_dep, COUNT(*) numar_ang
+	FROM angajati
+	WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati)
+	GROUP BY id_dep
+	)
+WHERE
+	numar_ang = (SELECT MAX(numar_ang)
+		   FROM
+		   (SELECT id_dep, COUNT(*) numar_ang
+		   FROM angajati
+                    WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati)
+                    GROUP BY id_dep
+			)
+		   );
+
+6. Rezolvare finală
+
+SELECT
+	a.den_dep,
+	b.nume,
+	b.salariu,
+	b.comision,
+	(SELECT 1/ 10 * AVG(salariu) FROM angajati) comision_mediu
+FROM
+	departamente a,
+	angajati b
+WHERE
+	a.id_dep = b.id_dep
+	AND
+	b.id_dep = (SELECT id_dep
+		    FROM
+			(SELECT
+				id_dep,
+				numar_ang
+			FROM
+				(SELECT id_dep, COUNT(*) numar_ang
+				FROM angajati
+				WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati)
+				GROUP BY id_dep
+				)
+			WHERE
+				numar_ang = (SELECT MAX(numar_ang)
+		   				FROM
+		   					(SELECT id_dep, COUNT(*) numar_ang
+		   					FROM angajati
+                    					WHERE nvl(comision, 0) >= (SELECT 1/ 10 * AVG(salariu) FROM angajati)
+                    					GROUP BY id_dep
+							)
+		  				 )
+				)
+			);

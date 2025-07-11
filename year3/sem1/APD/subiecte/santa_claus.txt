@@ -1,0 +1,57 @@
+elves = 0
+reindeer = 0
+sem mutex(0)
+
+sem santaSem(0)
+sem reindeerSem(0)
+sem elfLimiter(1)
+
+santa()
+    while true
+        santaSem.wait()
+
+        mutex.wait()
+
+        if reindeer == 9
+            prepareSleigh()
+            reindeerSem.post(9)
+            reindeer -= 9
+        else
+            helpElves()
+            elves -= 3
+
+        mutex.post()
+
+reindeer()
+    mutex.wait()
+
+    reindeer++
+
+    if reindeer == 9
+        santaSem.post()
+
+    mutex.post()
+
+    reindeerSem.wait()
+    getHitched()
+
+elf()
+    elfLimiter.wait()
+    mutex.wait()
+
+    elves++
+
+    if elves == 3
+        santaSem.post()
+    else
+        elfLimiter.post()
+
+    mutex.post()
+
+    getHelp()
+
+    mutex.wait()
+    elves--
+    if elves == 0
+        elfLimiter.post()
+    mutex.post()

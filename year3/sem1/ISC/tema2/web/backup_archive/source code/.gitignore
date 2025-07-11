@@ -1,0 +1,6 @@
+node_modules/
+config.php
+*.x.js
+*.min.js
+*.tar.gz
+

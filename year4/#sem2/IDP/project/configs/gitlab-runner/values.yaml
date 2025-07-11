@@ -1,0 +1,29 @@
+gitlabUrl: "https://gitlab.cs.pub.ro"
+serviceAccount:
+  create: true
+rbac: { create: true }
+runnerToken: glrt-t2_KDRCK952aDJFqsuF3qU9
+
+runners:
+  config: |
+    [[runners]]
+      [runners.kubernetes]
+        image = "ubuntu:20.04"
+        privileged = true
+      [[runners.kubernetes.volumes.empty_dir]]
+        name = "docker-certs"
+        mount_path = "/certs/client"
+        medium = "Memory"
+      [[runners.kubernetes.volumes.empty_dir]]
+        name = "docker-sock"
+        mount_path = "/var/run"
+        medium = "Memory"
+
+  # Enable Docker-in-Docker
+  executor: kubernetes
+  privileged: true  # Required for Docker-in-Docker
+
+  services:
+    - name: docker:dind
+      alias: docker
+      command: ["--tls=false", "--host=tcp://0.0.0.0:2375"]

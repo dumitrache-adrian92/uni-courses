@@ -1,0 +1,138 @@
+# Tema 3 ASC: Optimizare operatii pe matrici - Dumitrache Adrian-George [334CC]
+
+Acest README este redactat in Markdown si este cel mai bine vizualizat intr-un
+markdown editor (e.g: Visual Studio Code, Dilinger.io, etc.).
+
+## Analiza operatiei pe matrici
+
+Avem de implementat urmatoarea operatie: $ (A^t * B + B * A) * B^t $, unde:
+
+* $A$ si $B$ sunt matrici patratice
+* $A$ este superior triunghiulara => $A^t$ este inferior triunghiulara
+
+Cu aceste informatii putem simplifica orice inmultire de matrice ce contine $A$
+sau $A^t$. Exemplu:
+
+```C
+    double *B_times_A = calloc(N * N, sizeof(double));
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            for (int k = 0; k <= j; k++) {
+                B_times_A[i * N + j] += B[i * N + k] * A[k * N + j];
+            }
+        }
+    }
+```
+
+Unde for-ul cu k merge doar pana la j, pentru a nu face inmultiri inutile cu
+valorile de 0 de sub diagonala principala a lui A. Aceasta optimizare este
+aplicata oriunde se face inmultire cu $A$ sau $A^t$ (din pacate rezultatul unei
+inmultiri cu $A$/$A^t$ nu este o matrice triunghiulara, deci inmultirea finala
+nu poate fi optimizata astfel).
+
+## Implementare BLAS
+
+BLAS ofera o functie pentru inmultrea de matrici superior/inferior triunghiulare
+cu elemente double: `cblas_dtrmm`. Argumentele sale permit de asemenea si
+transpunerea matricilor date. Asa au fost realizate operatiile $A^t * B$ si
+$B * A$.
+
+Operatia de adunare a celor 2 a fost prin functia de nivel 1 `cblas_daxpy`, ce
+aduna un vector la altul cu un scalar dat. Putem folosi aceasta in functie
+deoarece matricile noastre oricum sunt reprezentate ca vectori de lungime N * N
+in memorie.
+
+Inmultirea finala `C = (A^t * B + B * A) * B^t` a fost realizata cu functia
+`cblas_dgemm` pentru inmultirea a doua matrici si transpunerea lui $B$ din
+argumentele sale. Nu s-a mai putut folosi optimizarea de mai sus pentru ca
+nu avem nici o garantie ca rezultatul inmultirii unei matrici triunghiulare
+cu alta matrice obisnuita va fi tot triunghiulara.
+
+## Implementare neoptimizata
+
+Solutia neoptimizata inmulteste matricile dupa metoda clasica cu complexitate
+$O(n^3)$. Singurele optimizario este cea discutata mai sus legata de inmultirea
+cu matricea triunghiulara si transpunerea facuta implicit prin inversarea
+indiciilor cand se acceseaza matricea, e.g:
+`A[k * N + i]` in loc de `A[i * N + k]`.
+
+## Implementare optimizata
+
+Pentru aceasta implementare am ales sa transpun manual matricile $A$ si $B$,
+nefiind o operatie costisitoare si pentru a imi fi mai usor sa gandesc modul in
+care se accesesaza datele (secvential/nesecvential).
+
+Abordarea aplica optimizarile discutate in cadrul laboratorului 9 la fiecare din
+cele 3 inmultiri de matrice. Mai exact:
+
+1. Ordinea for-urilor este schimbata in i-k-j pentru a avea un acces cel putin
+secvential (deci mai favorabil cache-ului) in fiecare dintre matricile accesate
+(rezultat, stanga, dreapta).
+2. Se folosesc pointeri pentru a parcurge matricile, evitand inmultiri repetate
+si inutile cauzate de indexari precum `A[i * N + k]`.
+3. Am folosit hintul de compilare `register` pentru a forta compilatorul sa tina
+variabilele in registre. Lucru posibil datorita faptului ca arhitectura are
+destule registre.
+
+Operatia de adunare a fost imbunatatita doar cu optimizarea 2 si 3 (datele
+fiind accesate oricum secvential).
+
+Implementarea ajunge sa ofere timpi intre 4.5 si 5.5 secunde pentru N = 1200.
+
+## Comparatie timp si cache
+
+![Grafic comparatie](plot.png)
+
+Se observa faptul ca prin niste simple optimizari se poate obtine un timp de
+rulare de 4 ori mai bun chiar si pe un test cu o dimensiune nu chiar imensa (N =
+1600). Aceasta diferenta se va amplifica si mai mult pe dimensiuni mai mari.
+
+Cu toate acestea, implementarea BLAS este mult mai impresionanta,
+timpul necrescand semnificativ in functie de N. Pare ca aceasta biblioteca duce
+mult mai departe optimizarile de cache, probabil aplicand si optimizari in
+functie de marimea cache-ului (e.g: inmultirea matricilor in blocuri), cat si
+utilizarea instructiunilor hardware (e.g: SIMD, vector registers).
+
+Raspunsul la "de ce exista diferente intre algoritmi identici din punct de
+vedere al algoritmicii?" se poate afla din analiza cache-ului:
+
+| Varianta algoritm | Irefs         | Drefs         | Branches    |
+| ----------------- | ------------- | ------------- | ----------- |
+| BLAS              | 251,542,670   | 101,680,237   | 9,655,796   |
+| Neoptimizat       | 5,925,578,363 | 2,964,987,641 | 133,492,203 |
+| Optimizat         | 2,370,568,644 | 655,951,353   | 133,493,654 |
+
+Se poate observa ca intre varianta optimizata si neoptimizata nu exista mari
+diferente intre numarul de branch-uri, fiind aproximativ acelasi algoritm cu
+aceleasi puncte de branching (loops/conditionals).
+Diferenta principala este numarul de instruction references si data references,
+ce ne arata ca varianta optimizata foloseste semnificativ mai putine
+instructiuni si acceseaza date mai rar decat cea neoptimizata. Acest lucru este
+probabil datorat urmatorilor factori:
+
+* toate datele sunt tinute in registrii -> nu avem instructiuni extra pentru
+preluarea lor din memorie
+* accesurile de elemente din matrice este simplificat prin pointeri -> accesul
+unui element este format din mai putine instructiuni (si mai simple, evitand
+inmultirea)
+* accesul elementelor intr-un mod secvential -> benefic cachingului, reduce
+accesuri scumpe la memorie
+
+Realistic vorbind, diferenta aceasta majora se datoreaza si faptului ca a fost
+folosit flagul `-O0` de compilare, ce obliga compilatorul sa nu faca absolut
+nici o optimizare. O compilare macar cu `-O2` ar duce la aceste optimizari sa
+fie facute automat, daca nu chiar mai bine. Exemplu de rulare cu `-O2`:
+
+```text
+Run=./tema3_neopt: N=400: Time=0.144361
+Run=./tema3_neopt: N=800: Time=1.269395
+Run=./tema3_neopt: N=1200: Time=4.184415
+Run=./tema3_neopt: N=1400: Time=6.940531
+Run=./tema3_neopt: N=1600: Time=17.175850
+```
+
+## Bibliografie
+
+* [Laborator 9 ASC](https://ocw.cs.pub.ro/courses/asc/laboratoare/09)
+* [BLAS docs](https://www.netlib.org/blas/)

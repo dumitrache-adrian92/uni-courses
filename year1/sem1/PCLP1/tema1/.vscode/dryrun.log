@@ -1,0 +1,8 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/adrian/Dropbox/Facultate/Anul 1/Sem 1/PCLP1/tema1'
+gcc -o problema1 problema1.c -g -Wall -lm
+gcc -o problema2 problema2.c -g -Wall -lm
+gcc -o problema3 problema3.c -g -Wall -lm
+gcc -o problema4 problema4.c -g -Wall -lm
+make: Leaving directory '/home/adrian/Dropbox/Facultate/Anul 1/Sem 1/PCLP1/tema1'
+ 

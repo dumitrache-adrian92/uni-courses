@@ -1,0 +1,19 @@
+sem mutex(1)
+sem items(0)
+
+producer()
+    event = waitForEvent()
+
+    mutex.wait()
+    buffer.add(event)
+    mutex.post()
+
+    items.post()
+
+consumer()
+    items.wait()
+    mutex.wait()
+    event = buffer.get()
+    mutex.post()
+
+    event.process()

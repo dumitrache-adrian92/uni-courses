@@ -1,0 +1,52 @@
+Sa se creeze un view Subaltern cu urmatoarea structura:
+
+id_sef, nume_sef, data_angajare_sef, id_subaltern, nume_subaltern, data_angajare_subaltern
+
+View - ul va contine sefii si subalternii lor dar numai sefii si subalternii care au venit
+in companie in anul in care s-a angajat cel mai recent sef de departament.
+
+
+-> Anul in care s-a angajat cel mai recent sef de departament.
+
+SELECT MAX(EXTRACT(YEAR FROM DATA_ANG)) AS ANUL_ANGAJARII
+FROM ANGAJATI
+WHERE ID_ANG IN (SELECT ID_SEF FROM ANGAJATI);
+
+
+-> Angajatii si sefii care s-au angajat intr-un anumit an
+
+SELECT M.ID_ANG AS ID_SEF, M.NUME AS SEF, M.DATA_ANG AS DATA_ANGAJARE_SEF,E.ID_ANG AS ID_SUBALTERN, E.NUME AS NUME_SUBALTER, E.DATA_ANG AS DATA_SUBALTERN
+FROM ANGAJATI M
+JOIN ANGAJATI E ON E.ID_SEF = M.ID_ANG
+WHERE EXTRACT(YEAR FROM M.DATA_ANG) = 1987 AND EXTRACT(YEAR FROM E.DATA_ANG) = 1987
+
+
+-> Tabela
+
+
+SELECT M.ID_ANG AS ID_SEF, M.NUME AS SEF, M.DATA_ANG AS DATA_ANGAJARE_SEF,E.ID_ANG AS ID_SUBALTERN, E.NUME AS NUME_SUBALTER, E.DATA_ANG AS DATA_SUBALTERN
+FROM ANGAJATI M
+JOIN ANGAJATI E ON E.ID_SEF = M.ID_ANG
+WHERE
+	EXTRACT(YEAR FROM M.DATA_ANG) = (SELECT MAX(EXTRACT(YEAR FROM DATA_ANG)) AS ANUL_ANGAJARII
+					FROM ANGAJATI
+					WHERE ID_ANG IN (SELECT ID_SEF FROM ANGAJATI))
+	AND EXTRACT(YEAR FROM E.DATA_ANG) = (SELECT MAX(EXTRACT(YEAR FROM DATA_ANG)) AS ANUL_ANGAJARII
+					FROM ANGAJATI
+					WHERE ID_ANG IN (SELECT ID_SEF FROM ANGAJATI))
+
+id_sef, nume_sef, data_angajare_sef, id_subaltern, nume_subaltern, data_angajare_subaltern
+
+-> View
+  CREATE OR REPLACE VIEW subalterni AS
+  (SELECT M.ID_ANG AS ID_SEF, M.NUME AS SEF, M.DATA_ANG AS DATA_ANGAJARE_SEF,E.ID_ANG AS ID_SUBALTERN, E.NUME AS NUME_SUBALTERN, E.DATA_ANG AS DATA_SUBALTERN
+  FROM ANGAJATI M
+  JOIN ANGAJATI E ON E.ID_SEF = M.ID_ANG
+  WHERE
+     EXTRACT(YEAR FROM M.DATA_ANG) = (SELECT MAX(EXTRACT(YEAR FROM DATA_ANG)) AS ANUL_ANGAJARII
+                                    FROM ANGAJATI
+                                     WHERE ID_ANG IN (SELECT ID_SEF FROM ANGAJATI))
+    AND EXTRACT(YEAR FROM E.DATA_ANG) = (SELECT MAX(EXTRACT(YEAR FROM DATA_ANG)) AS ANUL_ANGAJARII
+                                    FROM ANGAJATI
+                                   WHERE ID_ANG IN (SELECT ID_SEF FROM ANGAJATI)))
+

@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "lab1",
+			"path": "../../../../../Documents/PlatformIO/Projects/lab1"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"README": "markdown",
+			"*.pl": "prolog",
+			"io.h": "c",
+			"usart.h": "c",
+			"delay.h": "c"
+		}
+	}
+}

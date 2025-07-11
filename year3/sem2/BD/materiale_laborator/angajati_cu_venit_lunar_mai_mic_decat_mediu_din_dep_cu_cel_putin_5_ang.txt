@@ -1,0 +1,70 @@
+Să se scrie o cerere SQL care face o listă cu angajații care
+- au venitul lunar mai mic decât venitul mediu pe departamentul din care fac parte.
+- fac parte din departamentele care au cel putin 5 angajati
+Lista va fi ordonată crescător după venitul lunar al angajatului.
+
+Antentul listei este:
+DEN_DEP NUME_ANG VENIT_LUNAR VENIT_MEDIU_DEPART
+
+
+1. Venitul mediu pe departament.
+
+SELECT
+	id_dep,
+	avg(salariu) AS VENIT_MEDIU_DEPART
+FROM angajati
+GROUP BY id_dep;
+
+
+2. Numarul de angajati din fiecare departament.
+
+SELECT
+	id_dep,
+	COUNT(*) AS numar_angajati
+FROM
+	angajati
+GROUP BY id_dep;
+
+
+3. Departamentele cu cel putin 5 angajati.
+
+SELECT
+	id_dep,
+	COUNT(*) AS numar_angajati
+FROM
+	angajati
+GROUP BY id_dep
+HAVING COUNT(*) >= 5;
+
+
+DEN_DEP NUME_ANG VENIT_LUNAR VENIT_MEDIU_DEPART
+4. Final
+
+SELECT
+	d.den_dep AS DENUMIRE_DEPARTAMENT,
+	a.nume AS NUME_ANGAJAT,
+	a.salariu+nvl(a.comision, 0) as VENIT_LUNAR,
+	b.venit_mediu as VENIT_MEDIU_DEPART
+FROM
+	angajati a
+	JOIN (SELECT
+		id_dep,
+		avg(salariu) AS VENIT_MEDIU
+	      FROM angajati
+	      GROUP BY id_dep) b ON a.id_dep = b.id_dep
+				AND a.salariu+nvl(a.comision, 0) < b.venit_mediu
+	JOIN departamente d ON a.id_dep = d.id_dep
+WHERE
+	a.id_dep IN (SELECT id_dep
+		     FROM (SELECT
+				id_dep,
+				COUNT(*) AS numar_angajati
+		    	    FROM
+				angajati
+		    	    GROUP BY id_dep
+		    	    HAVING COUNT(*) >= 5
+			   )
+		   )
+ORDER BY VENIT_LUNAR;
+
+	

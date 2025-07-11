@@ -1,0 +1,2 @@
+Function	CPU Time	CPU Time:Effective Time	CPU Time:Spin Time	CPU Time:Overhead Time	Module	Function (Full)	Source File	Start Address
+std::greater<std::pair<int, int>>::operator()	0.009880	0.009880	0.0	0.0	serial_prim	std::greater<std::pair<int, int>>::operator()(std::pair<int, int> const&, std::pair<int, int> const&) const	[Unknown]	0x4062c4

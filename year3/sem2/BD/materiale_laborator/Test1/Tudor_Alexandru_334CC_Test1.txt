@@ -1,0 +1,94 @@
+Sa se scrie o cerere sql care face o lista cu toti angajatii dintr-un departament care au venit in companie dupa angajarea directorului
+din departamentul respectiv si nu au primit comision.
+
+-> id_ul departamentului si data angajarii directorului se introduc de la tastatura
+
+-> antetul listei:
+	id_departament, nume_angajat, data_angajare, comision, data_angajare_director
+
+Sa se rezolve prin cel putin 4 metode distincte, folosind variabile substituite.
+
+
+Solutia 1
+_________
+
+select id_dep, nume, data_ang, comision, '&data_angajare_director' data_angajare_director
+	from angajati
+	where id_dep = &id_dep and data_ang > '&data_angajare_director' and (comision = 0 or comision is null);
+
+
+Enter value for data_angajare_director: 02-APR-1981
+Enter value for id_dep: 20
+Enter value for data_angajare_director: 02-APR-1981
+
+    ID_DEP NUME                           DATA_ANG    COMISION DATA_ANGA
+---------- ------------------------------ --------- ---------- ---------
+        20 SCOTT                          19-APR-87            02-APR-81
+        20 ADAMS                          23-MAY-87            02-APR-81
+        20 FORD                           03-DEC-81            02-APR-81
+
+
+
+Solutia 2
+_________
+
+select id_dep, nume, data_ang, comision, '&&data_angajare_director' data_angajare_director
+	from angajati
+	where id_dep = &id_dep and data_ang > '&data_angajare_director' and (comision = 0 or comision is null);
+
+undefine data_angajare_director;
+
+
+Enter value for data_angajare_director: 02-APR-1981
+Enter value for id_dep: 20
+
+    ID_DEP NUME                           DATA_ANG    COMISION DATA_ANGA
+---------- ------------------------------ --------- ---------- ---------
+        20 SCOTT                          19-APR-87            02-APR-81
+        20 ADAMS                          23-MAY-87            02-APR-81
+        20 FORD                           03-DEC-81            02-APR-81
+
+
+
+
+Solutia 3
+_________
+
+select id_dep, nume, data_ang, comision, '&2' data_angajare_director
+	from angajati
+	where id_dep = '&1' and data_ang > '&2' and (comision = 0 or comision is null);
+
+
+Enter value for 2: 02-APR-1981
+Enter value for 1: 20
+Enter value for 2: 02-APR-1981
+
+    ID_DEP NUME                           DATA_ANG    COMISION DATA_ANGA
+---------- ------------------------------ --------- ---------- ---------
+        20 SCOTT                          19-APR-87            02-APR-81
+        20 ADAMS                          23-MAY-87            02-APR-81
+        20 FORD                           03-DEC-81            02-APR-81
+
+
+Solutia 4
+_________
+
+accept data_angajare_director char prompt 'Introduceti data angajarii directorului:'
+accept id_dep char prompt 'Introduceti id_dep:'
+
+select id_dep, nume, data_ang, comision, '&data_angajare_director' data_angajare_director
+	from angajati
+	where id_dep = &id_dep and data_ang > '&data_angajare_director' and (comision = 0 or comision is null);
+
+undefine data_angajare_director;
+undefine id_dep 
+
+
+Introduceti data angajarii directorului:02-APR-1981
+Introduceti id_dep:20
+
+    ID_DEP NUME                           DATA_ANG    COMISION DATA_ANGAJA
+---------- ------------------------------ --------- ---------- -----------
+        20 SCOTT                          19-APR-87            02-APR-1981
+        20 ADAMS                          23-MAY-87            02-APR-1981
+        20 FORD                           03-DEC-81            02-APR-1981

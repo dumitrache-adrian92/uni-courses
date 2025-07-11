@@ -1,0 +1,32 @@
+leaders = 0
+followers = 0
+sem mutex(1)
+sem leaders(0)
+sem followers(0)
+rendezvous = Semaphore (0)
+
+queue_leader()
+    mutex.wait()
+    if followers > 0
+        followers--
+        followers.post()
+    else
+        leaders++
+        mutex.post()
+        leaders.wait()
+
+    milly_rock()
+    rendezvous.wait()
+    mutex.post()
+
+queue_follower()
+    mutex.wait()
+    if leaders > 0
+        leaders--
+        leaders.post()
+    else
+        mutex.post()
+        followers.wait()
+
+    milly_rock()
+    rendezvous.post()

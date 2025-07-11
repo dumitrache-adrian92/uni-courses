@@ -1,0 +1,1196 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Apr  4 14:02:08 2023
+# Process ID: 5088
+# Current directory: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6572 C:\Users\student\Documents\Dumitrache Adrian-George\cronometru\cronometru.xpr
+# Log file: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/vivado.log
+# Journal file: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru\vivado.jou
+# Running On: Lenovo-EF001, OS: Windows, CPU Frequency: 3592 MHz, CPU Physical cores: 4, Host memory: 17125 MB
+#-----------------------------------------------------------
+start_gui
+open_project {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.xpr}
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26c:part0:1.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26c/1.2/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26c:part0:1.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26c/1.3/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26i:part0:1.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26i/1.2/board.xml as part xck26-sfvc784-2lvi-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:k26i:part0:1.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/k26i/1.3/board.xml as part xck26-sfvc784-2lvi-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kc705:part0:1.6 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kc705/1.6/board.xml as part xc7k325tffg900-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.6 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.6/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu105:part0:1.7 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu105/1.7/board.xml as part xcku040-ffva1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu116:part0:1.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu116/1.4/board.xml as part xcku5p-ffvb676-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu116:part0:1.5 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu116/1.5/board.xml as part xcku5p-ffvb676-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kcu1500:part0:1.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kcu1500/1.2/board.xml as part xcku115-flvb2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kv260_som:part0:1.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kv260_som/1.2/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:kv260_som:part0:1.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/kv260_som/1.3/board.xml as part xck26-sfvc784-2lv-c specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:sp701:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/sp701/1.0/board.xml as part xc7s100fgga676-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:sp701:part0:1.1 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/sp701/1.1/board.xml as part xc7s100fgga676-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vc707:part0:1.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vc707/1.4/board.xml as part xc7vx485tffg1761-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vc709:part0:1.8 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vc709/1.8/board.xml as part xc7vx690tffg1761-2 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:2.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/2.2/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190:part0:3.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190/production/3.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vck190_newl:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vck190_newl/production/1.0/board.xml as part xcvc1902-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu108:part0:1.6 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu108/1.6/board.xml as part xcvu095-ffva2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu108:part0:1.7 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu108/1.7/board.xml as part xcvu095-ffva2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu110:part0:1.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu110/1.4/board.xml as part xcvu190-flgc2104-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu118:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.0/board.xml as part xcvu9p-flga2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu118:part0:2.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.3/board.xml as part xcvu9p-flga2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu118:part0:2.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu118/2.4/board.xml as part xcvu9p-flga2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu128:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu128/production/1.0/board.xml as part xcvu37p-fsvh2892-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu129:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu129/production/1.0/board.xml as part xcvu29p-fsga2577-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vcu1525:part0:1.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vcu1525/1.3/board.xml as part xcvu9p-fsgd2104-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vermeo_t1_mpsoc:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vermeo_t1_mpsoc/1.0/board.xml as part xczu19eg-ffvd1760-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vermeo_t1_rfsoc:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vermeo_t1_rfsoc/1.0/board.xml as part xczu21dr-ffvd1156-2l-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:2.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/2.2/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180:part0:3.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180/production/3.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vmk180_newl:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vmk180_newl/production/1.0/board.xml as part xcvm1802-vsva2197-2mp-e-s specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120_es:part0:1.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/es/1.2/board.xml as part xcvp1202-vsva2785-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120_es_revb:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120_revb/es/1.0/board.xml as part xcvp1202-vsva2785-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu102:part0:3.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu102/3.3/board.xml as part xczu9eg-ffvb1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu102:part0:3.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu102/3.4/board.xml as part xczu9eg-ffvb1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu104:part0:1.1 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu104/1.1/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu106:part0:2.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu106/2.4/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu106:part0:2.5 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu106/2.5/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu106:part0:2.6 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu106/2.6/board.xml as part xczu7ev-ffvc1156-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu111:part0:1.2 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu111/1.2/board.xml as part xczu28dr-ffvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu111:part0:1.3 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu111/1.3/board.xml as part xczu28dr-ffvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu111:part0:1.4 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu111/1.4/board.xml as part xczu28dr-ffvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu1275:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu1275/1.0/board.xml as part xczu29dr-ffvf1760-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu1285:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu1285/1.0/board.xml as part xczu39dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208/production/2.0/board.xml as part xczu48dr-fsvg1517-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216/production/2.0/board.xml as part xczu49dr-ffvf1760-2-e specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at C:/Xilinx/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
+open_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:09 . Memory (MB): peak = 1236.074 ; gain = 0.000
+update_compile_order -fileset sources_1
+close [ open {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v} w ]
+add_files {{C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v}}
+update_compile_order -fileset sources_1
+close [ open {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v} w ]
+add_files {{C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v}}
+update_compile_order -fileset sources_1
+close [ open {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v} w ]
+add_files {{C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v}}
+update_compile_order -fileset sources_1
+set_property top cronometru [current_fileset]
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v} w ]
+add_files -fileset sim_1 {{C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v}}
+update_compile_order -fileset sim_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'numarator_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'numarator_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj numarator_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/numarator_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_sim
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot numarator_sim_behav xil_defaultlib.numarator_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot numarator_sim_behav xil_defaultlib.numarator_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4100] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
+WARNING: [XSIM 43-4100] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim/glbl.v" Line 6. Module glbl has a timescale but at least one module in design doesn't have timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.numarator_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot numarator_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '3' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "numarator_sim_behav -key {Behavioral:sim_1:Functional:numarator_sim} -tclbatch {numarator_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source numarator_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'numarator_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:05 ; elapsed = 00:00:10 . Memory (MB): peak = 1236.074 ; gain = 0.000
+set_property top cronometru_sim [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+boost::filesystem::remove: The process cannot access the file because it is being used by another process: "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim/simulate.log"
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+ERROR: [VRFC 10-3236] concurrent assignment to a non-net 'BCD0' is not permitted [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v:22]
+ERROR: [VRFC 10-3236] concurrent assignment to a non-net 'BCD1' is not permitted [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v:23]
+ERROR: [VRFC 10-8530] module 'bin2bcd' is ignored due to previous errors [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v:1]
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-99] Step results log file:'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim/xvlog.log'
+ERROR: [USF-XSim-62] 'compile' step failed with error(s). Please check the Tcl console output or 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim/xvlog.log' file for more information.
+ERROR: [Vivado 12-4473] Detected error while running simulation. Please correct the issue and retry this operation.
+ERROR: [Common 17-39] 'launch_simulation' failed due to earlier errors.
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'clk_out_led' is not allowed [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:7]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:21]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:25]
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" Line 1. Module cronometru doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" Line 1. Module divizor_de_ceas doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" Line 1. Module afisare_7seg doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" Line 1. Module cronometru doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" Line 1. Module divizor_de_ceas doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" Line 1. Module afisare_7seg doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:07 . Memory (MB): peak = 1236.074 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:21]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:25]
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" Line 1. Module cronometru doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" Line 1. Module divizor_de_ceas doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" Line 1. Module afisare_7seg doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" Line 1. Module cronometru doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" Line 1. Module divizor_de_ceas doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" Line 1. Module numarator_59 doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" Line 1. Module bin2bcd doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" Line 1. Module afisare_7seg doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '4' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:07 . Memory (MB): peak = 1236.074 ; gain = 0.000
+add_files -fileset constrs_1 -norecurse C:/Users/student/Desktop/Nexys-4-DDR-Master.xdc
+import_files -fileset constrs_1 C:/Users/student/Desktop/Nexys-4-DDR-Master.xdc
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:03:31 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:03:31 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run impl_1 -prev_step 
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:06:28 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+INFO: [Project 1-1160] Copying file C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/cronometru.dcp to C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/utils_1/imports/synth_1 and adding it to utils fileset
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:09:58 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:09:58 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'clk_out_led' is not allowed [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:9]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:23]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:27]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1236.074 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+WARNING: [VRFC 10-9336] redeclaration of ANSI port 'clk_out_led' is not allowed [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:9]
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:23]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:27]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 1236.074 ; gain = 0.000
+add_bp {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v} 21
+add_bp {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v} 22
+remove_bps -file {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v} -line 22
+remove_bps -file {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v} -line 21
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:16:07 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:16:07 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:18:56 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:18:56 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:23]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:27]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1236.074 ; gain = 0.000
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:21:34 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:21:34 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:22:14 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:22:14 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:23]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:27]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:01 ; elapsed = 00:00:06 . Memory (MB): peak = 1236.074 ; gain = 0.000
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Apr  4 15:23:50 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:23:50 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:24:33 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:24:33 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:25:50 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:25:50 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:26:53 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:26:53 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:27:32 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:27:32 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:29:13 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:29:13 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:20]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:24]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1236.074 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:20]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:24]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1236.074 ; gain = 0.000
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:32:20 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:32:20 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:34:32 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:34:32 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+Command: synth_design -rtl -rtl_skip_mlo -name rtl_1
+Starting synth_design
+Using part: xc7a100tcsg324-1
+Top: cronometru
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+2 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+INFO: [Common 17-344] 'synth_design' was cancelled
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:20]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:24]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1544.859 ; gain = 3.605
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:37:40 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:37:40 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:38:07 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:38:07 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:39:00 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:39:00 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:41:13 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:41:13 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:45:12 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:45:12 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-12493] Simulation top is 'cronometru_sim'
+WARNING: [Vivado 12-13340] Unable to auto find GCC executables from simulator install path! (path not set)
+WARNING: [Vivado 12-13277] Compiled library path does not exist: ''
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-72] Using boost library from 'C:/Xilinx/Vivado/2022.1/tps/boost_1_72_0'
+INFO: [SIM-utils-54] Inspecting design source files for 'cronometru_sim' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -prj cronometru_sim_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/divizor_de_ceas.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module divizor_de_ceas
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim
+INFO: [USF-XSim-69] 'compile' step finished in '2' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+"xelab --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator v2022.1
+Copyright 1986-1999, 2001-2022 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2022.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot cronometru_sim_behav xil_defaultlib.cronometru_sim xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 4 for port 'BCD1' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:20]
+WARNING: [VRFC 10-3091] actual bit length 1 differs from formal bit length 6 for port 'valoare_bin' [C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v:21]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.divizor_de_ceas
+Compiling module xil_defaultlib.numarator_59
+Compiling module xil_defaultlib.bin2bcd
+Compiling module xil_defaultlib.afisare_7seg
+Compiling module xil_defaultlib.cronometru
+Compiling module xil_defaultlib.cronometru_sim
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot cronometru_sim_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "cronometru_sim_behav -key {Behavioral:sim_1:Functional:cronometru_sim} -tclbatch {cronometru_sim.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Time resolution is 1 ps
+source cronometru_sim.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'cronometru_sim_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1566.281 ; gain = 0.000
+export_ip_user_files -of_objects  [get_files {{C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/utils_1/imports/synth_1/cronometru.dcp}}] -no_script -reset -force -quiet
+remove_files  -fileset utils_1 {{C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/utils_1/imports/synth_1/cronometru.dcp}}
+file delete -force {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/utils_1/imports/synth_1/cronometru.dcp}
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 8
+[Tue Apr  4 15:48:41 2023] Launched synth_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/synth_1/runme.log
+[Tue Apr  4 15:48:41 2023] Launched impl_1...
+Run output will be captured here: C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/runme.log
+open_run impl_1
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1566.570 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 7 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Timing 38-478] Restoring timing data from binary archive.
+INFO: [Timing 38-479] Binary timing data restore complete.
+INFO: [Project 1-856] Restoring constraints from binary archive.
+INFO: [Project 1-853] Binary constraint restore complete.
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF Files: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 2222.855 ; gain = 0.000
+Restored from archive | CPU: 0.000000 secs | Memory: 0.000000 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 2222.855 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2222.855 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:19 ; elapsed = 00:00:13 . Memory (MB): peak = 2353.336 ; gain = 786.766
+open_hw_manager
+connect_hw_server -allow_non_jtag
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2022.1
+  **** Build date : Apr 18 2022 at 16:02:36
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+
+INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042
+INFO: [Labtools 27-3417] Launching cs_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+
+******** Xilinx cs_server v2022.1.0
+  ****** Build date   : Apr 12 2022-22:12:08
+    **** Build number : 2022.1.1649790728
+      ** Copyright 2017-2023 Xilinx, Inc. All Rights Reserved.
+
+
+
+connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 2389.191 ; gain = 12.699
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210292AA76C1A
+open_hw_target: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 4440.105 ; gain = 2050.914
+set_property PROGRAM.FILE {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/cronometru.bit} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.runs/impl_1/cronometru.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Tue Apr  4 15:52:51 2023...

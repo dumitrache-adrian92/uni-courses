@@ -1,0 +1,47 @@
+sem mutex(1)
+int oxygen_count = 0
+int hydrogen_count = 0
+sem oxygen(0)
+sem hydrogen(0)
+barrier barrier(3)
+
+hydrogen()
+    mutex.wait()
+
+    hydrogen_count++
+
+    if hydrogen_count == 2 and oxygen_count == 1
+        hydrogen.post()
+        hydrogen.post()
+        oxygen.post()
+        oxygen--
+        hydrogen -= 2
+    else
+        mutex.post()
+
+    hydrogen.wait()
+
+    bond()
+
+    barrier.wait()
+
+oxygen()
+    mutex.wait()
+
+    oxygen_count++
+
+    if hydrogen_count == 2 and oxygen_count == 1
+        hydrogen.post()
+        hydrogen.post()
+        oxygen.post()
+        oxygen--
+        hydrogen -= 2
+    else
+        mutex.post()
+
+    oxygen.wait()
+
+    bond()
+
+    barrier.wait()
+    mutex.post()

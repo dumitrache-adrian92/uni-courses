@@ -1,0 +1,9 @@
+accept data_angajare_director char prompt 'Introduceti data angajarii directorului:'
+accept id_dep char prompt 'Introduceti id_dep:'
+
+select id_dep, nume, data_ang, comision, '&data_angajare_director' data_angajare_director
+	from angajati
+	where id_dep = &id_dep and data_ang > '&data_angajare_director' and (comision = 0 or comision is null);
+
+undefine data_angajare_director;
+undefine id_dep 

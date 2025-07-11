@@ -1,0 +1,4 @@
+results.csv
+*.o
+gpu_miner
+cpu_miner

@@ -1,0 +1,19 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+
+<section class="py-5 flex-fill main-bg" style="margin-top: 2rem;">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 wall">
+      <h2 class="error"><?= $errorTitle ?></h2>
+        <div class="box">
+          <p><?= $errorDetails ?></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>

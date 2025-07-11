@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: 'songrate/auth:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name:  GIN_MODE
+              value: 'release'
+            - name: SUPABASE_API_URL
+              value: 'https://kjhiwtqzbvbcheiruenp.supabase.co'
+            - name : SUPABASE_API_KEY
+              value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtqaGl3dHF6YnZiY2hlaXJ1ZW5wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU2MjAxNDUsImV4cCI6MjA2MTE5NjE0NX0.X1KH3qlQ9wlT5raDItepJ1_lDFagoV6yRrwWgbeFDz0'
+          resources:
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+            requests:
+              memory: '256Mi'
+              cpu: '250m'

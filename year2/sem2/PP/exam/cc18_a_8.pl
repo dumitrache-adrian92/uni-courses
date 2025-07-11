@@ -1,0 +1,1 @@
+diff(A, B, R) :- findall(X, (member(X, A), \+member(X, B)), R).

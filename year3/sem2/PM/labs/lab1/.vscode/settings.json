@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "README": "markdown",
+        "*.pl": "prolog",
+        "usart.h": "c"
+    }
+}

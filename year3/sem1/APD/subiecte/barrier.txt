@@ -1,0 +1,19 @@
+sem mutex(1)
+sem barrier(0)
+int count = 0
+int n
+
+solution()
+    rendezvous
+
+    mutex.wait()
+    count++
+
+    if (count == n)
+        barrier.post(n - 1)
+        mutex.post()
+    else
+        mutex.post()
+        barrier.wait()
+
+    post rendezvous

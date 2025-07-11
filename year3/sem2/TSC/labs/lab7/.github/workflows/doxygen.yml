@@ -1,0 +1,27 @@
+name: Push tag generate doxygen
+
+on:
+    push:
+        tags:
+        - '**'
+
+jobs:
+  unit-testing:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name : Checkout code
+      uses : actions/checkout@v2
+
+    - name: Install Doxygen
+      run: sudo apt-get install doxygen
+
+    - name : Run doxygen
+      run : doxygen
+
+# add artifact of the generated documentation
+    - name: Archive documentation
+      uses: actions/upload-artifact@v4
+      with:
+        name: doxygen
+        path: html/index.html

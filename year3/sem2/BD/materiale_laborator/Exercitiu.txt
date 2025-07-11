@@ -1,0 +1,92 @@
+--Selectati toti angajatii din departamentul cu
+- (cei mai multi angajati care nu s-au angajat in luniile de iarna - respectiv Ianuarie, Februarie, Decembrie). 
+-- Se va afisa denumire, departament, nume angajat, data angajarii, ordonati dupa data angajarii crescator
+
+
+
+- Angajati care nu s-au angajat in luniile de iarna - respectiv Ianuarie, Februarie, Decembrie
+
+SELECT *
+FROM ANGAJATI
+WHERE TO_CHAR(DATA_ANG, 'MM') NOT IN ('01', '02', '12');
+
+
+
+- Numarul de angajati care respecta conditia pentru fiecare departament
+
+SELECT id_dep, count(*) NUMAR_ANGAJATI from angajati
+WHERE id_ang IN
+	(SELECT ID_ANG from
+		(SELECT *
+		FROM ANGAJATI
+		WHERE TO_CHAR(DATA_ANG, 'MM') NOT IN ('01', '02', '12'))
+	)
+group by id_dep;
+
+
+---- Departmanentele cu nr maxim de angajati
+
+SELECT id_dep, COUNT(*) AS NUMAR_ANGAJATI
+FROM angajati
+WHERE id_ang IN (
+    		SELECT id_ang
+    		FROM angajati
+    		WHERE TO_CHAR(DATA_ANG, 'MM') NOT IN ('01', '02', '12')
+		)
+GROUP BY id_dep
+HAVING COUNT(*) = (
+    		SELECT MAX(cnt)
+    		FROM (
+       			 SELECT COUNT(*) AS cnt
+        		FROM angajati
+       			 WHERE id_ang IN (
+            				SELECT id_ang
+            				FROM angajati
+            				WHERE TO_CHAR(DATA_ANG, 'MM') NOT IN ('01', '02', '12')
+        				)
+       		 	GROUP BY id_dep
+    			)
+		);
+
+
+
+---- Tabel final
+Se va afisa denumire, departament, nume angajat, data angajarii, ordonati dupa data angajarii crescator
+
+
+SELECT
+	d.den_dep,
+	d.id_dep,
+	a.nume,
+	a.data_ang
+FROM
+	angajati a,
+	departamente d
+WHERE
+	a.id_dep = d.id_dep
+	and
+	a.id_dep IN (SELECT ID_DEP FROM (
+				SELECT id_dep, COUNT(*) AS NUMAR_ANGAJATI
+				FROM angajati
+				WHERE id_ang IN (
+    					SELECT id_ang
+    					FROM angajati
+    					WHERE TO_CHAR(DATA_ANG, 'MM') NOT IN ('01', '02', '12')
+					)
+				GROUP BY id_dep
+				HAVING COUNT(*) = (
+    						SELECT MAX(cnt)
+    						FROM (
+       			 			SELECT COUNT(*) AS cnt
+        					FROM angajati
+       			 			WHERE id_ang IN (
+            						SELECT id_ang
+            						FROM angajati
+            						WHERE TO_CHAR(DATA_ANG, 'MM') NOT IN ('01', '02', '12')
+        						)
+       		 				GROUP BY id_dep
+    						)
+					)
+			)
+		)
+ORDER BY a.data_ang;

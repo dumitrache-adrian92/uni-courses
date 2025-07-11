@@ -1,0 +1,8 @@
+<?php http_response_code(404); ?>
+
+<h1>Error:</h1>
+
+<p><b>404 Invalid controller method!</b></p>
+
+<p> <?=(CONTROLLERS.'/'.ucfirst($currentControllerName))?>.php::<?= $currentAction ?>() </p>
+

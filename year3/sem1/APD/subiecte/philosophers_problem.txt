@@ -1,0 +1,12 @@
+def
+get_forks ( i ):
+    if i == 0
+        fork [ left ( i )]. wait ()
+        fork [ right ( i )]. wait ()
+    else
+        fork [ right ( i )]. wait ()
+        fork [ left ( i )]. wait ()
+
+defput_forks ( i ):
+    fork [ right ( i )]. signal ()
+    fork [ left ( i )]. signal ()

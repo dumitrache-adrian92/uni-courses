@@ -1,0 +1,57 @@
+Tema 2 IOCLA - Dumitrache Adrian-George (314CC)
+
+Din cate puteti observa, am probleme cu vmchecker la task 3, intrucat
+implementarea mea merge pe local (si pe VM), dar crapa cand o incarc si nu mai
+verifica nici task 4. Nu inteleg ce ar trebui sa ii fac, fiindca nu am nici o
+indicatie legata de care ar putea sa fie problema in vmchecker (nimic in
+stderr, nici o eroare de compilare aparuta). Asa ca va rog sa testati separat
+aceasta tema pentru a vedea ca toate cele 4 task-uri sunt implementate corect.
+
+Task 1:
+Problema este rezolvata printr-o singura parcurgere a sirului de caractere, in
+cadrul careia este copiat la fiecare pas caracterul intr-un registru si ii este
+modificata valoarea ASCII corespunzator numarului de pasi si verificand si daca
+s-a trecut de caracterul 'Z', caz in care scadem 26 pentru a ne intoarce in
+alfabet. Acest proces se repeta pana intalnim caracterul '\0', cand doar il
+copiam in enc_string si ne oprim.
+
+Task 2.1:
+Practic abuzam de faptul ca dreapta ce trece prin cele doua puncte este
+paralela cu una dintre axe. Ca sa aflam distanta trebuie doar sa determinam
+cu ce axe este paralela dreapta si sa aflam valoarea absoluta a scaderii celor
+doi indici de pe cealalta axa (daca dreapta este paralela cu Ox, abs(y1-y2);
+daca dreapta este paralela cu Oy, abs(x1-x2);).
+Asa ca putem face 2 ramuri pentru cele 2 cazuri, dupa care punem cele 2 valori
+de care avem nevoie in registre si le interschimbam astfel inca sa stim in care
+registru e valoarea mai mare, urmata de aflarea rezultatului prin scadere.
+
+Task 2.2:
+Trivial cu functia anterioara, pentru N puncte avem N - 1 distante deci facem
+un loop cu aceasta lungime si ii trimitem functiei points-distance adresa
+adrese cu cate o pereche de puncte si o adresa din distances unde sa puna
+valoarea calculata.
+
+Task 2.3:
+Pentru fiecare valoarea din vectorul de distante, parcurgem numerele naturale
+de la 1 pana cand patratul unuia este mai mare decat acea valoarea (adica nu e
+patrat perfect) sau patratul este egal cu valoarea (adica e patrat perfect).
+Lucru pe care il notam in vectorul sq cu 0 respectiv, 1.
+
+Task 3:
+Aici am inceput sa folosesc stiva extensiv pentru ca nu imi plac variabilele
+globale si mie ar trebui sa imi faca Bill Gates mai multe registre.
+Ca metoda nu e prea mult de explicat, am aplicat algoritmul dat exact ca in
+cerinta dar a trebuit sa ma joc foarte mult cu registrele ca sa realizez acest
+lucru. Ideea de baza e ca pentru fiecare litera parcurg tabula recta si pun in
+stringul encriptat ce am gasit.
+
+Task 4:
+Aici a trebuit sa reiau tot de vreo 5 ori din pacate, de fiecare data a fost
+o prostie de a mea (am citit output-ul gresit, am afisat chestii + in checker
+am citit outputul pentru task-ul gresit, am uitat ca am int-uri in matrice etc,
+etc, etc, samd). Solutia finala copiaza plain in enc_string asa cum e si
+parcurge simultan in spirala matricea si enc_string, preluand valorile din
+matrice si adunand la caracterul curent din enc_string. Suna simplu,
+traversarea matricei in spirala nu e usor de implementat totusi, ideea e ca eu
+afisez marginile exterioare si apoi trec un nivel mai jos si afisez mariginile
+iar, proces repetat pana la epuizarea matricei, cam atat.

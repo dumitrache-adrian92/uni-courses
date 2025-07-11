@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "README": "markdown",
+        "*.pl": "prolog",
+        "array": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "ranges": "c",
+        "span": "c",
+        "utility": "c"
+    }
+}

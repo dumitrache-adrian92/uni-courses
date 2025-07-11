@@ -1,0 +1,67 @@
+D:\Facultate\BazeDate\Laboratoare\Test4
+Cerința
+-------
+Să se scrie o cerere SQL care face o listă cu angajații care au salariul
+mai mare decât salariul mediu al directorilor de departament. Lista va
+conține numai angajații din departamentul cu cele mai multe salarii
+mai mari decât salariul mediu al directorilor.
+
+Den_dep, Nume_Ang, Sal_Ang, Sal_Mediu_Dir
+
+
+select id_dep, avg(salariu) from angajati where functie='MANAGER' group by id_dep
+
+    ID_DEP AVG(SALARIU)
+---------- ------------
+        30         2850
+        10         2450
+        20         2975
+
+
+
+select
+	d.den_dep,
+	count(*) from angajati a,
+	departamente d
+where
+	a.id_dep = d.id_dep and
+	a.salariu > (select avg(salariu) from angajati where functie='MANAGER')
+group by d.den_dep
+
+
+DEN_DEP                          COUNT(*)
+------------------------------ ----------
+RESEARCH                                3
+SALES                                   1
+ACCOUNTING                              1
+
+
+
+SELECT nume, salariu
+FROM  (SELECT a.id_dep, a.nume, a.functie, a.salariu
+	FROM angajati a
+	WHERE a.salariu > (SELECT avg(salariu) salariu_mediu
+				FROM angajati b
+				WHERE b.id_dep = a.id_dep
+				and b.functie = 'MANAGER')
+	ORDER BY id_dep),
+	departamente d,
+WHERE id_dep = (SELECT id_dep
+		FROM (SELECT a.id_dep, a.nume, a.functie, a.salariu
+			FROM angajati a
+			WHERE a.salariu > (SELECT avg(salariu) salariu_mediu
+					FROM angajati b
+					WHERE b.id_dep = a.id_dep
+					and b.functie = 'MANAGER')
+			ORDER BY id_dep)
+		GROUP BY id_dep
+		HAVING COUNT(*) = (SELECT MAX(ang_number)
+				FROM (SELECT COUNT(*) AS ang_number
+					FROM (SELECT a.id_dep, a.nume, a.functie, a.salariu
+					FROM angajati a
+					WHERE a.salariu > (SELECT avg(salariu) salariu_mediu
+								FROM angajati b
+								WHERE b.id_dep = a.id_dep
+								and b.functie = 'MANAGER')
+								ORDER BY id_dep)
+					GROUP BY id_dep)))

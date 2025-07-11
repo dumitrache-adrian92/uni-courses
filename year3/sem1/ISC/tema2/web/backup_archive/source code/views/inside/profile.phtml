@@ -1,0 +1,62 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+<?php include(dirname(__FILE__).'/_profile.phtml'); ?>
+
+<section class="py-4 flex-fill">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 wall">
+        <div class="box profile-view" data-user-id="<?=$profile['id']?>">
+          <h2><span><?=$profile["fullname"]?></span>'s Profile</h2>
+          <p class="img"><?=_pimg($profile)?></p>
+          <p class="description"><?=nl2br($profile["description"])?></p>
+          <p class="buttons">
+            <?php if ($profile['id'] == $_SESSION['auth']['id']) { ?>
+            <!-- Your profile. -->
+            <?php } else if ($profile['friend_added']) { ?>
+            <button type="button" class="btn btn-light">Friend added</button>
+            <?php } else { ?>
+            <button type="button" class="btn btn-primary addFriend">Add friend</button>
+            <?php } ?>
+          </p>
+        </div>
+        <div class="box profile-posts">
+          <div>Posts by <?=_plink($profile)?></div>
+        </div>
+      <?php foreach ($posts as $post) { ?>
+      <?php
+      $profileImg = $post['profile_img'];
+      if (empty($profileImg)) $profileImg = 'profile/unknown.jpg';
+      ?>
+        <div class="box">
+          <div class="row header">
+            <div class="col-12 col-md-6 caption">
+              <div class="profile-picture"><?=_pimg($post)?></div>
+              <?=_plink($post)?>
+            </div>
+            <div class="col-12 col-md-6 text-left text-md-right metadata"><?=$post["date"]?></div>
+          </div>
+          <div class="content">
+            <?php if ($post["visibility"] == 0 || $post["friend_post"]) { ?>
+            <p><?=nl2br($post['post'])?></p>
+            <?php if (!empty($post['image'])) { ?>
+            <p class="img"><img src="/userupload/<?=$post['image'] ?>" alt="" /></p>
+            <?php } ?>
+            <?php } else { echo '<p><i>Access denied to contents.</i></p>'; } ?>
+          </div>
+        </div>
+      <?php } ?>
+      <?php if (empty($posts)) { ?>
+      <div class="box"><p><i>This user has no posts yet.</i></p></div>
+      <?php } ?>
+      </div>
+      <div class="col-4 side">
+      <?php include(dirname(__FILE__)."/_friends.phtml"); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>

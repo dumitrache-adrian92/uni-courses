@@ -1,0 +1,182 @@
+# Tema 1: Le Stats Sportif - Adrian-George Dumitrache [334CC]
+
+Hello!
+
+## Preliminarii
+
+- am implementat toate endpoint-urile cerute
+- am notat in fisierul de log informatii despre fiecare request
+- am scris unit tests pentru rutele si clasele din implementare
+
+## Solutie
+
+Am folosit in mare ierarhia de module/clase oferita de schelet pentru ca ~~sunt
+lenes~~ este un schelet foarte bun si simplu de inteles.
+Hai sa discutam putin despre fiecare modul in parte:
+
+### data_ingestor
+
+Am adaugat clasa `State` in care stochez liniile din fisierul CSV relevante
+pentru un stat anume.
+Pentru a raspunde la intrebari mai repede, liniile sunt pastrate in 2
+dictionare (ca sa extragem rapid liniile relevante pentru o intrebare):
+
+- `question_to_rows` cu cheia fiind intrebarea
+- `question_to_stratification_to_rows` dictionar cu 2 niveluri cu prima cheie
+de intrebare si a doua de stratificare
+
+Clasa `DataIngestor` are urmatoarele responsabilitati:
+
+- citeste fisierul CSV (in cadrul constructorului) si stocheaza datele in
+obiecte de tip `State` pentru fiecare stat in parte
+- expune metode ce folosesc datele pentru a calcula diverse statistici (practic
+intrebarile expuse prin endpoint-uri), avem metode care doar returneaza
+rezultatele numerice/listele si wrappere peste acestea care le returneaza in
+format json pentru a fi folosite in endpoint-uri
+
+### task_runner
+
+`ThreadPool` implementeaza un thread pool relativ simplu, cu un numar fix de
+thread-uri determinat de variabila de mediu aferenta sau numarul de core-uri al
+sistemului in caz contrar.
+Thread-urile sunt reprezentate de obiecte de tip `TaskRunner` care sunt
+notificate prin intermediul unui semafor atunci cand exista task-uri de
+executat.
+Task-urile sunt reprezentate de inchideri ale unor functii dintr-un scope ce
+are acces la tot ce nevoie pentru a returna job_id-ul task-ului si rezultatul
+lor.
+Acestea se afla intr-un `Queue` si vor fi extrase de catre thread-urile
+`TaskRunner` si executate. Cum implementarea acestei structuri e thread-safe,
+nu avem nevoie de niciun mecanism de sincronizare in plus.
+Dupa ce un task este executat, rezultatul este pus intr-un fisier corespunzator
+job_id-ului task-ului.
+Pentru a returna rezultatul unui job (lucru ce se intampla in modulul routes),
+se verifica existenta fisierului.
+Acest sistem are urmatoarea problema de sincronizare: un `TaskRunner` poate
+sa creeze fisierul si alt thread sa citeasca din el inainte ca fisierul sa fie
+complet scris.
+Initial am folosit un `Lock` pentru a evita aceasta problema, dar am considerat
+ca e mai rapid ca `TaskRunner`-ul sa puna initial un nume temporar si apoi sa-l
+redenumeasca dupa ce a scris tot fisierul (ar trebui profilat asta I guess,
+doar m-am gandit context switch bad).
+
+Aici avem si contorul pentru job_id-uri si metode pentru eliberarea unui nou
+id, a id-urilor job-urilor neprocesate etc.
+Pentru ca metodele acestea pot fi apelate de mai multe thread-uri, am folosit
+un `RLock` pentru a evita cazuri de eroare de genul "doua job-uri cu acelasi
+id".
+Am folosit varianta re-entranta de lock deoarece aveam metode care voiam sa
+preia lock-ul ce apelau alte metode care aveau nevoie de acelasi lock ->
+deadlock.
+
+Exista de asemenea si un `Event` pentru a notifica thread-urile `TaskRunner`
+cand executia thread pool-ului trebuie sa se opreasca.
+
+### routes
+
+Aici avem rutele propriu-zise.
+Cu toata infrastructura de mai sus, codul rutelor propriu zise e cam banal,
+cam toate fac acelasi lucru.
+Rutele de tip post fac urmatoarele:
+
+- fiecare are o inchidere functionala metoda care apeleaza metoda corespunzatoare din data_ingestor si returneaza job_id-ul si rezultatul apelului
+- extrage din json intrebarea si parametrii necesari
+- cere un job_id nou de la task_runner
+- pune inchiderea in coada de task-uri a task_runner-ului
+- returneaza job_id-ul in format json
+
+Cele de tip get doar apeleaza metodele corespunzatoare din task_runner.
+
+Singura mai speciala e get_response care verifica daca exista fisierul
+corespunzator job_id-ului si ii returneaza continutul in format json daca da
+sau o informare de running daca nu.
+
+### Logging
+
+Am folosit modulul `logging` pentru a scrie intr-un fisier de log informatii
+despre starea server-ului, request-urile primite, parametrii lor si rezultatul lor.
+Am folosit un `RotatingFileHandler` pentru a limita dimensiunea ocupata de
+fisierele de log.
+
+### Unit testing
+
+Pentru a rula testele, intr-un terminal:
+
+```bash
+make run_server
+```
+
+In altul:
+
+```bash
+python3 -m unittest --verbose unittests.TestWebserver
+```
+
+Preambulul acesta este necesar pentru ca unele tests au nevoie ca serverul sa
+fie deja deschis. Daca nu este deschis, acestea vor fi skipped prin intermediul
+unittest.skipIf. **Important**: testele ce folosesc serverul pornit presupun ca
+stadiul serverului este proaspat pornit, deci daca faci alte operatii inainte
+iti vor pica testele pentru get_jobs spre exemplu (pentru ca au fost create
+alte joburi pe langa cele la care se astepta testul).
+
+Am cateva teste functionale care verifica daca endpoint-urile ce nu sunt deja
+acoperite de checker (graceful_exit, get_jobs, get_num_jobs) functioneaza cum
+trebuie si daca serverul intoarce erorile relevante atunci cand primeste un
+request cu date invalide (e.g.: un request de tip POST fara un body json, json
+fara question/state, question care nu exista etc.).
+Acestea au nevoie de serverul deschis pentru a rula corect.
+
+Restul testelor functioneaza fara ca serverul sa fie pornit si verifica
+functionalitatea metodelor din data_ingestor (adica metodele ce calculeaza
+statisticile din intrebari) si task_runner (in mare metode legate de job_id
+handling).
+
+## git
+
+Am folosit git pentru versionare, nu stiu sigur daca am procedat cum ar fi
+trebuit though.
+Am copiat fisierele relevante pentru mine din repo-ul vostru si mi-am facut un
+repository separat. Consecintele au fost ca nu am putut sa fac pull de la
+repo-ul vostru cand s-au mai facut modificari de checker, aia e.
+
+Las totusi log-ul de git in arhiva.
+
+## pylint
+
+Erorile de pylint pe care nu le-am rezolvat sunt:
+
+- chestii care erau deja in schelet (liniile cu intrebarile din data-ingestor
+fiind prea lungi, endpoint-ul index, importul ciclic din `__init__.py` etc.)
+- too many instance attributes in ThreadPool pentru ca am nevoie de toate acele
+atribute, iar abstractizarea in alta clasa duce apoi la erori ca n-am destule
+metode in clasa
+- eroarea pentru variabila declarata intr-un loop si trimisa la o inchidere in
+TestWebserver, fiind un false positive (si o eroare pe care o aveti si voi in
+checker)
+
+## Raspunsuri intrebari din modelul de README
+
+N-am folosit modelul de README ca mi se pare dubios, dar intrebarile pareau
+interesante so here we go:
+
+- **Consideri că tema este utilă?**
+Mi-a placut, nu prea am lucrat pe partea de web/REST API si a fost o
+introducere buna, nu stiu daca e cea mai folositoare pentru scopul materiei
+tho, fiind destul de light pe partea de decizii arhitecturale legate de
+paralelism.
+- **Consideri implementarea naivă, eficientă, se putea mai bine?**
+Clar se poate imbunatati. E.g.: putem memoiza raspunsurile la intrebari (sau
+folosi o forma de cache daca folosim prea multa memorie) sau chiar precalcula
+raspunsul la toate intrebarile xd (dar dupa nu-si prea mai are rostul sistemul
+de task-uri din moment ce doar cautam raspunsul intr-un dictionar).
+
+## Resurse utilizate
+
+- [ASC Lab 2 pentru `threading`](https://ocw.cs.pub.ro/courses/asc/laboratoare/02)
+- [ASC Lab 3 pentru `Event`](https://ocw.cs.pub.ro/courses/asc/laboratoare/03)
+- [Documentatie modul `logging`](https://docs.python.org/3/library/logging.html)
+- [Documentatie modul `unittest`](https://docs.python.org/3/library/unittest.html)
+- [Tutorial modul `csv`](https://realpython.com/python-csv/)
+- [Raspuns de pe StackOverflow despre utilizarea `RotatingFileHandler`](https://stackoverflow.com/questions/40088496/how-to-use-pythons-rotatingfilehandler#answer-40088663)
+- [Articol GeeksForGeeks despre closures](https://www.geeksforgeeks.org/python-closures/)
+- [Articol ce confirma faptul ca Flask e multi-threaded ca nu eram sigur](https://unbiased-coder.com/python-flask-multithreading/)

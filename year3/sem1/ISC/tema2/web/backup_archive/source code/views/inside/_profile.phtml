@@ -1,0 +1,23 @@
+<?php
+// profile view functions
+
+function _plink($user, $caption=null, $url='') {
+  if (empty($caption)) {
+    $caption = $user['fullname'];
+  }
+  if (!$url) {
+    $url = "/inside/p/" . rawurlencode($user["username"]);
+  }
+  return "<a href=\"$url\">$caption</a>";
+}
+
+function _pimg($user, $url='') {
+  if (!$url) {
+    $url = "/inside/p/" . rawurlencode($user["username"]);
+  }
+  $profileImg = $user['profile_img'];
+  if (empty($profileImg)) $profileImg = 'profile/unknown.jpg';
+  return "<a href=\"{$url}\">".
+    "<img src=\"/userupload/$profileImg\" alt=\"\" /></a>";
+}
+

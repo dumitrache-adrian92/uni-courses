@@ -1,0 +1,4 @@
+{
+    "status_code": 400,
+    "data": {"error": "Request at /api/state_mean must contain a 'state' field"}
+}

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "README": "markdown",
+        "iosfwd": "cpp",
+        "iostream": "cpp"
+    }
+}

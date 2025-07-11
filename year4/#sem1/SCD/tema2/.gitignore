@@ -1,0 +1,4 @@
+.idea/*
+src/__pycache__/*
+*.zip
+tests/__pycache__/

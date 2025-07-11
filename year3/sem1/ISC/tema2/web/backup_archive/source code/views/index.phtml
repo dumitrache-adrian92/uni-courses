@@ -1,0 +1,66 @@
+<?php include('_header.phtml'); ?>
+
+  <!-- Header - set the background image for the header in the line below -->
+  <header class="container-fluid">
+    <div class="row">
+      <div class="col text">
+        <h1>ᙅᥲtⱬᙖooƙ</h1>
+        <h2>A social network for Felidae<br />
+          Let's have a meow-tastic time together!</h2>
+      </div>
+      <div class="col">
+        <div class="banner"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content section -->
+  <section class="welcome-page" class="py-5 flex-grow-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-7 col-md-6 col-sm-12 welcome-text">
+          <h1>Welcome, my fffluffy friends!</h1>
+          <p class="lead">
+            It's time to gather our whiskers and tails for a purr-fectly delightful time on this catsocial space! 🐾 Whether you're a sophisticated Siamese or a adventurous Tabby, this is your virtual kingdom to share your tales of naps, mischief, and all things cat-tastic! 😺 </p>
+          <p class="lead">
+            Let's create a vibrant community where we can celebrate the elegance of our fur, exchange tips on the art of stealthy prowls, and showcase our epic high-jumping skills! 🚀 <br />
+          </p>
+          <br />
+          <p style="color: #c44000; font-weight: bold;">
+            Note: this site is invite-only!
+            Please obtain your VIP pass from your friendly neighbourhood cat.
+          </p>
+        </div>
+        <div class="col-5 col-md-6 col-sm-12">
+          <div class=" welcome-login">
+            <h3>Your catrdentials, please:</h3>
+            <?php if (!empty($error)) { ?>
+            <div class="alert alert-danger" role="alert"><?=$error?></div>
+            <?php } ?>
+            <form action="/auth/login" class="signin" method="post">
+              <div class="form-floating">
+                <input type="text" class="form-control" placeholder="e.g.: meawoo1337" 
+                  name="catname" id="floatingCatsername">
+                <label for="floatingCatsername">Catsername</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" placeholder="Password"
+                  name="password" id="floatingPassword">
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="checkbox m-3">
+                <label>
+                  <input name="agreement" type="checkbox" value="1">
+                    I am not affiliated with the enemy species.
+                </label>
+              </div>
+              <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-md btn-primary">Let me in</button>
+              </div>
+            </form>
+          </div>
+        </div>
+    </div>
+  </section>
+
+<?php include('_footer.phtml'); ?>

@@ -1,0 +1,48 @@
+Cerințe
+-------
+Să se scrie o cerere SQL care face o listă de premiere acordată angajaților astfel:
+1. Dacă an angajare subaltern < an angajare sef, prima este 20% din salariul șefului
+2. Dacă an angajare subaltern >= an angajare sef, prima este 10% din salariul șefului
+3. Președintele și directorii nu primesc primă
+
+Antet:
+Den_Dep_Subaltern, Nume Sublatern, An angajare subaltern, Nume sef, An angajare sef, Salariu sef, Prima subaltern
+
+
+Metoda 1
+---------
+select
+	d.den_dep denumire_departament,
+	a1.nume nume_subaltern,
+	to_char(a1.data_ang, 'YYYY') an_subaltern,
+	a2.nume nume_sef,
+	to_char(a2.data_ang, 'YYYY') an_sef,
+	a2.salariu salariu_sef,
+	case
+		when to_char(a1.data_ang, 'YYYY') < to_char(a2.data_ang, 'YYYY') then 0.2 * a2.salariu
+		when to_char(a1.data_ang, 'YYYY') >= to_char(a2.data_ang, 'YYYY') then 0.1 * a2.salariu
+    	end prima
+from
+	angajati a1,
+    	angajati a2,
+    	departamente d
+where
+	a1.functie <> 'PRESIDENT'
+	and a1.functie <> 'MANAGER'
+    	and a1.id_dep = d.id_dep
+    	and a1.id_sef = a2.id_ang;
+
+
+
+DENUMIRE_DEPARTAMENT           NUME_SUBALTERN                 AN_S NUME_SEF                       AN_S SALARIU_SEF      PRIMA
+------------------------------ ------------------------------ ---- ------------------------------ ---- ----------- ----------
+RESEARCH                       SCOTT                          1987 JONES                          1981        2975      297.5
+RESEARCH                       FORD                           1981 JONES                          1981        2975      297.5
+SALES                          ALLEN                          1981 BLAKE                          1981        2850        285
+SALES                          WARD                           1981 BLAKE                          1981        2850        285
+SALES                          MARTIN                         1981 BLAKE                          1981        2850        285
+SALES                          TURNER                         1981 BLAKE                          1981        2850        285
+SALES                          JAMES                          1981 BLAKE                          1981        2850        285
+ACCOUNTING                     MILLER                         1982 CLARK                          1981        2450        245
+RESEARCH                       ADAMS                          1987 SCOTT                          1987        3000        300
+RESEARCH                       SMITH                          1980 FORD                           1981        3000        600

@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/adrian/Dropbox/Facultate/PCLP2/tema1'
+gcc -Wall -g -c main.c
+gcc -o main main.o
+make: Leaving directory '/home/adrian/Dropbox/Facultate/PCLP2/tema1'
+ 

@@ -1,0 +1,15 @@
+#lang racket
+(define (f n x L newL)
+  (if (null? L)
+      (reverse newL)
+      (if (equal? (car L) x)
+          (if (= n 1)
+              (f n x (cdr L) newL)
+              (f (- n 1) x (cdr L) (cons (car L) newL))
+              )
+          (f n x (cdr L) (cons (car L) newL))
+          )
+      )
+  )
+
+(f 2 100 '(1 2 3 100 4 5 6 100 7 8 9 100) '())

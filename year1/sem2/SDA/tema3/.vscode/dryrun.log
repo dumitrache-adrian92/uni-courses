@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/adrian/Dropbox/Facultate/SDA/tema3'
+gcc -o tema3 tema3.c queue.c -g -Wall -std=gnu11 -lm
+make: Leaving directory '/home/adrian/Dropbox/Facultate/SDA/tema3'
+ 

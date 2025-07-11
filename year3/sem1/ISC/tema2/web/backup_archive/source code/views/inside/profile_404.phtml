@@ -1,0 +1,23 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+<?php include(dirname(__FILE__).'/_profile.phtml'); ?>
+
+<section class="py-4 flex-fill">
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <div class="box">
+          <h2 class="error">Profile Error</h2>
+          <p>Invalid profile arguments!</p>
+        </div>
+      </div>
+      <div class="col-4 side">
+      <?php include(dirname(__FILE__)."/_friends.phtml"); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>

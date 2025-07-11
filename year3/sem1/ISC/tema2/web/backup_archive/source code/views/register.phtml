@@ -1,0 +1,60 @@
+<?php include('_header.phtml'); ?>
+
+<?php
+function _v($name) {
+  return (isset($_POST[$name]) ? "value=\"{$_POST[$name]}\"" : '');
+}
+?>
+
+  <!-- Content section -->
+  <section class="flex-fill py-3" style="margin-top: 2rem;">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-10 col-md-6 col-lg-5">
+          <h1 style="color: #900;">Feline Registration:</h1>
+          <div class="text-center mb-4">
+            <img src="/images/catschool.png" alt="Cat school" style="max-width: 50%;" />
+          </div>
+          <?php if (!empty($success)) { ?>
+          <div class="alert alert-success" role="alert"><?=$success?></div>
+          <?php } ?>
+          <?php if (!empty($error)) { ?>
+          <div class="alert alert-danger" role="alert"><?=$error?></div>
+          <?php } ?>
+          <form action="/auth/register_real_one" method="post">
+            <div class="form-floating mb-3">
+              <input name="fullname" type="text" class="form-control"
+                id="regFullName" <?=_v("fullname")?> placeholder="<your full name>">
+              <label for="regFullName">Full name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="catname" type="text" class="form-control"
+                id="regUserName" <?=_v("catname")?>  placeholder="kat1337">
+              <label for="regUserName">Katsername</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="password" type="password" class="form-control"
+                id="regPassword" placeholder="xxxxx">
+              <label for="regPassword">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input name="confirm_password" type="password" class="form-control"
+                id="regPassword2" placeholder="xxxxx">
+              <label for="regPassword2">Confirmation Password</label>
+            </div>
+            <div class="form-group form-check mb-3">
+              <input name="agreement" type="checkbox" class="form-check-input" value="1" id="catAgree"
+                <?=(!empty($_POST['agreement'])? " checked=\"checked\"" : "")?> >
+              <label class="form-check-label" for="catAgree">Roaaaawwwr!</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Make meaw-account!</button>
+            <p class="mb-4"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<?php include('_footer.phtml'); ?>

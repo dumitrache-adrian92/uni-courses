@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-courses
+  labels:
+    app: cloud-courses
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-courses
+  template:
+    metadata:
+      labels:
+        app: cloud-courses
+    spec:
+      containers:
+      - name: cloud-courses
+        image: kaethar/cloud-courses-project:latest
+        ports:
+        - containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          failureThreshold: 5
+          timeoutSeconds: 3
+

@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/afisare_7seg.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module afisare_7seg
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/bin2bcd.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module bin2bcd
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/cronometru.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sources_1/new/numarator_59.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module numarator_59
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/student/Documents/Dumitrache Adrian-George/cronometru/cronometru.srcs/sim_1/new/cronometru_sim.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cronometru_sim

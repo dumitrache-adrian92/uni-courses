@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: business-logic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: business-logic
+  template:
+    metadata:
+      labels:
+        app: business-logic
+    spec:
+      containers:
+        - name: business-logic
+          image: 'songrate/business-logic:latest'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name:  GIN_MODE
+              value: 'release'
+            - name: SERVER_ADDRESS
+              value: 'io-service-service'
+            - name : JWT_SECRET
+              value: 'ZvHFhv5jSTgqZhdjAS4cBeMHWvRq5fbi5tiQjtubytjO+hILCTr46k/nMDYH7az9QhwSkX6EVmvqIA4sA2hFSw=='
+          resources:
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+            requests:
+              memory: '256Mi'
+              cpu: '250m'

@@ -1,0 +1,16 @@
+apiVersion: 1
+
+datasources:
+  - name: influxdb
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      version: Flux
+      defaultBucket: sensor_readings
+      organization: org
+      tlsSkipVerify: true
+      user: admin
+      password: password
+    secureJsonData:
+      token: token

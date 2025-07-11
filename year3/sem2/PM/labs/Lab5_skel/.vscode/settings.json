@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "README": "markdown",
+        "*.pl": "prolog",
+        "delay.h": "c",
+        "pff.h": "c"
+    }
+}

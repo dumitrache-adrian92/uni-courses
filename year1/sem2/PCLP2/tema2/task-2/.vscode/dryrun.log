@@ -1,0 +1,10 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/adrian/Dropbox/Facultate/PCLP2/tema2/task-2'
+gcc -c -g -m32 check_points.c -o check_points.o
+nasm -f elf points-distance.asm -o points-distance.o
+nasm -f elf road.asm -o road.o
+nasm -f elf is_square.asm -o is_square.o
+gcc -m32 -g check_points.o points-distance.o road.o is_square.o -o checker
+rm *.o
+make: Leaving directory '/home/adrian/Dropbox/Facultate/PCLP2/tema2/task-2'
+ 

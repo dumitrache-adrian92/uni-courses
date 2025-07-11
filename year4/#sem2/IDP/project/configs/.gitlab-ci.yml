@@ -1,0 +1,50 @@
+stages:
+  - deploy
+
+deploy-auth:
+  stage: deploy
+  image: alpine/k8s:1.32.5
+  script:
+    - kubectl config set-cluster minikube --server=https://$K8S_API_SERVER --insecure-skip-tls-verify=true
+    - kubectl config set-credentials gitlab-deployer --token=$K8S_TOKEN
+    - kubectl config set-context default --cluster=minikube --user=gitlab-deployer
+    - kubectl config use-context default
+    - kubectl apply -f auth/
+    - kubectl rollout restart deployment/auth-service
+  rules:
+    - if: '$SERVICE_NAME == "auth"'
+      when: always
+  tags:
+    - image-build
+
+deploy-business-logic:
+  stage: deploy
+  image: alpine/k8s:1.32.5
+  script:
+    - kubectl config set-cluster minikube --server=https://$K8S_API_SERVER --insecure-skip-tls-verify=true
+    - kubectl config set-credentials gitlab-deployer --token=$K8S_TOKEN
+    - kubectl config set-context default --cluster=minikube --user=gitlab-deployer
+    - kubectl config use-context default
+    - kubectl apply -f business-logic/
+    - kubectl rollout restart deployment/business-logic
+  rules:
+    - if: '$SERVICE_NAME == "business-logic"'
+      when: always
+  tags:
+    - image-build
+
+deploy-io-service:
+  stage: deploy
+  image: alpine/k8s:1.32.5
+  script:
+    - kubectl config set-cluster minikube --server=https://$K8S_API_SERVER --insecure-skip-tls-verify=true
+    - kubectl config set-credentials gitlab-deployer --token=$K8S_TOKEN
+    - kubectl config set-context default --cluster=minikube --user=gitlab-deployer
+    - kubectl config use-context default
+    - kubectl apply -f io-service/
+    - kubectl rollout restart deployment/io-service
+  rules:
+    - if: '$SERVICE_NAME == "io-service"'
+      when: always
+  tags:
+    - image-build

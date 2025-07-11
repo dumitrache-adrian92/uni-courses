@@ -1,0 +1,21 @@
+services:
+  web:
+    image: scd_web
+    environment:
+      - REDIS_PASSWORD=asdf
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - WINDOW_SIZE=10
+    ports:
+      - "8000:8000"
+    deploy:
+      mode: replicated
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+
+  redis:
+    image: redis:alpine
+    command: redis-server --requirepass asdf
+    ports:
+      - "6379:6379"

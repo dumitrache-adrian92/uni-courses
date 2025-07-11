@@ -1,0 +1,24 @@
+int readers = 0
+sem mutex(1)
+sem room_empty(1)
+
+reader()
+    room_empty.wait()
+    // write
+    room_empty.post()
+
+writer()
+    mutex.wait()
+    readers++
+    if readers == 1
+        room_empty.wait()
+    mutex.post()
+
+    //read
+
+    mutex.wait()
+    readers--
+    if readers == 0
+        room_empty.post()
+    mutex.post()
+

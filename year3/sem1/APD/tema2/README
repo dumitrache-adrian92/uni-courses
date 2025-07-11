@@ -1,0 +1,110 @@
+    # **Tema 2 APD - Dumitrache Adrian-George [334CC]**
+
+Hello, voi detalia aici solutia mea pentru aceasta tema. Explicatiile se vor
+lega in mare ce face fiecare clasa pentru ca are mai mult sens asa intr-un
+limbaj orientat pe obiecte. Here we go:
+
+## **Clasele `MyDispatcher` si `SchedulingStrategy`**
+
+Majoritatea functionalitatii clasei `MyDispatcher` este abstractizata in spatele
+unui _Strategy_ pattern reprezentat de clasa abstracta `SchedulingStrategy`.
+Aceasta expune metoda abstracta `getScheduledHost(Task task)` ce intoarce
+host-ul caruia ar trebui sa trimitem task-ul primit.
+
+Avem clasele: `RoundRobinScheduling`, `ShortestQueueScheduling`,
+`SizeIntervalTaskAssignmentScheduling`, sau `LeastWorkLeftScheduling` ce extind
+clasa abstracta `SchedulingStrategy`, fiecare implementand metoda 
+`getScheduledHost(Task task)` conform logicii algoritmului pe care il
+reprezinta.
+
+Cand instantiam un obiect de tipul `MyDispatcher`, se instantiaza si un obiect
+bazat pe clasele de strategie conform valorii enum-ului primit ce va fi
+folosit pentru a determina host-ul destinatie al unui task.
+
+Ramane de discutat metoda `addTask(Task task)`: tot ce trebuie sa facem acum ca
+avem acest setup este sa apelam `getScheduledHost` si sa trimitem task-ul catre
+host-ul returnat, easy peazy. De asemenea, am facut aceasta metoda
+`synchronized` deoarece mai multe thread-uri apeland aceasta metoda in acelasi
+timp strica majoritatea algoritmilor utilizati (nu vrem ca doua task-uri sa 
+vina simultan si sa se duca la acelasi host fara ca unul sa il ia in
+considerare pe celalalt).
+
+## **Clasele pentru algoritmii de scheduling**
+Diferenta dintre ele este doar logica functiei `getScheduledHost(Task task)`,
+deci:
+- `RoundRobinScheduling` determina host-ul destinatie al unui task folosind
+variabila `lastHost` ce retine ultimul host catre care s-a trimis un task. 
+Mereu va intoarce host-ul cu indexul/ID-ul (lastHost + 1) % n si va actualiza
+`lastHost` cu acest index. `lastHost` este initializat cu -1 deoarece vrem ca
+host 0 sa fie primul host catre care se trimite un task.
+- `ShortestQueueScheduling` parcurge lista de hosts si il memoreaza pe cel cu
+cele mai putin task-uri de rulat (adica in queue + cel pe care il ruleaza acum).
+- `SizeIntervalTaskAssignmentScheduling` verifica tipul task-ului primit si il
+trimite host-ului corespunzator (short -> host 0, medium -> host 1,
+long -> host 2).
+- `LeastWorkLeftScheduling` parcurge lista de hosts si il memoreaza pe cel cu cel
+mai putin timp ramas pentru a isi rula toate task-urile.
+
+## **Clasa `MyHost`**
+
+Contine urmatoarele campuri:
+- `PriorityBlockingQueue<Task> queue` - coada de task-uri ce trebuie rulate,
+ordonate descrescator dupa prioritate si crescator dupa timpul de start in caz
+de egalitate, deci cand vrem sa rulam urmatorul task, doar scoatem din coada
+(+ e thread-safe)
+- `Semaphore taskCount` - semafor ce reprezinta numarului de task-uri ce se
+afla in coada, mereu va fi egal cu `queue.size()`
+- `Task currentTask` - task-ul ce se ruleaza in acest moment
+- `double currentTimeStartTime` - momentul de timp la care a inceput sa ruleze
+task-ul curent
+
+In logica principala a host-ului, gasita in metoda `run()`, avem un loop
+infinit  ce scoate task-uri din coada si le ruleaza. Cand scoatem din coada,
+decrementam semaforul `taskCount`, lucru ce poate bloca thread-ul daca acesta
+este 0 (adica nu avem task-uri in coada) pana cand apare un task in coada,
+astfel nu irosim timp de procesare inutil.
+
+Modul prin care "rulam" task-uri este printr-un wait(task.getLeft()) pe
+propriul obiect.
+
+Nu am terminat, dar ne intoarcem imediat la `run()` pentru ca restul
+functionalitatii este strict legat de cum functioneaza metoda
+`addTask(Task task)`:
+- adaugam task-ul in queue si incrementam semaforul (metoda nu trebuie
+sincronizata pentru ca folosim o coada thread-safe)
+- daca task-ul este mai prioritar decat task-ul curent, iar task-ul curent
+este preemptibil, folosim `notifyAll()` pe obiectul host-ului pentru a trezi
+thread-ul ce a apelat `wait()` cu scopul de a rula `currentTask`, lucru ce va
+opri wait-ul
+
+Deci, acum avem nevoie de o metoda prin care sa determinam daca wait-ul din run
+a rulat pana la capat sau a fost intrerupt de un `notifyAll()`. M-am folosit de
+clasa `Timer` oferita in schelet pentru a cronometra timpul de rulare al
+task-ului curent. Acum tot ce trebuie sa facem ca sa raspundem la intrebarea
+anteriora este sa verificam daca timpul trecut este egal cu timpul de rulare al
+task-ului curent sau nu. Pentru a facilita aceasta comparatie am rotunjit 
+timpul la cea mai apropiata secunda (abordare valida conform Radu Ioan Ciobanu,
+multumesc din suflet sunteti foarte cool) ca sa evitam cazuri stupide in care
+wait-ul dureaza 999 ms in loc de 1000 ms. 
+
+Daca task-ul curent a fost intrerupt, il adaugam inapoi in coada si trece la
+urmatorul task din coada. Altfel, apelam `finish()` si trecem mai departe.
+
+Restul metodelor:
+
+Metoda `shutdown()` apeleaza `interrupt()` pentru a incheia executia host-ului.
+Aceasta abordare poate duce la o exceptie `InterruptedException` in cazul in
+care  thread-ul era blocat din cauza semaforului sau a wait-ului, solutia e sa
+prindem exceptia si sa mai dam interrupt o data.
+
+Metoda `getQueueSize()` intoarce numarul de task-uri din coada si +1 daca avem
+un task ce este rulat in acest moment (ne putem uita la currentTask si sa
+verificam daca este `null` sau nu).
+
+Metoda `getWorkLeft` intoarce numarul de milisecunde ramase pentru a rula toate
+task-urile din coada, cat si cat timp a mai ramas din task-ul curent.
+
+## **Concluzii**
+
+Cred ca a iesit destul de bine actually, astept feedback. Salut si ne vedem la
+urmatoarea.

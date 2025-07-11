@@ -1,0 +1,24 @@
+SELECT id_dep, nume, functie, salariu
+FROM  (SELECT a.id_dep, a.nume, a.functie, a.salariu
+	FROM angajati a
+	WHERE a.salariu > (SELECT avg(salariu) salariu_mediu
+				FROM angajati b
+				WHERE b.id_dep = a.id_dep)
+	ORDER BY id_dep)
+WHERE id_dep = (SELECT id_dep
+		FROM (SELECT a.id_dep, a.nume, a.functie, a.salariu
+			FROM angajati a
+			WHERE a.salariu > (SELECT avg(salariu) salariu_mediu
+					FROM angajati b
+					WHERE b.id_dep = a.id_dep)
+			ORDER BY id_dep)
+		GROUP BY id_dep
+		HAVING COUNT(*) = (SELECT MAX(ang_number)
+				FROM (SELECT COUNT(*) AS ang_number
+					FROM (SELECT a.id_dep, a.nume, a.functie, a.salariu
+					FROM angajati a
+					WHERE a.salariu > (SELECT avg(salariu) salariu_mediu
+								FROM angajati b
+								WHERE b.id_dep = a.id_dep)
+								ORDER BY id_dep)
+					GROUP BY id_dep)))

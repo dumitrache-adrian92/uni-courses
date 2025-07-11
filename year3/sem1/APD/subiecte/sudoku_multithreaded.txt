@@ -1,0 +1,22 @@
+mutex print(1)
+
+sudoku(board[9][9])
+    for i = [0, 9)
+        for j = [0, 9)
+            if board[i][j] == empty
+                possible_values[], n = get_possible_values(board, i, j)
+
+                // one of the previously chosen values was wrong
+                if possible_values.empty()
+                    return
+
+                for k = [0, n-1)
+                    board_copy[9][9] = board
+                    board_copy[i][j] = possible_values[k]
+                    start thread sudoku(board_copy)
+
+                board[i][j] = possible_values.back()
+
+    print.lock()
+    board.print()
+    print.unlock()

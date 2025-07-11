@@ -1,0 +1,14 @@
+sem a1_done(0)
+sem b1_done(0)
+
+rendezvous_A()
+    a1
+    a1_done.post()
+    b1_done.wait()
+    a2
+
+rendezvous_B()
+    b1
+    b1_done.post()
+    a1_done.wait()
+    b2

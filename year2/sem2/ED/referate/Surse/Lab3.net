@@ -1,0 +1,23 @@
+* C:\Users\Adrian\Dropbox\uni\ED\Referate Laborator\Lab3.asc
+V1 N003 0 5V
+R2 N002 out 100
+Q1 out N005 0 0 BC547B
+R1 N005 in 20k
+V2 in 0 PULSE(0 5 0 10ns 10ns 5u 100u)
+C1 out 0 100p
+V3 N001 0 5V
+R4 N004 out_acc 100
+Q2 out_acc N006 0 0 BC547B
+R3 N006 in 20k
+C2 out_acc 0 100p
+L1 N003 N002 100µ
+L2 N001 N004 100µ
+D1 out_acc N001 1N4148
+.model D D
+.lib C:\Users\Adrian\AppData\Local\LTspice\lib\cmp\standard.dio
+.model NPN NPN
+.model PNP PNP
+.lib C:\Users\Adrian\AppData\Local\LTspice\lib\cmp\standard.bjt
+.tran 10u
+.backanno
+.end

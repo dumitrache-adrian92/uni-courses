@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/adrian/Dropbox/Facultate/SDA/tema1'
+gcc -Wall -g -o tema1 tema1.c dlist.c -lm -std=c99
+make: Leaving directory '/home/adrian/Dropbox/Facultate/SDA/tema1'
+ 

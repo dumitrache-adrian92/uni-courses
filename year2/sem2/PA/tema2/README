@@ -1,0 +1,193 @@
+# **Tema 2 PA - Dumitrache Adrian-George [324CC]**
+
+## **Cerinte rezoltate:**
+
+- Supercomputer
+- Cai ferate
+- Teleportare (minimal)
+- Magazin
+
+## **Supercomputer**
+
+### *Momente marcante*
+
+Am dat de a crapat stiva.
+
+### *Bibliografie*
+
+Am folosit cod din laboratorul 6, mai specific am inceput de la solutia mea
+pentru problema cu sortare topologica, pana la urma am schimbat tot inafara de
+scheletul de baza pentru reprezentarea grafului (ca sa nu mai crape stiva).
+
+### *Proces de gandire*
+
+Mi s-a parut din start ca problema este formulata ca una de sortare topologica,
+taskurile avand dependente intre ele, si fiind nevoiti sa facem taskurile
+intr-o ordine ce respecta dependentele si realizeaza cat mai putine context
+switch-uri. De asemenea, cerinta ne asigura oarecum exista o ordine a
+task-urilor valida, deci nu era nevoie sa ma asigura ca nu am cicluri de
+dependente.
+
+Astfel, am decis sa reprezint taskurile si dependentelor ca un graf in care
+taskurile sunt noduri si dependentele intre taskuri sunt muchii. Initial, am
+zis ca o sa fac o parcugere a nodurilor pentru a genera macar o ordine (si
+pentru ca aveam deja facut in solutia din lab pe care am folosit-o initial).
+Acest lucru a dus la solutii neoptime, evident. Deci m-am gandit sa prioritizez
+oarecum parcurgerea nodurilor astfel incat sa evit context switch-uri inutile,
+practic daca pot rula taskuri ce necesita acelast set de date ca taskul curent
+intotdeauna le pot rula pe acelea.
+
+Am luat parcurgerea de la capat si am ajuns la un Frankenstein de BFS in care
+mentin 2 cozi: noduri ce apartin setului de date 1 si setului de date 2. In
+plus, mentin gradul de intrare al fiecarui nod si il scad cand "rulez"
+task-uri pentru a stii cand ce task-uri nu mai au dependente si pot fi
+"rulate".
+
+Astfel, initializez cozile cu nodurile ce nu au dependente (adica putem incepe
+sortarea cu ele). Initial incepem cu coada 1, la fiecare pas adaugam nodul in
+vectorul ce reprezenta sortarea topologica, scadem gradul de intrare al tuturor
+nodurilor ce aveau ca dependenta nodul scos din coada, iar daca vreunul
+dintre noduri ajunge la gradul de intrare 0, il adaugam in coada
+corespunzatoare. O sa facem acest lucru pana cand se goleste coada, moment
+in care facem aceeasi pasi pe coada cealalta si repetam procesul pana cand
+golim ambele cozi.
+
+Acest lucru a mers!... partial. Luand testele picate la mana, mi-am dat seama
+ca aceste teste pica deoarece incep cu setul de date 1 intotdeauna, in unele
+cazuri fiind necesar sa incepem cu setul 2 pentru a ajunge la solutia optima.
+
+Am incercat mai multe idei pentru a decide cu ce set e mai bine sa incepem, cum
+ar fi sa incepem cu setul care are coada initiala mai lunga, dar am ajuns la
+cel mai simplist lucru posibil.
+
+### *Solutie*
+
+Practic rulez algoritmul de 2 ori, incepand o data cu setul 1 si apoi cu setul
+2, asta imi va genera doua sortari topologice. Ma uit cate context switch-uri
+sunt la fiecare si returnez numarul mai mic. Problem solved.
+
+**Complexitate**: Pentru a parcuge toate nodurile o singura data avem
+complexitatea O(n + m), pentru a afla numarul de switch-uri avem complexitatea
+O(n). Deci overall avem complexitatea O(n + m).
+
+## **Cai ferate**
+
+### *Momente marcante*
+
+Solutia mea pentru algoritmul lui Tarjan pentru determinarea componentelor tare
+conexe duce la timeout la vreo 2 teste fiindca iteram prin stiva ca sa determin
+ce noduri fac parte din ea. Multumesc din tot sufletul echipei de PA pentru
+implementarea lor absolut geniala, eu nu-mi dadeam seama ce e lent la al meu
+vreodata :)))).
+
+### *Bibliografie*
+
+Am folosit cod din solutiile pentru laboratorul 7. Mai exact, am folosit
+algoritmul lui Tarjan propus pentru gasirea SCC-urilor.
+
+### *Proces de gandire*
+
+Desenul prietenos din exemplu m-a dus cu gandul la componente conexe pentru ca
+parea ca procesul de gandire a fost sa traga un arc de la depozitul sursa la
+toate componentele conexe la care acesta nu are acces (adica (1, 2, 3) si (4),
+la (6) avand acces direct), motiv pentru care am incercat aceasta abordare
+initial... au trecut atat de putine teste incat am reconsiderat ce algoritm
+trebuie sa folosesc.
+
+Am observat ca raspunsurile au si mai putine muchii de care este nevoie pentru
+conexitate plecand din sursa. Asa ca am inceput sa iau testele la rand si sa
+vad de ce abordarea mea nu functioneaza. Raspunsul a fost ca unele componente
+conexe au arce catre alte componente conexe, deci nu mai este necesar sa tragem
+arce catre componente conexe la care putem ajunge prin alte componente conexe,
+ci doar la cele la care nu se poate ajunge din nici o alta componenta conexa,
+idee care parea sa mearga pe primele teste.
+
+### *Solutie*
+
+Am modificat algoritmul lui Tarjan astfel incat sa mai retinem inca o metrica,
+componenta conexa din care face parte fiecare nod, lucru ce este folositor
+pentru a determina componentele conexe in care nu intra niciun arc (adica cele
+care au gradul de intrare 0).
+
+Dupa ce isi incheie executia algoritmul lui Tarjan, vom determina gradul de
+intrare al fiecarei compontente conexe, initial presupunand ca toate au gradul
+0, dar nenumarand-o pe cea ce contine sursa. Pentru asta putem parcuge fiecare
+muchie pentru a determina care dintre acestea face legatura dintre 2 componente
+tare conexe (usor fiindca am computat in ce SCC se afla fiecare nod), de
+fiecare cand gasim una crestem gradul de intrare al componentei, iar daca
+gradul era 0 si nu este vorba de componenta ce contine nodul sursa, decrementam
+numarul de componente cu grad de intrare 0.
+
+La final o sa avem numarul de componente tare conexe ce nu pot fi accesate din
+alta componenta tare conexa fara sa numaram componenta ce contine nodul sursa.
+Raspunsul va fi chiar acest numar, solutia simpla fiind sa tragem un arc de la
+sursa la fiecare dintre aceste componente.
+
+**Complexitate**: Algoritmul lui Tarjan va avea complexitatea O(n + m), pe cand
+determinarea numarului de componente "izolate" va parcurge toate muchiile, deci
+va avea complexitatea O(m). In concluzie, algoritmul are complexitatea O(n + m)
+
+## **Teleportare**
+
+### *Momente marcante*
+
+Jale.
+
+### *Bibliografie*
+
+Solutia voastra pentru Dijkstra din laboratorul 8. Thanks!
+
+### *Proces de gandire*
+
+S-a petrecut o activare de neuroni la observarea cuvintelor cheie "cat mai
+repede", activare ce a dus la un pattern matching primal excelent intre aceasta
+problema si una de cost minim. Astfel am incercat sa aplic Dijkstra pe graf,
+luand in considerare faptul ca unele muchii nu pot fi folosite intotdeauna.
+Rezultatul este dezastros si ce am mai incercat nu prea a mers, cum ar fi sa
+incerc sa precomputez care este costul de timp real pana putem folosi un
+portal.
+
+### *Solutie*
+
+Construiesc graful astfel incat sa tin cont de ideea de perioada (notez
+muchiile normale ca avand perioada 0). Aplic Dijkstra obisnuit pe graf astfel
+incat sa folosesc muchiile doar cand pot fi folosite, bazat pe timpul la care
+s-a ajuns la destinatia din care vrem sa mai tragem o muchie.
+
+**Complexitate**: Aplicam un simplu Dijkstra, deci complexitatea este O(m*logn)
+
+# **Magazin**
+
+### *Momente marcante*
+
+Teste ce iau 30 de secunde sa ruleze pentru ca am folosit STL-ul prost.
+
+### Proces de gandire
+
+Am observat ca graful urmeaza toate caracteristicile unui arbore, aka nu avem
+cicluri si este conex, acest lucru este confirmat de afirmatia din cerinta care
+spune ca un depozit poate sa primeasca colete de la un singur alt depozit sau
+de la niciunul daca este vorba de depozitul 1, motiv pentru care acesta
+reprezinta radacina.
+Am observat ca ordinea in care se parcurg nodurile conform cerintei este foarte
+asemenatoare cu un DFS inceput din radacina arborelui in care parcurgem
+prioritizand ordinea crescatoare a indecsilor nodurilor. Cum modul in care
+primim inputul ne ajuta sa facem o reprezentare a arborelui cu lista de
+adiacenta perfecta pentru parcurgea DFS dupa index, putem aplica direct
+algoritmul.
+
+### Solutie
+
+Aplic DFS pe graf incepand de la radacina, retin intr-un vector ordinea
+parcurgerii nodurilor, numarul de copii ai fiecarui nod, cat si indexul
+fiecarui nod in vectorul de parcurgere. Aceste informatii sunt suficiente
+pentru a raspunde in O(1) la fiecare intrebare.
+Pentru o intrebare de tipul: Ce depozit va primi coletele plecate de la
+depozitul D, după E expedieri consecutive?
+In primul rand verificam daca D are macar E copii, in caz contrar raspunsul
+este -1 pentru ca nu are destul depozite sub el cat sa facem E expedieri.
+Altfel, ne uitam in vectorul de ordine incepand de unde se afla D si oferim
+drept raspuns depozitul la E pozitii distanta.
+
+**Complexitate**: DFS-ul are complexitatea O(n + m), fiecare query necesita
+O(1) pentru a raspunde si avem Q query-uri. Deci avem O(n + m + q).

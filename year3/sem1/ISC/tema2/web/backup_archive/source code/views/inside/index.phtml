@@ -1,0 +1,68 @@
+<?php
+$customBodyClass = 'insidePage';
+?>
+<?php include(dirname(__FILE__).'/../_header.phtml'); ?>
+<?php include(dirname(__FILE__).'/_profile.phtml'); ?>
+
+<section class="py-2 flex-fill">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 wall">
+        <form id="newPostForm" action="/inside/post/create" enctype="multipart/form-data" method="post">
+        <div class="hidden-flag">
+          Hey, you got in! Here's your flag: <?= LOGIN_FLAG ?>
+        </div>
+        <div class="box newPost">
+          <div class="row header">
+            <div class="col-12 caption">
+              <div class="profile-picture"><?=_pimg($authUser)?></div>
+              <p><b>Create new post</b><br />
+            </div>
+          </div>
+          <div class="content">
+            <p><textarea name="text" class="form-control" rows="3"></textarea></p>
+            <p class="imageUpload" style="display: none;">
+              <b>Upload Image:</b>
+              <input type="file" style="" name="image" />
+            </p>
+            <p>
+              <button type="submit" class="btn btn-primary mb-2">Send</button>&nbsp;
+              <a class="addImage" href="#">Add image.</a></p>
+            </p>
+            <?php if (!empty($newPost_err)) { ?>
+            <div class="alert alert-danger" role="alert" style="margin-top: 1rem;">
+              <?=$newPost_err?>
+            </div>
+            <?php } ?>
+            </div>
+        </div></form>
+      <?php foreach ($posts as $post) { ?>
+      <?php
+      $profileImg = $post['profile_img'];
+      if (empty($profileImg)) $profileImg = 'profile/unknown.jpg';
+      ?>
+        <div class="box">
+          <div class="row header">
+            <div class="col-12 col-md-6 caption">
+              <div class="profile-picture"><?=_pimg($post)?></div>
+              <?=_plink($post)?>
+            </div>
+            <div class="col-12 col-md-6 text-left text-md-right metadata"><?=$post["date"]?></div>
+          </div>
+          <div class="content">
+            <p><?=nl2br($post['post'])?></p>
+            <?php if (!empty($post['image'])) { ?>
+            <p class="img"><img src="/userupload/<?=$post['image'] ?>" alt="" /></p>
+            <?php } ?>
+          </div>
+        </div>
+      <?php } ?>
+      </div>
+      <div class="col-4 side">
+      <?php include(dirname(__FILE__)."/_friends.phtml"); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php include(dirname(__FILE__).'/../_footer.phtml'); ?>

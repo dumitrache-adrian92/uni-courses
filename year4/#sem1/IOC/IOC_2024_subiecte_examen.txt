@@ -1,0 +1,49 @@
+Prima sustinere
+
+Teorie - 15 grile (detalii din slide-uri)
+1. Ce este Memex
+2. Ce e antiteza
+3. forța ilocuționară
+4. care dintre următoarele e un obiect uncanny valley(în grile cred că erau variante de pe graficul din curs de la uncanny valley)
+5. ??
+6. testul Stroop - caracteristica masurata
+7. viteza de reacție pt ciclu ochi-mână -> 240 ms
+8. screenshot cu o parte din conversația pe care o tot repetă în curs(cred că e și pe la creativitate) - ce se evidențează acolo - și în variante erau pas divergent, pas convergent...
+9. Unde se întâlnește betweenness
+10. ce formă are graficul numărului de prieteni pe Facebook al unui utilzator
+11. la ce se foloseste chain-of-thoughts
+12. ce principiu UX respectă sigla de la IBM
+13. ce presupunea legea lui Tesler
+14. de ce este nevoie pentru filtrarea colaborativă
+15. ce inlcude principiul coerenței
+
+Practic
+Danduse un storyboard:
+1.definiti o persona
+2.3 statistici + explicatie
+3.3 user stories(atentie formulare)
+4.mockup 2 ecrane
+5.ce design pattern ai folosit(UX/Persuasive) + definitie + explicatie
+6.Descrieti cum ati evalua produsul realizat (Google analytics + Hotjar + plan de test)
+
+A doua sustinere
+
+1.Filtrarea colaborativa - ce este coldstart
+2.Factorii conativi sunt...
+3.Schema Plutchick - cate clase de emotii are
+4.Principiul similitudinii - care imagine se potriveste
+5.Ce este analiza morfologica
+  a. o metoda de analiza a conversatiilor...
+6.Ce este DublinCore -> a.eticheta de metadate?
+7.Care este durata ciclului de lucru al procesorului senzorial
+8.Unde se aplica legea lui Miller -> a.stimularea creativitatii cu metoda sinectica?
+9.Page Rank este -> a. o metrica in analiza retelelor sociale
+10. Modelul ciclului de viata cel mai indicat pentru interfete om-calculator -> waterfall, agile etc
+11. "Tree-of-thought" este -> d. varianta de harta conceptuala
+12.Diagrama de tranzitie a ferestrelor sunt folosite la d. analiza aparitiei starii de flux? e. ceva cu dialog
+13.O harta mentala este: e.brainstorming online, d. folosita in ...??
+14. Principiul 80% 20% este folosit in a.considerarea experientei utilizatorilor
+15.Macrocomenzile - folosite in (ergonomie cognitiva) pentru:
+a.concizie b.coerenta d.ghidare 
+
+Practic - la fel ca la prima sustinere, alt storyboard

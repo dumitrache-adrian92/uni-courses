@@ -1,0 +1,66 @@
+name: temperature-info
+
+services:
+  temperature-info-db:
+    container_name: temperature-info-db-container
+    image: postgres:17
+
+    ports:
+        - "5432:5432"
+    networks:
+        - temperature-info-network
+        - db-admin-network
+
+    environment:
+        POSTGRES_USER: adrian
+        POSTGRES_PASSWORD: scd2024
+        POSTGRES_DB: temperature_info
+
+    volumes:
+        - temperature-info-db-volume:/var/lib/postgresql/data
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  temperature-info-api:
+    container_name: temperature-info-api-container
+    build:
+        context: .
+
+    ports:
+        - "5000:5000"
+    networks:
+        - temperature-info-network
+
+    depends_on:
+        - temperature-info-db
+
+    environment:
+        DATABASE_URI: postgresql://adrian:scd2024@temperature-info-db:5432/temperature_info
+
+  pgadmin:
+    container_name: pgadmin-container
+    image: dpage/pgadmin4
+
+    ports:
+        - "8888:80"
+    networks:
+        - db-admin-network
+
+    volumes:
+        - pgadmin-volume:/var/lib/pgadmin
+
+    environment:
+        PGADMIN_DEFAULT_EMAIL: adrian.dumitrache02@stud.acs.upb.ro
+        PGADMIN_DEFAULT_PASSWORD: scd2024
+
+
+volumes:
+  temperature-info-db-volume:
+    driver: local
+  pgadmin-volume:
+    driver: local
+
+networks:
+  temperature-info-network:
+    driver: bridge
+  db-admin-network:
+    driver: bridge

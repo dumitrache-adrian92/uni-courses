@@ -1,0 +1,1 @@
+f funcs args = zipWith (\f x -> f x) funcs args

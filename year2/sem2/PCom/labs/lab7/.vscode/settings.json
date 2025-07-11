@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "README": "markdown",
+        "helpers.h": "c",
+        "stdint.h": "c"
+    }
+}

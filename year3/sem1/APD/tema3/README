@@ -1,0 +1,204 @@
+# **Tema 3 APD - Dumitrache Adrian-George [334CC]**
+
+Am distribuit si sistemele daca e ceva.
+
+## **Structura generala**
+
+Am implementat in C++ doar pentru cateva chestii din STL, in mare nu e foarte
+diferita de cum as fi implementat in C.
+
+Am cateva structuri pe care le folosesc sa stochez informatii despre starea
+actuala a transferurilor ce sunt relevante pentru nodul respectiv, e.g:
+
+- tracker-ul retine hash-urile fiecarui fisier, cine e seed si pentru ce
+fisiere, cine e peer si pentru ce segmente, etc.
+- un peer retine ce fisiere are, ce fisiere vrea, ce segmente vrea, ce segmente
+a descarcat, cat si informatii primite de la tracker despre cine e seed si cine
+e peer pentru ce fisiere/segmente
+
+Nodurile comunica folosind un protocol text based ce va fi detaliat de fiecare
+data cand e folosit in cadrul sectiunilor urmatoare. Comunicarea este realizata
+in proportii de 99% prin MPI_Send/Recv.
+
+Mesajele vor avea mereu lungimea cea mai mare posibila pentru a nu avea probleme
+in care nu avem idee cat de lung va fi mesajul, ce nu e folosit e zeroizat.
+E.g: daca avem de trimis numele unui fisier, atunci mesajul trimis va fi mereu
+de lungimea MAX_FILENAME (15), chiar daca numele e mai scurt.
+
+## **Operatii initiale**
+
+Fiecare peer isi parseaza fisierul de intrare si isi initializeaza structurile
+de date necesare, apoi porneste un thread de upload si un thread de download.
+
+Thread-ul de upload doar asteapta mesaje de la alti peeri cu hash-ul
+segmentului dorit si le trimite un "ACK" inapoi la infinit. Am folosit un
+MPI_Recv cu argumentul MPI_ANY_SOURCE pentru a putea primi mesaje de la orice
+peer si am pus un tag diferit pentru aceste comunicatii ca sa nu se incurce cu
+cu alte Recv-uri ale peer-ului.
+Daca primeste un mesaj de tip "END" de la tracker atunci thread-ul de upload se
+opreste.
+
+Thread-ul de download, la inceput, trimite starea sa initiala tracker-ului, adica
+ce fisiere are si apoi segmentele lor in ordine. Pentru a realiza
+acest lucru, se foloseste urmatorul format:
+Primul mesaj:
+
+```crazy_protocol
+filename1
+filename2
+...
+filenameN
+```
+
+Tracker-ul va intercepta acest mesaj si isi va actualiza structurile interne,
+acesta continua sa astepte alte N mesaje de la acelasi peer ce vor contine
+segmentele pentru fiecare fisier in parte, in ordine si va actualiza structurile
+si pentru acestea.
+
+Deci thread-ul de upload va trimite mai departe mesaje de forma:
+
+```crazy_protocol
+hash1
+hash2
+...
+hashM
+```
+
+pentru fiecare fisier in parte.
+
+Dupa ce a trimis toate mesajele, thread-ul de download va astepta un mesaj de
+confirmare de la tracker ce semnifica faptul ca tracker-ul a facut comunicarea
+descrisa anterior cu toti peerii, aici am folosit MPI_Bcast.
+
+Tracker-ul urmeaza sa intre in loop-ul sau principal in care primeste diverse
+feluri de mesaje de la peeri. Protocolul aici este destul de simplu, pentru
+a diferentia intre diverse tipuri de mesaje, punem pe prima linie a mesajului
+un singur caracter ce reprezinta tipul mesajului si restul continutului,
+specific fiecarui tip de mesaj, pe urmatoarele linii.
+
+Tipurile sunt:
+
+- 'R' - cerere de informatii despre un fisier anume, adica cine e seed,
+segmentele fisierului, si cine e peer pentru fiecare segment
+- 'F' - notificare pentru finalizarea descarcarii unui fisier, adica peerul care
+a trimis mesajul a terminat de descarcat un fisier
+- 'S' - notificare pentru finalizarea descarcarii tuturor fisierelor, adica
+peerul care a trimis mesajul a terminat de descarcat toate fisierele pe care le
+vrea
+- 'U' - notificare legata de segmente detinute de un peer
+
+Acum fiecare peer va face o cerere catre tracker pentru informatii
+despre fiecare fisier pe care il doreste utilizand un mesaj de tipul 'R' ce
+arata cam asa:
+
+```crazy_protocol
+R
+filename
+```
+
+Tracker-ul va trimite inapoi un mesaj de forma:
+
+```crazy_protocol
+seed1 seed2 ... seedN
+number_of_segments
+segment1
+segment2
+...
+segmentM
+peer1 number_of_segments_owned_by_peer1
+peer2 number_of_segments_owned_by_peer2
+...
+peerK number_of_segments_owned_by_peerK
+```
+
+Aici se poate observa o mica smecherie pe care am facut-o: in loc sa specific
+ce segmente detine fiecare peer, am specificat cate segmente detine fiecare.
+Ideea fiind ca, asa cum o sa vedem mai tarziu, peerii descarca segmentele mereu
+in ordine, deci daca un peer are x segmente, atunci le are pe primele 3.
+Am decis sa utilizez abordarea asta pentru ca era greu sa estimez exact cat de
+lung va fi mesajul daca trimiteam hash-urile segmentelor detinute de fiecare
+peer si ar fi ocupat foarte multa memorie inutil. Quick math: putem avea un
+numar oarecare de peers care detin maxim 90 de segmente (numarul maxim de
+segmente este 100). Daca avem sute/mii de peeri tocmai am transferat megabytes
+intregi de date aiurea de fiecare data cand vrem sa aflam informatii despre un fisier, bad bad not good.
+
+Peerii vor parsa aceste mesaje pentru a isi actualiza structurile de date
+interne si vor intra in loop-ul lor principal in care descarca segmente.
+
+## **Descarcare de segmente**
+
+Thread-ul de download va intra intr-un loop in ce se va opri doar atunci cand
+peer-ul a terminat de descarcat toate fisierele pe care le vrea (calic).
+In acest loop, peerul ia primul fisier din wishlist, apoi primul segment pe
+care nu il are si incepe sa isi construiasca o lista de peeri ce detin acel
+segment utilizand structurile de date.
+
+**!!! EXPLICATIE EFICIENTA !!!**
+
+Pentru a decide **eficient** ce peer sa aleaga, fiecare peer retine ultimul peer
+de la care a descarcat un segment si va alege un peer-ul din lista cu rank-ul
+cel mai mic ce are rank-ul mai mare decat ultimul peer. Daca nu exista un peer
+cu rank-ul mai mare decat ultimul peer, atunci va alege peer-ul cu rank-ul cel
+mai mic. Dupa alegere, evident, se va actualiza ultimul peer de la care am
+descarcat un segment. Astfel, e imposibil sa descarcam un fisier de la un
+singur peer decat daca e singurul ce are segmentul respectiv.
+
+Acum ca am ales de la cine luam segmentul, trimitem un mesaj de forma:
+
+```crazy_protocol
+hash
+```
+
+catre acel peer si asteptam raspunsul. Daca raspunsul e de forma:
+
+```crazy_protocol
+ACK
+```
+
+atunci peer-ul a trimis segmentul cu succes si il putem considera ca fiind
+descarcat.
+
+Daca segmentul descarcat a fost ultimul segment de care aveam nevoie pentru
+fisierul respectiv, atunci trimitem tracker-ului un mesaj de forma:
+
+```crazy_protocol
+F
+filename
+```
+
+Iar acesta ne va adauga in lista sa de seederi pentru fisierul respectiv si ne
+va scoate din lista de peeri pentru segmentele fisierului respectiv.
+
+La fiecare 10 segmente descarcate trimitem tracker-ului un mesaj de forma:
+
+```crazy_protocol
+U
+filename
+number_of_segments_downloaded
+```
+
+Tracker-ul va actualiza structurile sale interne pentru a sti ca am descarcat
+inca number_of_segments_downloaded din fisierul respectiv. Motivul pentru care
+este nevoie de acest numar si nu adaugam direct 10 este ca aceste actualizari
+se intampla si indirect prin finalizarea descarcarii unui fisier. Exemplu:
+actualizarea curenta este reprezentata de 7 segmente dintr-un fisier, ce a fost
+descarcat complet, deci tracker-ul stia deja de ele inainte de actualizare, iar
+restul 3 segmente sunt  dintr-un alt fisier ce nu a fost descarcat inca, deci
+tracker-ul nu stie de ele.
+
+Cand nu mai avem alte fisiere de descarcat, trimitem tracker-ului un mesaj de
+forma:
+
+```crazy_protocol
+S
+```
+
+Tracker-ul va scade numarul de peeri care inca descarca fisiere. Cand acel numar
+ajunge la 0, acesta va trimite un semnal catre toate thread-urile de upload sa
+se opreasca si se va opri si el la randul sau.
+
+gg, no re
+
+## **Concluzie**
+
+Sper ca va place acest sistem nebun, ciao.

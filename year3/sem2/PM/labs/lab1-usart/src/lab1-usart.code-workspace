@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"README": "markdown",
+			"*.pl": "prolog",
+			"io.h": "c",
+			"usart.h": "c",
+			"delay.h": "c"
+		}
+	}
+}

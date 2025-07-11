@@ -1,0 +1,61 @@
+int readers = 0
+int writers = 0
+int delayed_readers = 0
+int delayed_writers = 0
+sem mutex(1)
+sem r(0)
+sem w(0)
+
+reader()
+    mutex.wait()
+    if delayed_writers > 0 or writers > 0
+        delayed_readers++
+        mutex.post()
+        r.wait()
+
+    readers++
+
+    if delayed_readers > 0
+        delayed_readers--
+        r.post()
+    else
+        mutex.post()
+
+    // read
+    mutex.wait()
+
+    readers--
+    if readers == 0 and delayed_writers > 0
+        delayed_writers--
+        w.post()
+    else if readers > 0 or delayed_writers == 0
+        mutex.post()
+
+writer()
+    mutex.wait()
+
+    if readers > 0 or writers > 0
+        delayed_writers++
+        mutex.post()
+        w.wait()
+
+    writers++
+
+    mutex.post()
+
+    //write
+
+    mutex.wait()
+
+    writers--
+
+    if delayed_readers > 0 and delayed_writers == 0
+        delayed_readers--
+        r.post()
+    else if delayed_writers > 0
+        delayed_writers--
+        w.post()
+    else if delayed_readers == 0 and delayed_writers == 0
+        mutex.post()
+
+

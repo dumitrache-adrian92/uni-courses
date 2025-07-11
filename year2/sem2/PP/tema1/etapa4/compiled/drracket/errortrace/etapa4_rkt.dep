@@ -1,0 +1,1 @@
+("8.4" ta6le ("27b87910b7b67d5fc27f2194d05856cb3cf8cabc" . "23cb12cbc2692c2aaa44e230e7c1884b78d5c8e2") #"/home/adrian/Dropbox/uni/PP/tema1/etapa4/etapa2.rkt" #"/home/adrian/Dropbox/uni/PP/tema1/etapa4/etapa3.rkt" (collects #"errortrace" #"errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))

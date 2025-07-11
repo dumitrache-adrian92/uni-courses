@@ -1,0 +1,10 @@
+SELECT
+    	d1.den_dep AS Denumire_Departament_Sef,
+	a1.nume AS Nume_Sef,
+	a1.salariu AS Salariu_Sef,
+	a2.nume AS Nume_Subaltern,
+	a2.salariu AS Salariu_Subaltern
+FROM
+    angajati a1
+    JOIN angajati a2 ON a1.id_ang = a2.id_sef AND a1.id_dep <> a2.id_dep AND a2.salariu > a1.salariu/2
+    NATURAL JOIN departamente d1 where a1.id_dep = d1.id_dep;

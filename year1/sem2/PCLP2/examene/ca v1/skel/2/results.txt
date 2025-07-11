@@ -1,0 +1,5 @@
+$ ./file
+aaabbbaaacccddd
+aaabbbaaacccddd
+8
+AAABBBAAAcccddd

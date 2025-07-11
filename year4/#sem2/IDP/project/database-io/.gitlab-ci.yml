@@ -1,0 +1,35 @@
+docker-build-master:
+  stage: build
+  image: docker:stable
+  services:
+    - name: docker:dind
+      alias: docker
+      entrypoint: ["sh", "-c", "dockerd-entrypoint.sh --tls=false --host=tcp://0.0.0.0:2375"]
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""  # Disable TLS since we're using plain HTTP
+    DOCKER_DRIVER: overlay2
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $DOCKER_REGISTRY
+  script:
+    - sleep 5
+    - docker info
+    - docker build --pull -t "$CI_REGISTRY_IMAGE_DBIO" .
+    - docker push "$CI_REGISTRY_IMAGE_DBIO"
+  only:
+    - main
+  tags:
+    - image-build
+
+trigger-deploy:
+  stage: deploy
+  trigger:
+    project: songrate-idp-project/configs
+    branch: main
+    strategy: depend
+    forward:
+      pipeline_variables: true
+  variables:
+    SERVICE_NAME: "io-service"
+  only:
+    - main

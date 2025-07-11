@@ -1,0 +1,121 @@
+Să se facă o listă cu angajații care respectă următorarea condiție:
+- s-au angajat în firmă în anul în care s-au făcut cele mai multe angajări
+- fac parte din departamentul cu cei mai puțini angajați.
+
+Antet:
+NUME, DEN_DEP, DATA_ANG
+
+
+1. Numărul de angajați în fiecare an.
+
+SELECT
+	EXTRACT(YEAR FROM data_ang) AS an_ang,
+	COUNT(*) AS numar_angajati
+FROM
+	angajati
+GROUP BY EXTRACT(YEAR FROM data_ang);
+
+
+
+2. Anul cu cei mai mulți angajați.
+
+SELECT an_ang
+FROM
+	(SELECT
+		EXTRACT(YEAR FROM data_ang) AS an_ang,
+		COUNT(*) AS numar_angajati
+	FROM angajati
+	GROUP BY EXTRACT(YEAR FROM data_ang)
+	HAVING COUNT(*) = (SELECT
+				MAX(numar_angajati)
+			   FROM
+				(SELECT COUNT(*) AS numar_angajati
+				FROM angajati
+				GROUP BY EXTRACT(YEAR FROM data_ang))
+			   )
+	);
+
+
+3. Numărul de angajați din fiecare departament.
+
+SELECT
+	id_dep,
+	COUNT(*) AS numar_angajati
+FROM
+	angajati
+GROUP BY id_dep;
+
+
+4. Departamentul cu cei mai putini angajati.
+
+SELECT id_dep
+FROM
+	(SELECT
+		id_dep,
+		COUNT(*) AS numar_angajati
+	FROM
+		angajati
+	GROUP BY id_dep
+	HAVING COUNT(*) = (SELECT
+				MIN(numar_angajati)
+			   FROM
+				(SELECT COUNT(*) AS numar_angajati
+				FROM angajati
+				GROUP BY id_dep)
+			   )
+	);
+
+
+5. Final
+
+SELECT
+	a.nume AS NUME_ANGAJAT,
+	d.den_dep AS DENUMIRE_DEPARTAMENT,
+	a.data_ang AS DATA_ANGAJARE
+FROM
+	angajati a
+	JOIN departamente d ON a.id_dep = d.id_dep
+WHERE
+	EXTRACT(YEAR FROM a.data_ang) = (SELECT an_ang
+					FROM
+						(SELECT
+							EXTRACT(YEAR FROM data_ang) AS an_ang,
+							COUNT(*) AS numar_angajati
+						FROM angajati
+						GROUP BY EXTRACT(YEAR FROM data_ang)
+						HAVING COUNT(*) = (SELECT
+									MAX(numar_angajati)
+			  					   FROM
+									(SELECT COUNT(*) AS numar_angajati
+									FROM angajati
+									GROUP BY EXTRACT(YEAR FROM data_ang)
+									)
+			   					)
+						)
+					)
+	AND
+	a.id_dep = (SELECT id_dep
+		   FROM
+			(SELECT
+				id_dep,
+				COUNT(*) AS numar_angajati
+			FROM
+				angajati
+			GROUP BY id_dep
+			HAVING COUNT(*) = (SELECT
+						MIN(numar_angajati)
+			   		   FROM
+						(SELECT COUNT(*) AS numar_angajati
+						FROM angajati
+						GROUP BY id_dep
+						)
+			   		)
+			)
+		   );
+
+
+
+NUME_ANGAJAT                   DENUMIRE_DEPARTAMENT           DATA_ANGA
+------------------------------ ------------------------------ ---------
+CLARK                          ACCOUNTING                     09-JUN-81
+KING                           ACCOUNTING                     17-NOV-81

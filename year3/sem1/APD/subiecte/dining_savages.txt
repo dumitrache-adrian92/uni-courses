@@ -1,0 +1,23 @@
+servings = 0
+sem mutex(1)
+sem isPotEmpty(0)
+sem isPotFull(0)
+
+savage()
+    while True
+        mutex.wait()
+        if (servings == 0)
+            isPotEmpty.post()
+            isPotFull.wait()
+        getServingFromPot()
+        servings--
+        mutex.post()
+        eat()
+
+
+cook()
+    while True
+        isPotEmpty.wait()
+        putServingsInPot(M)
+        servings = M
+        isPotFull.post()

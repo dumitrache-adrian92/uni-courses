@@ -1,0 +1,17 @@
+<?php
+// template to be included for printing messages sidebar
+?>
+<?php if (isset($msgStats)) { ?>
+<div class="box messages">
+  <div class="caption">Private Messages</div>
+  <p class="contents">
+<?php if ($msgStats['unread'] > 0) { ?>
+<div><a href="/inside/message">You have <b><?=$msgStats['unread']?></b> unread messages.</a></div>
+<?php } else { ?>
+    <div><i>No new messages.</i></div>
+    <a href="/inside/message">Show all messages</a>
+<?php } ?>
+  </p>
+</div>
+<?php } ?>
+

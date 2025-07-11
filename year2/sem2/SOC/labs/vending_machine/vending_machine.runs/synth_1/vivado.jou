@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue May  2 14:57:21 2023
+# Process ID: 6412
+# Current directory: C:/Users/student/Documents/Dumitrache Adrian-George/vending_machine/vending_machine.runs/synth_1
+# Command line: vivado.exe -log vending_machine.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source vending_machine.tcl
+# Log file: C:/Users/student/Documents/Dumitrache Adrian-George/vending_machine/vending_machine.runs/synth_1/vending_machine.vds
+# Journal file: C:/Users/student/Documents/Dumitrache Adrian-George/vending_machine/vending_machine.runs/synth_1\vivado.jou
+# Running On: Lenovo-EF001, OS: Windows, CPU Frequency: 3592 MHz, CPU Physical cores: 4, Host memory: 17125 MB
+#-----------------------------------------------------------
+source vending_machine.tcl -notrace

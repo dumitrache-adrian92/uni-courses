@@ -1,0 +1,5 @@
+*.pdf
+*.zip
+.idea/
+test.py
+.venv
